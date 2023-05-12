@@ -1,3 +1,5 @@
+![Pokémon Time](.github/preview.png)
+
 # Pokémon Time
 
 An in-development Pokémon fan game made in Godot 4.0.2 and written in GDscript.

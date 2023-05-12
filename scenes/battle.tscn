@@ -1,7 +1,6 @@
-[gd_scene load_steps=39 format=3 uid="uid://brt1dt1nirq7a"]
+[gd_scene load_steps=38 format=3 uid="uid://brt1dt1nirq7a"]
 
 [ext_resource type="Script" path="res://scripts/battle.gd" id="1_o7u0l"]
-[ext_resource type="Texture2D" uid="uid://2lfj2vpc3s20" path="res://sprites/BattleGui/BattleBackgrounds/enemybase/concrete-dark.png" id="1_p3h8g"]
 [ext_resource type="Texture2D" uid="uid://uxtbhs0tne46" path="res://sprites/pokemon/001-bulbasaur/front.png" id="2_8gb1f"]
 [ext_resource type="Texture2D" uid="uid://cje7ettsqc8sw" path="res://sprites/pokemon/001-bulbasaur/back.png" id="3_jv0x2"]
 [ext_resource type="Texture2D" uid="uid://5a8lg0rslijd" path="res://sprites/BattleGui/overlay_fight.png" id="5_yb4ue"]
@@ -70,19 +69,11 @@ load_path = "res://.godot/imported/overlay_message.png-3c7d662fded170b9fb47f0e02
 [node name="battle" type="Node2D"]
 script = ExtResource("1_o7u0l")
 
-[node name="Concrete-dark" type="Sprite2D" parent="."]
-position = Vector2(196, 64)
-texture = ExtResource("1_p3h8g")
-
-[node name="Concrete-dark2" type="Sprite2D" parent="."]
-position = Vector2(60, 136)
-texture = ExtResource("1_p3h8g")
-
-[node name="Front" type="Sprite2D" parent="."]
+[node name="enemy" type="Sprite2D" parent="."]
 position = Vector2(196, 53)
 texture = ExtResource("2_8gb1f")
 
-[node name="Back" type="Sprite2D" parent="."]
+[node name="player" type="Sprite2D" parent="."]
 position = Vector2(60, 128)
 texture = ExtResource("3_jv0x2")
 
