@@ -1,0 +1,46 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="pokemon-time"
+run/main_scene="res://scenes/debug/debugMenu.tscn"
+config/features=PackedStringArray("4.0", "Forward Plus")
+config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=512
+window/size/viewport_height=384
+window/stretch/mode="viewport"
+window/stretch/scale=2.0
+
+[dotnet]
+
+project/assembly_name="pokemon-time"
+
+[physics]
+
+common/physics_ticks_per_second=1
+common/max_physics_steps_per_frame=1
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+driver/threads/thread_model=2
+textures/vram_compression/import_s3tc_bptc=false
+textures/lossless_compression/force_png=true
+2d/shadow_atlas/size=256
+textures/default_filters/use_nearest_mipmap_filter=true
+textures/default_filters/anisotropic_filtering_level=0
+textures/decals/filter=0
+textures/light_projectors/filter=0
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
+2d/sdf/oversize=0

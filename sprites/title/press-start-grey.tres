@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://b6rfs5av6g0b5"]
+
+[ext_resource type="Texture2D" uid="uid://cgw8ihcoadl4m" path="res://sprites/title/controls.png" id="1_ovyjs"]
+
+[resource]
+atlas = ExtResource("1_ovyjs")
+region = Rect2(0, 8, 84, 8)

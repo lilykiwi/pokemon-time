@@ -20,6 +20,16 @@ Whether or not this project falls under "Fan Art" is up to Nintendo. I do not in
 
 ### Acknowledgements
 
-- Nintendo for Pokémon IP, original assets from various Pokémon games
+- Nintendo for Pokémon IP, original assets from various Pokémon games, logo, sounds, etc
 - [Daniel Linssen](https://twitter.com/managore) fonts [m3x6](https://managore.itch.io/m3x6?download) and [m5x7](https://managore.itch.io/m5x7)
 - Spriters Resource (more attribution coming, apologies for the delay)
+  - [TheFloofyPanthar](https://www.deviantart.com/thefloofypanthar) for Gen5 Party Screen
+  - [Latias Tamer](https://www.deviantart.com/latias-tamer) for HGSS location art
+  - [redblueyellow](https://www.spriters-resource.com/submitter/redblueyellow/) for Gen5 Trainer Sprites
+  - [Barubary](https://www.spriters-resource.com/submitter/barubary/) for box BGs, trainer sprites, and more
+  - [PikachuMazzinga](https://www.spriters-resource.com/submitter/pikachumazzinga/) for Gen5 settings atlas
+  - [Ikard](https://www.spriters-resource.com/submitter/ikard/) for Gen5 game file menu
+  - [Dragoon](https://www.spriters-resource.com/submitter/dragoon/) for Gen4 box BGs
+  - [Tsuka](https://www.spriters-resource.com/submitter/tsuka/) for battle platform sprites
+  - [KlNothinComin](https://www.spriters-resource.com/submitter/klnothincomin/) for battle platform sprites & BGs
+- [Pokemon Infinite Fusion](https://www.pokecommunity.com/showthread.php?t=347883) various sprites and assets. Absolutely no fan-made art is used, only official assets from Nintendo. If anything slips through, please contact me [by email](mailto:char73@pm.me) or through [GitHub](https://github.com/lilykiwi) and I'll remove it immediately.

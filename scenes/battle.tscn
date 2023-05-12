@@ -1,0 +1,1317 @@
+[gd_scene load_steps=39 format=3 uid="uid://brt1dt1nirq7a"]
+
+[ext_resource type="Script" path="res://scripts/battle.gd" id="1_o7u0l"]
+[ext_resource type="Texture2D" uid="uid://2lfj2vpc3s20" path="res://sprites/BattleGui/BattleBackgrounds/enemybase/concrete-dark.png" id="1_p3h8g"]
+[ext_resource type="Texture2D" uid="uid://uxtbhs0tne46" path="res://sprites/pokemon/001-bulbasaur/front.png" id="2_8gb1f"]
+[ext_resource type="Texture2D" uid="uid://cje7ettsqc8sw" path="res://sprites/pokemon/001-bulbasaur/back.png" id="3_jv0x2"]
+[ext_resource type="Texture2D" uid="uid://5a8lg0rslijd" path="res://sprites/BattleGui/overlay_fight.png" id="5_yb4ue"]
+[ext_resource type="StyleBox" uid="uid://cvyojb03w15c3" path="res://sprites/OptionsMenu/ThemeElements/buttonNormal.tres" id="6_te4ow"]
+[ext_resource type="StyleBox" uid="uid://dpo8pv6clxt8f" path="res://sprites/OptionsMenu/ThemeElements/buttonHighlight.tres" id="7_75wrf"]
+[ext_resource type="FontFile" uid="uid://6koku71fwx35" path="res://Fonts/m5x7.ttf" id="8_g7bpw"]
+[ext_resource type="Texture2D" uid="uid://k1uthfjdn1kj" path="res://sprites/BattleGui/cursor-fight/fight_atlas.png" id="8_kvf1y"]
+[ext_resource type="FontFile" uid="uid://b6pot5irfnq1y" path="res://Fonts/power green small.ttf" id="9_jn0el"]
+[ext_resource type="Texture2D" path="res://sprites/BattleGui/types/questionmarks.tres" id="10_lat0m"]
+[ext_resource type="Texture2D" uid="uid://w0288hxqoylg" path="res://sprites/BattleGui/databox_normal.png" id="11_yqj3d"]
+[ext_resource type="Texture2D" uid="uid://cg5g762w0lb5s" path="res://sprites/BattleGui/hpbar.png" id="12_xmnc8"]
+[ext_resource type="Texture2D" uid="uid://bx3rne8etceoq" path="res://sprites/BattleGui/overlay_exp.png" id="13_0rw5y"]
+[ext_resource type="Texture2D" uid="uid://boaxsoe5gie8e" path="res://sprites/BattleGui/female.png" id="14_ae67x"]
+[ext_resource type="Texture2D" uid="uid://cbv86afi6st08" path="res://sprites/BattleGui/overlay_lv.png" id="15_7fk0e"]
+[ext_resource type="Texture2D" path="res://sprites/BattleGui/stat/ball-full.tres" id="16_elpei"]
+[ext_resource type="Texture2D" path="res://sprites/BattleGui/stat/ball-status.tres" id="17_21f4c"]
+[ext_resource type="Texture2D" path="res://sprites/BattleGui/stat/ball-fainted.tres" id="18_h62hm"]
+[ext_resource type="Texture2D" path="res://sprites/BattleGui/stat/ball-empty.tres" id="19_ma8l2"]
+[ext_resource type="Texture2D" uid="uid://cbjka5mjw7xhs" path="res://sprites/BattleGui/statuses/poison.png" id="20_1bi1l"]
+[ext_resource type="Texture2D" uid="uid://7o64d811jv82" path="res://sprites/BattleGui/statuses/fog.png" id="21_r5lep"]
+[ext_resource type="Texture2D" path="res://sprites/BattleGui/stat/health.tres" id="22_phgye"]
+[ext_resource type="Texture2D" path="res://sprites/BattleGui/stat/up-t2.tres" id="23_if3k0"]
+[ext_resource type="Texture2D" path="res://sprites/BattleGui/stat/attack.tres" id="24_euhkr"]
+[ext_resource type="Texture2D" path="res://sprites/BattleGui/stat/defense.tres" id="25_16t7o"]
+[ext_resource type="Texture2D" path="res://sprites/BattleGui/stat/special-attack.tres" id="26_g2ao7"]
+[ext_resource type="Texture2D" path="res://sprites/BattleGui/stat/special-defense.tres" id="27_5k8m7"]
+[ext_resource type="Texture2D" path="res://sprites/BattleGui/stat/speed.tres" id="28_jimi5"]
+[ext_resource type="Texture2D" path="res://sprites/BattleGui/stat/accuracy.tres" id="29_3dj80"]
+[ext_resource type="Texture2D" path="res://sprites/BattleGui/stat/evasion.tres" id="30_oxwm5"]
+[ext_resource type="Texture2D" path="res://sprites/BattleGui/numbers/0.tres" id="31_s3fbg"]
+[ext_resource type="Texture2D" path="res://sprites/BattleGui/numbers/slash.tres" id="32_7uuhr"]
+[ext_resource type="Texture2D" uid="uid://c8v28gv8kq00" path="res://sprites/BattleGui/databox_normal_foe.png" id="33_2dx7b"]
+[ext_resource type="Texture2D" path="res://sprites/BattleGui/hpbar-green.tres" id="34_v1n2y"]
+
+[sub_resource type="Theme" id="Theme_wdfgg"]
+default_font = ExtResource("9_jn0el")
+default_font_size = 11
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/h_separation = 2
+Button/constants/outline_size = 0
+Button/styles/disabled = ExtResource("6_te4ow")
+Button/styles/focus = ExtResource("7_75wrf")
+Button/styles/hover = ExtResource("7_75wrf")
+Button/styles/normal = ExtResource("6_te4ow")
+Button/styles/pressed = ExtResource("7_75wrf")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_boify"]
+atlas = ExtResource("8_kvf1y")
+region = Rect2(0, 0, 96, 24)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nhejf"]
+load_path = "res://.godot/imported/overlay_message.png-3c7d662fded170b9fb47f0e02c5cb2b5.ctex"
+
+[node name="battle" type="Node2D"]
+script = ExtResource("1_o7u0l")
+
+[node name="Concrete-dark" type="Sprite2D" parent="."]
+position = Vector2(196, 64)
+texture = ExtResource("1_p3h8g")
+
+[node name="Concrete-dark2" type="Sprite2D" parent="."]
+position = Vector2(60, 136)
+texture = ExtResource("1_p3h8g")
+
+[node name="Front" type="Sprite2D" parent="."]
+position = Vector2(196, 53)
+texture = ExtResource("2_8gb1f")
+
+[node name="Back" type="Sprite2D" parent="."]
+position = Vector2(60, 128)
+texture = ExtResource("3_jv0x2")
+
+[node name="battle-gui" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FightOptions" type="TextureRect" parent="battle-gui"]
+layout_mode = 0
+offset_top = 144.0
+offset_right = 256.0
+offset_bottom = 192.0
+texture = ExtResource("5_yb4ue")
+
+[node name="PP Count" type="Label" parent="battle-gui/FightOptions"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 74.0
+offset_top = 25.0
+offset_right = 118.0
+offset_bottom = 41.0
+grow_horizontal = 2
+theme = SubResource("Theme_wdfgg")
+theme_override_colors/font_color = Color(0.282353, 0.282353, 0.282353, 1)
+theme_override_colors/font_shadow_color = Color(0.721569, 0.721569, 0.721569, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("8_g7bpw")
+theme_override_font_sizes/font_size = 16
+text = "20/20PP"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="Move5" type="Button" parent="battle-gui/FightOptions"]
+visible = false
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 97.0
+offset_bottom = 25.0
+
+[node name="Move1" type="TextureRect" parent="battle-gui/FightOptions"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 98.0
+offset_bottom = 26.0
+texture = SubResource("AtlasTexture_boify")
+
+[node name="Label" type="Label" parent="battle-gui/FightOptions/Move1"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -37.0
+offset_top = 5.0
+offset_right = 37.0
+offset_bottom = 18.0
+grow_horizontal = 2
+theme = SubResource("Theme_wdfgg")
+theme_override_colors/font_color = Color(0.972549, 0.972549, 0.972549, 1)
+theme_override_colors/font_outline_color = Color(0.282353, 0.282353, 0.282353, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("9_jn0el")
+theme_override_font_sizes/font_size = 11
+text = "Tackle"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+max_lines_visible = 1
+visible_characters = 15
+visible_ratio = 2.5
+
+[node name="Move2" type="TextureRect" parent="battle-gui/FightOptions"]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 2.0
+offset_right = 192.0
+offset_bottom = 26.0
+texture = SubResource("AtlasTexture_boify")
+
+[node name="Label" type="Label" parent="battle-gui/FightOptions/Move2"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -37.0
+offset_top = 5.0
+offset_right = 37.0
+offset_bottom = 18.0
+grow_horizontal = 2
+theme = SubResource("Theme_wdfgg")
+theme_override_colors/font_color = Color(0.972549, 0.972549, 0.972549, 1)
+theme_override_colors/font_outline_color = Color(0.282353, 0.282353, 0.282353, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("9_jn0el")
+theme_override_font_sizes/font_size = 11
+text = "Murder"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+max_lines_visible = 1
+visible_characters = 15
+visible_ratio = 2.5
+
+[node name="Move3" type="TextureRect" parent="battle-gui/FightOptions"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 23.0
+offset_right = 98.0
+offset_bottom = 47.0
+texture = SubResource("AtlasTexture_boify")
+
+[node name="Label" type="Label" parent="battle-gui/FightOptions/Move3"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -37.0
+offset_top = 5.0
+offset_right = 37.0
+offset_bottom = 18.0
+grow_horizontal = 2
+theme = SubResource("Theme_wdfgg")
+theme_override_colors/font_color = Color(0.972549, 0.972549, 0.972549, 1)
+theme_override_colors/font_outline_color = Color(0.282353, 0.282353, 0.282353, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("9_jn0el")
+theme_override_font_sizes/font_size = 11
+text = "Jizz"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+max_lines_visible = 1
+visible_characters = 15
+visible_ratio = 3.75
+
+[node name="Move4" type="TextureRect" parent="battle-gui/FightOptions"]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 23.0
+offset_right = 192.0
+offset_bottom = 47.0
+texture = SubResource("AtlasTexture_boify")
+
+[node name="Label" type="Label" parent="battle-gui/FightOptions/Move4"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -37.0
+offset_top = 5.0
+offset_right = 37.0
+offset_bottom = 18.0
+grow_horizontal = 2
+theme = SubResource("Theme_wdfgg")
+theme_override_colors/font_color = Color(0.972549, 0.972549, 0.972549, 1)
+theme_override_colors/font_outline_color = Color(0.282353, 0.282353, 0.282353, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("9_jn0el")
+theme_override_font_sizes/font_size = 11
+text = "KILL."
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+max_lines_visible = 1
+visible_characters = 15
+visible_ratio = 3.0
+
+[node name="MoveType" type="TextureRect" parent="battle-gui/FightOptions"]
+layout_mode = 0
+offset_left = 208.0
+offset_top = 11.0
+offset_right = 240.0
+offset_bottom = 25.0
+texture = ExtResource("10_lat0m")
+
+[node name="MessageBox" type="TextureRect" parent="battle-gui"]
+visible = false
+layout_mode = 0
+offset_top = 144.0
+offset_right = 256.0
+offset_bottom = 192.0
+texture = SubResource("CompressedTexture2D_nhejf")
+
+[node name="MessageText" type="RichTextLabel" parent="battle-gui/MessageBox"]
+layout_direction = 2
+layout_mode = 0
+offset_left = 14.0
+offset_top = 12.0
+offset_right = 242.0
+offset_bottom = 38.0
+auto_translate = false
+localize_numeral_system = false
+theme = SubResource("Theme_wdfgg")
+theme_override_colors/default_color = Color(0.282353, 0.282353, 0.282353, 1)
+theme_override_colors/font_shadow_color = Color(0.854902, 0.854902, 0.854902, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 1
+theme_override_fonts/normal_font = ExtResource("8_g7bpw")
+theme_override_font_sizes/normal_font_size = 15
+text = "Amoongus shat on the floor and called
+you a slur! It was super effective!"
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayerDatabox" type="TextureRect" parent="battle-gui"]
+layout_mode = 0
+offset_left = 126.0
+offset_top = 103.0
+offset_right = 256.0
+offset_bottom = 145.0
+texture = ExtResource("11_yqj3d")
+
+[node name="HPBar" type="TextureRect" parent="battle-gui/PlayerDatabox"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0692308
+anchor_right = 0.0692308
+offset_left = 68.0
+offset_top = 20.0
+offset_right = 116.0
+offset_bottom = 23.0
+texture = ExtResource("12_xmnc8")
+expand_mode = 1
+stretch_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="XPBar" type="TextureRect" parent="battle-gui/PlayerDatabox"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 37.0
+offset_right = 116.0
+offset_bottom = 39.0
+texture = ExtResource("13_0rw5y")
+metadata/_edit_use_anchors_ = true
+
+[node name="Gender" type="TextureRect" parent="battle-gui/PlayerDatabox"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.0238095
+anchor_bottom = -0.0238095
+offset_left = 19.0
+offset_top = 7.0
+offset_right = 25.0
+offset_bottom = 17.0
+texture = ExtResource("14_ae67x")
+metadata/_edit_use_anchors_ = true
+
+[node name="Lv" type="TextureRect" parent="battle-gui/PlayerDatabox"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0461538
+anchor_right = 0.0461538
+offset_left = 95.0
+offset_top = 9.0
+offset_right = 106.0
+offset_bottom = 16.0
+texture = ExtResource("15_7fk0e")
+metadata/_edit_use_anchors_ = true
+
+[node name="LevelLabel" type="RichTextLabel" parent="battle-gui/PlayerDatabox"]
+layout_direction = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0384615
+anchor_right = 0.0384615
+offset_left = 107.0
+offset_top = 7.0
+offset_right = 123.0
+offset_bottom = 16.0
+auto_translate = false
+localize_numeral_system = false
+theme = SubResource("Theme_wdfgg")
+theme_override_colors/default_color = Color(0.282353, 0.282353, 0.282353, 1)
+theme_override_colors/font_shadow_color = Color(0.721569, 0.721569, 0.721569, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 1
+text = "100
+"
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+metadata/_edit_use_anchors_ = true
+
+[node name="NicknameLabel" type="RichTextLabel" parent="battle-gui/PlayerDatabox"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.0238095
+anchor_right = 0.00769231
+offset_left = 28.0
+offset_top = 5.0
+offset_right = 91.0
+offset_bottom = 17.0
+theme = SubResource("Theme_wdfgg")
+theme_override_colors/default_color = Color(0.282353, 0.282353, 0.282353, 1)
+theme_override_colors/font_shadow_color = Color(0.721569, 0.721569, 0.721569, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 1
+theme_override_fonts/normal_font = ExtResource("8_g7bpw")
+theme_override_font_sizes/normal_font_size = 15
+text = "Amoongus"
+scroll_active = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Ball1" type="TextureRect" parent="battle-gui/PlayerDatabox"]
+layout_mode = 2
+offset_left = 106.0
+offset_top = -16.0
+offset_right = 113.0
+offset_bottom = -9.0
+texture = ExtResource("16_elpei")
+metadata/_edit_use_anchors_ = true
+
+[node name="Ball2" type="TextureRect" parent="battle-gui/PlayerDatabox"]
+layout_mode = 2
+offset_left = 114.0
+offset_top = -16.0
+offset_right = 121.0
+offset_bottom = -9.0
+texture = ExtResource("16_elpei")
+metadata/_edit_use_anchors_ = true
+
+[node name="Ball3" type="TextureRect" parent="battle-gui/PlayerDatabox"]
+layout_mode = 2
+offset_left = 122.0
+offset_top = -16.0
+offset_right = 129.0
+offset_bottom = -9.0
+texture = ExtResource("17_21f4c")
+metadata/_edit_use_anchors_ = true
+
+[node name="Ball4" type="TextureRect" parent="battle-gui/PlayerDatabox"]
+layout_mode = 2
+offset_left = 106.0
+offset_top = -8.0
+offset_right = 113.0
+offset_bottom = -1.0
+texture = ExtResource("18_h62hm")
+metadata/_edit_use_anchors_ = true
+
+[node name="Ball5" type="TextureRect" parent="battle-gui/PlayerDatabox"]
+layout_mode = 2
+offset_left = 114.0
+offset_top = -8.0
+offset_right = 121.0
+offset_bottom = -1.0
+texture = ExtResource("18_h62hm")
+metadata/_edit_use_anchors_ = true
+
+[node name="Ball6" type="TextureRect" parent="battle-gui/PlayerDatabox"]
+layout_mode = 2
+offset_left = 122.0
+offset_top = -8.0
+offset_right = 129.0
+offset_bottom = -1.0
+texture = ExtResource("19_ma8l2")
+metadata/_edit_use_anchors_ = true
+
+[node name="Status1" type="TextureRect" parent="battle-gui/PlayerDatabox"]
+visible = false
+clip_contents = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0153846
+anchor_right = 0.0153846
+offset_left = 11.0
+offset_top = 26.0
+offset_right = 33.0
+offset_bottom = 34.0
+texture = ExtResource("20_1bi1l")
+expand_mode = 1
+stretch_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Status2" type="TextureRect" parent="battle-gui/PlayerDatabox"]
+visible = false
+clip_contents = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0230769
+anchor_right = 0.0230769
+offset_left = 34.0
+offset_top = 26.0
+offset_right = 56.0
+offset_bottom = 34.0
+texture = ExtResource("21_r5lep")
+expand_mode = 1
+stretch_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="StatsContainer" type="HFlowContainer" parent="battle-gui/PlayerDatabox"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = -8.0
+offset_right = 104.0
+offset_bottom = -1.0
+auto_translate = false
+localize_numeral_system = false
+theme_override_constants/h_separation = 1
+alignment = 2
+
+[node name="HPStat" type="TextureRect" parent="battle-gui/PlayerDatabox/StatsContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("22_phgye")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat1" type="TextureRect" parent="battle-gui/PlayerDatabox/StatsContainer/HPStat"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -5.0
+offset_right = 7.0
+offset_bottom = -1.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat2" type="TextureRect" parent="battle-gui/PlayerDatabox/StatsContainer/HPStat"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -8.0
+offset_right = 7.0
+offset_bottom = -4.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat3" type="TextureRect" parent="battle-gui/PlayerDatabox/StatsContainer/HPStat"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -11.0
+offset_right = 7.0
+offset_bottom = -7.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="AttackStat" type="TextureRect" parent="battle-gui/PlayerDatabox/StatsContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("24_euhkr")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat1" type="TextureRect" parent="battle-gui/PlayerDatabox/StatsContainer/AttackStat"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -5.0
+offset_right = 7.0
+offset_bottom = -1.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat2" type="TextureRect" parent="battle-gui/PlayerDatabox/StatsContainer/AttackStat"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -8.0
+offset_right = 7.0
+offset_bottom = -4.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat3" type="TextureRect" parent="battle-gui/PlayerDatabox/StatsContainer/AttackStat"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -11.0
+offset_right = 7.0
+offset_bottom = -7.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="DefenseStat" type="TextureRect" parent="battle-gui/PlayerDatabox/StatsContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("25_16t7o")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat1" type="TextureRect" parent="battle-gui/PlayerDatabox/StatsContainer/DefenseStat"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -5.0
+offset_right = 7.0
+offset_bottom = -1.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat2" type="TextureRect" parent="battle-gui/PlayerDatabox/StatsContainer/DefenseStat"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -8.0
+offset_right = 7.0
+offset_bottom = -4.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat3" type="TextureRect" parent="battle-gui/PlayerDatabox/StatsContainer/DefenseStat"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -11.0
+offset_right = 7.0
+offset_bottom = -7.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="SpecialAttackStat" type="TextureRect" parent="battle-gui/PlayerDatabox/StatsContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("26_g2ao7")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat1" type="TextureRect" parent="battle-gui/PlayerDatabox/StatsContainer/SpecialAttackStat"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -5.0
+offset_right = 7.0
+offset_bottom = -1.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat2" type="TextureRect" parent="battle-gui/PlayerDatabox/StatsContainer/SpecialAttackStat"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -8.0
+offset_right = 7.0
+offset_bottom = -4.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat3" type="TextureRect" parent="battle-gui/PlayerDatabox/StatsContainer/SpecialAttackStat"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -11.0
+offset_right = 7.0
+offset_bottom = -7.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="SpecialDefenseStat" type="TextureRect" parent="battle-gui/PlayerDatabox/StatsContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("27_5k8m7")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat1" type="TextureRect" parent="battle-gui/PlayerDatabox/StatsContainer/SpecialDefenseStat"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -5.0
+offset_right = 7.0
+offset_bottom = -1.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat2" type="TextureRect" parent="battle-gui/PlayerDatabox/StatsContainer/SpecialDefenseStat"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -8.0
+offset_right = 7.0
+offset_bottom = -4.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat3" type="TextureRect" parent="battle-gui/PlayerDatabox/StatsContainer/SpecialDefenseStat"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -11.0
+offset_right = 7.0
+offset_bottom = -7.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="SpeedStat" type="TextureRect" parent="battle-gui/PlayerDatabox/StatsContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("28_jimi5")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat1" type="TextureRect" parent="battle-gui/PlayerDatabox/StatsContainer/SpeedStat"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -5.0
+offset_right = 7.0
+offset_bottom = -1.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat2" type="TextureRect" parent="battle-gui/PlayerDatabox/StatsContainer/SpeedStat"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -8.0
+offset_right = 7.0
+offset_bottom = -4.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat3" type="TextureRect" parent="battle-gui/PlayerDatabox/StatsContainer/SpeedStat"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -11.0
+offset_right = 7.0
+offset_bottom = -7.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="AccuraccyStat" type="TextureRect" parent="battle-gui/PlayerDatabox/StatsContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("29_3dj80")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat1" type="TextureRect" parent="battle-gui/PlayerDatabox/StatsContainer/AccuraccyStat"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -5.0
+offset_right = 7.0
+offset_bottom = -1.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat2" type="TextureRect" parent="battle-gui/PlayerDatabox/StatsContainer/AccuraccyStat"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -8.0
+offset_right = 7.0
+offset_bottom = -4.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat3" type="TextureRect" parent="battle-gui/PlayerDatabox/StatsContainer/AccuraccyStat"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -11.0
+offset_right = 7.0
+offset_bottom = -7.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="EvasionStat" type="TextureRect" parent="battle-gui/PlayerDatabox/StatsContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("30_oxwm5")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat1" type="TextureRect" parent="battle-gui/PlayerDatabox/StatsContainer/EvasionStat"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -5.0
+offset_right = 7.0
+offset_bottom = -1.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat2" type="TextureRect" parent="battle-gui/PlayerDatabox/StatsContainer/EvasionStat"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -8.0
+offset_right = 7.0
+offset_bottom = -4.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat3" type="TextureRect" parent="battle-gui/PlayerDatabox/StatsContainer/EvasionStat"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -11.0
+offset_right = 7.0
+offset_bottom = -7.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="HPNumbers" type="HFlowContainer" parent="battle-gui/PlayerDatabox"]
+layout_direction = 3
+layout_mode = 0
+offset_left = 6.0
+offset_top = 27.0
+offset_right = 62.0
+offset_bottom = 34.0
+theme_override_constants/h_separation = 0
+
+[node name="digit6" type="TextureRect" parent="battle-gui/PlayerDatabox/HPNumbers"]
+layout_mode = 2
+texture = ExtResource("31_s3fbg")
+
+[node name="digit5" type="TextureRect" parent="battle-gui/PlayerDatabox/HPNumbers"]
+layout_mode = 2
+texture = ExtResource("31_s3fbg")
+
+[node name="digit4" type="TextureRect" parent="battle-gui/PlayerDatabox/HPNumbers"]
+layout_mode = 2
+texture = ExtResource("31_s3fbg")
+
+[node name="slash" type="TextureRect" parent="battle-gui/PlayerDatabox/HPNumbers"]
+layout_mode = 2
+texture = ExtResource("32_7uuhr")
+
+[node name="digit3" type="TextureRect" parent="battle-gui/PlayerDatabox/HPNumbers"]
+layout_mode = 2
+texture = ExtResource("31_s3fbg")
+
+[node name="digit2" type="TextureRect" parent="battle-gui/PlayerDatabox/HPNumbers"]
+layout_mode = 2
+texture = ExtResource("31_s3fbg")
+
+[node name="digit1" type="TextureRect" parent="battle-gui/PlayerDatabox/HPNumbers"]
+layout_mode = 2
+texture = ExtResource("31_s3fbg")
+
+[node name="FoeDatabox" type="TextureRect" parent="battle-gui"]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 130.0
+offset_bottom = 32.0
+texture = ExtResource("33_2dx7b")
+metadata/_edit_use_anchors_ = true
+
+[node name="OverlayLv" type="TextureRect" parent="battle-gui/FoeDatabox"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.00769231
+anchor_right = 0.0230769
+offset_left = 89.0
+offset_top = 8.0
+offset_right = 96.0
+offset_bottom = 15.0
+texture = ExtResource("15_7fk0e")
+metadata/_edit_use_anchors_ = true
+
+[node name="Gender" type="TextureRect" parent="battle-gui/FoeDatabox"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.00769231
+anchor_right = -0.00769231
+anchor_bottom = 0.0967742
+offset_left = 81.0
+offset_top = 6.0
+offset_right = 87.0
+offset_bottom = 13.0
+texture = ExtResource("14_ae67x")
+metadata/_edit_use_anchors_ = true
+
+[node name="HPBar" type="TextureRect" parent="battle-gui/FoeDatabox"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 68.0
+offset_top = 20.0
+offset_right = 116.0
+offset_bottom = 23.0
+texture = ExtResource("34_v1n2y")
+metadata/_edit_use_anchors_ = true
+
+[node name="IconOwned" type="TextureRect" parent="battle-gui/FoeDatabox"]
+layout_mode = 2
+offset_left = 2.0
+offset_top = 7.0
+offset_right = 9.0
+offset_bottom = 14.0
+texture = ExtResource("16_elpei")
+metadata/_edit_use_anchors_ = true
+
+[node name="NicknameLabel" type="RichTextLabel" parent="battle-gui/FoeDatabox"]
+layout_mode = 2
+offset_left = 12.0
+offset_top = 4.0
+offset_right = 77.0
+offset_bottom = 18.0
+theme = SubResource("Theme_wdfgg")
+theme_override_colors/default_color = Color(0.282353, 0.282353, 0.282353, 1)
+theme_override_colors/font_shadow_color = Color(0.721569, 0.721569, 0.721569, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 1
+theme_override_fonts/normal_font = ExtResource("8_g7bpw")
+theme_override_font_sizes/normal_font_size = 15
+text = "Amoongus"
+scroll_active = false
+metadata/_edit_use_anchors_ = true
+
+[node name="LevelLabel" type="RichTextLabel" parent="battle-gui/FoeDatabox"]
+layout_direction = 2
+layout_mode = 0
+offset_left = 99.0
+offset_top = 6.0
+offset_right = 115.0
+offset_bottom = 16.0
+theme = SubResource("Theme_wdfgg")
+theme_override_colors/default_color = Color(0.282353, 0.282353, 0.282353, 1)
+theme_override_colors/font_shadow_color = Color(0.721569, 0.721569, 0.721569, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 1
+text = "100"
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+metadata/_edit_use_anchors_ = true
+
+[node name="StatsContainer" type="HFlowContainer" parent="battle-gui/FoeDatabox"]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 32.0
+offset_right = 105.0
+offset_bottom = 39.0
+auto_translate = false
+localize_numeral_system = false
+theme_override_constants/h_separation = 1
+
+[node name="HPStat" type="TextureRect" parent="battle-gui/FoeDatabox/StatsContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("22_phgye")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat1" type="TextureRect" parent="battle-gui/FoeDatabox/StatsContainer/HPStat"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.85714
+anchor_bottom = 1.85714
+offset_left = 2.0
+offset_top = -5.0
+offset_right = 7.0
+offset_bottom = -1.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat2" type="TextureRect" parent="battle-gui/FoeDatabox/StatsContainer/HPStat"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 2.71429
+anchor_bottom = 2.71429
+offset_left = 2.0
+offset_top = -8.0
+offset_right = 7.0
+offset_bottom = -4.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat3" type="TextureRect" parent="battle-gui/FoeDatabox/StatsContainer/HPStat"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 3.57143
+anchor_bottom = 3.57143
+offset_left = 2.0
+offset_top = -11.0
+offset_right = 7.0
+offset_bottom = -7.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="AttackStat" type="TextureRect" parent="battle-gui/FoeDatabox/StatsContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("24_euhkr")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat1" type="TextureRect" parent="battle-gui/FoeDatabox/StatsContainer/AttackStat"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.85714
+anchor_bottom = 1.85714
+offset_left = 2.0
+offset_top = -5.0
+offset_right = 7.0
+offset_bottom = -1.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat2" type="TextureRect" parent="battle-gui/FoeDatabox/StatsContainer/AttackStat"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 2.71429
+anchor_bottom = 2.71429
+offset_left = 2.0
+offset_top = -8.0
+offset_right = 7.0
+offset_bottom = -4.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat3" type="TextureRect" parent="battle-gui/FoeDatabox/StatsContainer/AttackStat"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 3.57143
+anchor_bottom = 3.57143
+offset_left = 2.0
+offset_top = -11.0
+offset_right = 7.0
+offset_bottom = -7.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="DefenseStat" type="TextureRect" parent="battle-gui/FoeDatabox/StatsContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("25_16t7o")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat1" type="TextureRect" parent="battle-gui/FoeDatabox/StatsContainer/DefenseStat"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.85714
+anchor_bottom = 1.85714
+offset_left = 2.0
+offset_top = -5.0
+offset_right = 7.0
+offset_bottom = -1.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat2" type="TextureRect" parent="battle-gui/FoeDatabox/StatsContainer/DefenseStat"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 2.71429
+anchor_bottom = 2.71429
+offset_left = 2.0
+offset_top = -8.0
+offset_right = 7.0
+offset_bottom = -4.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat3" type="TextureRect" parent="battle-gui/FoeDatabox/StatsContainer/DefenseStat"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 3.57143
+anchor_bottom = 3.57143
+offset_left = 2.0
+offset_top = -11.0
+offset_right = 7.0
+offset_bottom = -7.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="SpecialAttackStat" type="TextureRect" parent="battle-gui/FoeDatabox/StatsContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("26_g2ao7")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat1" type="TextureRect" parent="battle-gui/FoeDatabox/StatsContainer/SpecialAttackStat"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.85714
+anchor_bottom = 1.85714
+offset_left = 2.0
+offset_top = -5.0
+offset_right = 7.0
+offset_bottom = -1.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat2" type="TextureRect" parent="battle-gui/FoeDatabox/StatsContainer/SpecialAttackStat"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 2.71429
+anchor_bottom = 2.71429
+offset_left = 2.0
+offset_top = -8.0
+offset_right = 7.0
+offset_bottom = -4.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat3" type="TextureRect" parent="battle-gui/FoeDatabox/StatsContainer/SpecialAttackStat"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 3.57143
+anchor_bottom = 3.57143
+offset_left = 2.0
+offset_top = -11.0
+offset_right = 7.0
+offset_bottom = -7.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="SpecialDefenseStat" type="TextureRect" parent="battle-gui/FoeDatabox/StatsContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("27_5k8m7")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat1" type="TextureRect" parent="battle-gui/FoeDatabox/StatsContainer/SpecialDefenseStat"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.85714
+anchor_bottom = 1.85714
+offset_left = 2.0
+offset_top = -5.0
+offset_right = 7.0
+offset_bottom = -1.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat2" type="TextureRect" parent="battle-gui/FoeDatabox/StatsContainer/SpecialDefenseStat"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 2.71429
+anchor_bottom = 2.71429
+offset_left = 2.0
+offset_top = -8.0
+offset_right = 7.0
+offset_bottom = -4.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat3" type="TextureRect" parent="battle-gui/FoeDatabox/StatsContainer/SpecialDefenseStat"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 3.57143
+anchor_bottom = 3.57143
+offset_left = 2.0
+offset_top = -11.0
+offset_right = 7.0
+offset_bottom = -7.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="SpeedStat" type="TextureRect" parent="battle-gui/FoeDatabox/StatsContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("28_jimi5")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat1" type="TextureRect" parent="battle-gui/FoeDatabox/StatsContainer/SpeedStat"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.85714
+anchor_bottom = 1.85714
+offset_left = 2.0
+offset_top = -5.0
+offset_right = 7.0
+offset_bottom = -1.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat2" type="TextureRect" parent="battle-gui/FoeDatabox/StatsContainer/SpeedStat"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 2.71429
+anchor_bottom = 2.71429
+offset_left = 2.0
+offset_top = -8.0
+offset_right = 7.0
+offset_bottom = -4.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat3" type="TextureRect" parent="battle-gui/FoeDatabox/StatsContainer/SpeedStat"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 3.57143
+anchor_bottom = 3.57143
+offset_left = 2.0
+offset_top = -11.0
+offset_right = 7.0
+offset_bottom = -7.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="AccuraccyStat" type="TextureRect" parent="battle-gui/FoeDatabox/StatsContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("29_3dj80")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat1" type="TextureRect" parent="battle-gui/FoeDatabox/StatsContainer/AccuraccyStat"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.85714
+anchor_bottom = 1.85714
+offset_left = 2.0
+offset_top = -5.0
+offset_right = 7.0
+offset_bottom = -1.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat2" type="TextureRect" parent="battle-gui/FoeDatabox/StatsContainer/AccuraccyStat"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 2.71429
+anchor_bottom = 2.71429
+offset_left = 2.0
+offset_top = -8.0
+offset_right = 7.0
+offset_bottom = -4.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat3" type="TextureRect" parent="battle-gui/FoeDatabox/StatsContainer/AccuraccyStat"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 3.57143
+anchor_bottom = 3.57143
+offset_left = 2.0
+offset_top = -11.0
+offset_right = 7.0
+offset_bottom = -7.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="EvasionStat" type="TextureRect" parent="battle-gui/FoeDatabox/StatsContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("30_oxwm5")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat1" type="TextureRect" parent="battle-gui/FoeDatabox/StatsContainer/EvasionStat"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.85714
+anchor_bottom = 1.85714
+offset_left = 2.0
+offset_top = -5.0
+offset_right = 7.0
+offset_bottom = -1.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat2" type="TextureRect" parent="battle-gui/FoeDatabox/StatsContainer/EvasionStat"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 2.71429
+anchor_bottom = 2.71429
+offset_left = 2.0
+offset_top = -8.0
+offset_right = 7.0
+offset_bottom = -4.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="stat3" type="TextureRect" parent="battle-gui/FoeDatabox/StatsContainer/EvasionStat"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 3.57143
+anchor_bottom = 3.57143
+offset_left = 2.0
+offset_top = -11.0
+offset_right = 7.0
+offset_bottom = -7.0
+texture = ExtResource("23_if3k0")
+metadata/_edit_use_anchors_ = true
+
+[node name="Ball1" type="TextureRect" parent="battle-gui/FoeDatabox"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 32.0
+offset_right = 8.0
+offset_bottom = 39.0
+texture = ExtResource("16_elpei")
+metadata/_edit_use_anchors_ = true
+
+[node name="Ball2" type="TextureRect" parent="battle-gui/FoeDatabox"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 32.0
+offset_right = 16.0
+offset_bottom = 39.0
+texture = ExtResource("16_elpei")
+metadata/_edit_use_anchors_ = true
+
+[node name="Ball3" type="TextureRect" parent="battle-gui/FoeDatabox"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 32.0
+offset_right = 24.0
+offset_bottom = 39.0
+texture = ExtResource("18_h62hm")
+metadata/_edit_use_anchors_ = true
+
+[node name="Ball4" type="TextureRect" parent="battle-gui/FoeDatabox"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 40.0
+offset_right = 8.0
+offset_bottom = 47.0
+texture = ExtResource("18_h62hm")
+metadata/_edit_use_anchors_ = true
+
+[node name="Ball5" type="TextureRect" parent="battle-gui/FoeDatabox"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 40.0
+offset_right = 16.0
+offset_bottom = 47.0
+texture = ExtResource("19_ma8l2")
+metadata/_edit_use_anchors_ = true
+
+[node name="Ball6" type="TextureRect" parent="battle-gui/FoeDatabox"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 40.0
+offset_right = 24.0
+offset_bottom = 47.0
+texture = ExtResource("19_ma8l2")
+metadata/_edit_use_anchors_ = true
+
+[node name="Status1" type="TextureRect" parent="battle-gui/FoeDatabox"]
+visible = false
+clip_contents = true
+layout_mode = 1
+anchors_preset = -1
+offset_left = 2.99991
+offset_top = 17.9999
+offset_right = 24.9999
+offset_bottom = 25.9999
+texture = ExtResource("20_1bi1l")
+expand_mode = 1
+stretch_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Status2" type="TextureRect" parent="battle-gui/FoeDatabox"]
+visible = false
+clip_contents = true
+layout_mode = 1
+anchors_preset = -1
+offset_left = 27.0
+offset_top = 17.9999
+offset_right = 49.0
+offset_bottom = 25.9999
+texture = ExtResource("20_1bi1l")
+expand_mode = 1
+stretch_mode = 1
+metadata/_edit_use_anchors_ = true

@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3]
+
+[ext_resource type="Texture2D" uid="uid://c54j0tu47lpcc" path="res://sprites/BattleGui/stat/stat-affects.png" id="1_iummk"]
+
+[resource]
+atlas = ExtResource("1_iummk")
+region = Rect2(0, 21, 9, 7)
