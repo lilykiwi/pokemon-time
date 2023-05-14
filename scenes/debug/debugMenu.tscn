@@ -1,18 +1,50 @@
-[gd_scene load_steps=12 format=3 uid="uid://cdcmwrn5ruw5p"]
+[gd_scene load_steps=19 format=3 uid="uid://cdcmwrn5ruw5p"]
 
 [ext_resource type="Texture2D" uid="uid://bx5wisel8e1fa" path="res://sprites/title/bg.png" id="1_8dwhf"]
+[ext_resource type="Script" path="res://scenes/debug/DebugOverlay.gd" id="2_pbfwt"]
 [ext_resource type="Theme" uid="uid://c3y1jdrxdqepp" path="res://sprites/OptionsMenu/themeOptionsMenu.tres" id="2_w61yg"]
 [ext_resource type="FontFile" uid="uid://6koku71fwx35" path="res://Fonts/m5x7.ttf" id="3_d65i7"]
 [ext_resource type="Script" path="res://scripts/debug/TabButton.gd" id="4_6fprc"]
 [ext_resource type="Texture2D" uid="uid://tddg0qlaemnm" path="res://sprites/OptionsMenu/ThemeElements/pip0.tres" id="4_h6jse"]
 [ext_resource type="Script" path="res://scripts/debug/LoadScene.gd" id="5_uq3vx"]
 [ext_resource type="Script" path="res://scripts/debug/GenericButton.gd" id="5_wm8mh"]
-[ext_resource type="PackedScene" uid="uid://brt1dt1nirq7a" path="res://scenes/battle.tscn" id="6_geujm"]
+[ext_resource type="PackedScene" uid="uid://b65bpvptghoxi" path="res://scenes/battle.tscn" id="6_geujm"]
 [ext_resource type="Script" path="res://scripts/debug/DisplayScale.gd" id="6_mci1d"]
 [ext_resource type="Script" path="res://scripts/debug/volume.gd" id="7_x875k"]
 [ext_resource type="Texture2D" uid="uid://qg4wwsygoxsb" path="res://sprites/OptionsMenu/ThemeElements/pip4.tres" id="8_bu5ly"]
+[ext_resource type="Script" path="res://scenes/MessageBox.gd" id="13_fdl7c"]
+[ext_resource type="StyleBox" uid="uid://cvyojb03w15c3" path="res://sprites/OptionsMenu/ThemeElements/buttonNormal.tres" id="14_46spe"]
+[ext_resource type="StyleBox" uid="uid://dpo8pv6clxt8f" path="res://sprites/OptionsMenu/ThemeElements/buttonHighlight.tres" id="15_mci0g"]
+[ext_resource type="FontFile" uid="uid://b6pot5irfnq1y" path="res://Fonts/power green small.ttf" id="16_q7vb2"]
 
-[node name="battleDebug" type="Node2D"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3pyr2"]
+load_path = "res://.godot/imported/overlay_message.png-3c7d662fded170b9fb47f0e02c5cb2b5.ctex"
+
+[sub_resource type="Theme" id="Theme_mu0n5"]
+default_font = ExtResource("16_q7vb2")
+default_font_size = 11
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/h_separation = 2
+Button/constants/outline_size = 0
+Button/styles/disabled = ExtResource("14_46spe")
+Button/styles/focus = ExtResource("15_mci0g")
+Button/styles/hover = ExtResource("15_mci0g")
+Button/styles/normal = ExtResource("14_46spe")
+Button/styles/pressed = ExtResource("15_mci0g")
+
+[node name="debugScene" type="Node2D"]
 
 [node name="fallbackbg" type="TextureRect" parent="."]
 unique_name_in_owner = true
@@ -31,6 +63,7 @@ unique_name_in_owner = true
 offset_right = 256.0
 offset_bottom = 192.0
 border_width = 0.0
+script = ExtResource("2_pbfwt")
 
 [node name="TabsList" type="VBoxContainer" parent="DebugOverlay"]
 unique_name_in_owner = true
@@ -794,3 +827,33 @@ offset_top = 6.0
 offset_right = 166.0
 offset_bottom = 13.0
 texture = ExtResource("4_h6jse")
+
+[node name="MessageBox" type="TextureRect" parent="."]
+offset_top = 144.0
+offset_right = 256.0
+offset_bottom = 192.0
+texture = SubResource("CompressedTexture2D_3pyr2")
+script = ExtResource("13_fdl7c")
+
+[node name="MessageText" type="RichTextLabel" parent="MessageBox"]
+layout_direction = 2
+layout_mode = 0
+offset_left = 14.0
+offset_top = 12.0
+offset_right = 242.0
+offset_bottom = 38.0
+auto_translate = false
+localize_numeral_system = false
+theme = SubResource("Theme_mu0n5")
+theme_override_colors/default_color = Color(0.282353, 0.282353, 0.282353, 1)
+theme_override_colors/font_shadow_color = Color(0.854902, 0.854902, 0.854902, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 1
+theme_override_fonts/normal_font = ExtResource("3_d65i7")
+theme_override_font_sizes/normal_font_size = 15
+text = "Amoongus shat on the floor and called you a slur! It was super effective!"
+scroll_active = false
+shortcut_keys_enabled = false
+visible_characters_behavior = 1
+metadata/_edit_use_anchors_ = true

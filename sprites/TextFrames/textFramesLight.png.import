@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cq7ihqn4njiwi"
-path="res://.godot/imported/command_atlas.png-ae0996b14b1465e600bd9f42f95a91a1.ctex"
+uid="uid://bu6a8lwfivef4"
+path="res://.godot/imported/textFramesLight.png-675fb3b9a61e931c28e87698803e2a8a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/BattleGui/cursor-command/command_atlas.png"
-dest_files=["res://.godot/imported/command_atlas.png-ae0996b14b1465e600bd9f42f95a91a1.ctex"]
+source_file="res://sprites/TextFrames/textFramesLight.png"
+dest_files=["res://.godot/imported/textFramesLight.png-675fb3b9a61e931c28e87698803e2a8a.ctex"]
 
 [params]
 

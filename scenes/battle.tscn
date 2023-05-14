@@ -1,18 +1,21 @@
-[gd_scene load_steps=38 format=3 uid="uid://brt1dt1nirq7a"]
+[gd_scene load_steps=39 format=3 uid="uid://qpnvki10jio5"]
 
-[ext_resource type="Script" path="res://scripts/battle.gd" id="1_o7u0l"]
+[ext_resource type="Script" path="res://scripts/battle/BattleManager.gd" id="1_hw1vv"]
 [ext_resource type="Texture2D" uid="uid://uxtbhs0tne46" path="res://sprites/pokemon/001-bulbasaur/front.png" id="2_8gb1f"]
+[ext_resource type="Texture2D" uid="uid://b5h7j2ga6oiex" path="res://sprites/BattleGui/platforms/platform_enemy_0.tres" id="2_gw8ye"]
+[ext_resource type="Texture2D" uid="uid://n7g1w7b2oq03" path="res://sprites/BattleGui/platforms/playform_player_0.tres" id="2_yu3gs"]
 [ext_resource type="Texture2D" uid="uid://cje7ettsqc8sw" path="res://sprites/pokemon/001-bulbasaur/back.png" id="3_jv0x2"]
-[ext_resource type="Texture2D" uid="uid://5a8lg0rslijd" path="res://sprites/BattleGui/overlay_fight.png" id="5_yb4ue"]
+[ext_resource type="StyleBox" uid="uid://druxrcj8kojgu" path="res://sprites/TextFrames/box/d1u.tres" id="6_gnruw"]
 [ext_resource type="StyleBox" uid="uid://cvyojb03w15c3" path="res://sprites/OptionsMenu/ThemeElements/buttonNormal.tres" id="6_te4ow"]
 [ext_resource type="StyleBox" uid="uid://dpo8pv6clxt8f" path="res://sprites/OptionsMenu/ThemeElements/buttonHighlight.tres" id="7_75wrf"]
 [ext_resource type="FontFile" uid="uid://6koku71fwx35" path="res://Fonts/m5x7.ttf" id="8_g7bpw"]
-[ext_resource type="Texture2D" uid="uid://k1uthfjdn1kj" path="res://sprites/BattleGui/cursor-fight/fight_atlas.png" id="8_kvf1y"]
+[ext_resource type="StyleBox" uid="uid://ollow78d0jcn" path="res://sprites/TextFrames/box/d11u.tres" id="9_4h4wa"]
 [ext_resource type="FontFile" uid="uid://b6pot5irfnq1y" path="res://Fonts/power green small.ttf" id="9_jn0el"]
-[ext_resource type="Texture2D" path="res://sprites/BattleGui/types/questionmarks.tres" id="10_lat0m"]
+[ext_resource type="Texture2D" uid="uid://8icp24oqp7ah" path="res://sprites/BattleGui/cursor-fight/move_normal.tres" id="11_ls77h"]
 [ext_resource type="Texture2D" uid="uid://w0288hxqoylg" path="res://sprites/BattleGui/databox_normal.png" id="11_yqj3d"]
 [ext_resource type="Texture2D" uid="uid://cg5g762w0lb5s" path="res://sprites/BattleGui/hpbar.png" id="12_xmnc8"]
 [ext_resource type="Texture2D" uid="uid://bx3rne8etceoq" path="res://sprites/BattleGui/overlay_exp.png" id="13_0rw5y"]
+[ext_resource type="Texture2D" uid="uid://dvdnfdppf0v54" path="res://sprites/BattleGui/cursor-fight/move_normal_pressed.tres" id="13_63v27"]
 [ext_resource type="Texture2D" uid="uid://boaxsoe5gie8e" path="res://sprites/BattleGui/female.png" id="14_ae67x"]
 [ext_resource type="Texture2D" uid="uid://cbv86afi6st08" path="res://sprites/BattleGui/overlay_lv.png" id="15_7fk0e"]
 [ext_resource type="Texture2D" path="res://sprites/BattleGui/stat/ball-full.tres" id="16_elpei"]
@@ -59,22 +62,23 @@ Button/styles/hover = ExtResource("7_75wrf")
 Button/styles/normal = ExtResource("6_te4ow")
 Button/styles/pressed = ExtResource("7_75wrf")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_boify"]
-atlas = ExtResource("8_kvf1y")
-region = Rect2(0, 0, 96, 24)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nhejf"]
-load_path = "res://.godot/imported/overlay_message.png-3c7d662fded170b9fb47f0e02c5cb2b5.ctex"
-
 [node name="battle" type="Node2D"]
-script = ExtResource("1_o7u0l")
+script = ExtResource("1_hw1vv")
+
+[node name="PlayformPlayer0" type="Sprite2D" parent="."]
+position = Vector2(60, 112)
+texture = ExtResource("2_yu3gs")
+
+[node name="PlatformEnemy0" type="Sprite2D" parent="."]
+position = Vector2(192, 64)
+texture = ExtResource("2_gw8ye")
 
 [node name="enemy" type="Sprite2D" parent="."]
-position = Vector2(196, 53)
+position = Vector2(192, 50)
 texture = ExtResource("2_8gb1f")
 
 [node name="player" type="Sprite2D" parent="."]
-position = Vector2(60, 128)
+position = Vector2(60, 112)
 texture = ExtResource("3_jv0x2")
 
 [node name="battle-gui" type="Control" parent="."]
@@ -82,221 +86,68 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 256.0
+offset_bottom = 192.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="FightOptions" type="TextureRect" parent="battle-gui"]
+[node name="Panel" type="Panel" parent="battle-gui"]
 layout_mode = 0
-offset_top = 144.0
+offset_top = 126.0
 offset_right = 256.0
 offset_bottom = 192.0
-texture = ExtResource("5_yb4ue")
+theme_override_styles/panel = ExtResource("6_gnruw")
 
-[node name="PP Count" type="Label" parent="battle-gui/FightOptions"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 74.0
-offset_top = 25.0
-offset_right = 118.0
-offset_bottom = 41.0
-grow_horizontal = 2
-theme = SubResource("Theme_wdfgg")
-theme_override_colors/font_color = Color(0.282353, 0.282353, 0.282353, 1)
-theme_override_colors/font_shadow_color = Color(0.721569, 0.721569, 0.721569, 1)
-theme_override_constants/shadow_offset_x = 1
-theme_override_constants/shadow_offset_y = 1
-theme_override_constants/shadow_outline_size = 0
-theme_override_fonts/font = ExtResource("8_g7bpw")
-theme_override_font_sizes/font_size = 16
-text = "20/20PP"
-horizontal_alignment = 1
-vertical_alignment = 1
-clip_text = true
-
-[node name="Move5" type="Button" parent="battle-gui/FightOptions"]
-visible = false
-layout_mode = 0
-offset_left = 2.0
-offset_top = 2.0
-offset_right = 97.0
-offset_bottom = 25.0
-
-[node name="Move1" type="TextureRect" parent="battle-gui/FightOptions"]
+[node name="Move1" type="TextureButton" parent="battle-gui/Panel"]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
 offset_right = 98.0
-offset_bottom = 26.0
-texture = SubResource("AtlasTexture_boify")
+offset_bottom = 32.0
+texture_normal = ExtResource("11_ls77h")
+texture_pressed = ExtResource("13_63v27")
 
-[node name="Label" type="Label" parent="battle-gui/FightOptions/Move1"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -37.0
-offset_top = 5.0
-offset_right = 37.0
-offset_bottom = 18.0
-grow_horizontal = 2
-theme = SubResource("Theme_wdfgg")
-theme_override_colors/font_color = Color(0.972549, 0.972549, 0.972549, 1)
-theme_override_colors/font_outline_color = Color(0.282353, 0.282353, 0.282353, 1)
-theme_override_constants/outline_size = 3
-theme_override_fonts/font = ExtResource("9_jn0el")
-theme_override_font_sizes/font_size = 11
-text = "Tackle"
-horizontal_alignment = 1
-vertical_alignment = 1
-clip_text = true
-max_lines_visible = 1
-visible_characters = 15
-visible_ratio = 2.5
-
-[node name="Move2" type="TextureRect" parent="battle-gui/FightOptions"]
-layout_mode = 0
-offset_left = 96.0
-offset_top = 2.0
-offset_right = 192.0
-offset_bottom = 26.0
-texture = SubResource("AtlasTexture_boify")
-
-[node name="Label" type="Label" parent="battle-gui/FightOptions/Move2"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -37.0
-offset_top = 5.0
-offset_right = 37.0
-offset_bottom = 18.0
-grow_horizontal = 2
-theme = SubResource("Theme_wdfgg")
-theme_override_colors/font_color = Color(0.972549, 0.972549, 0.972549, 1)
-theme_override_colors/font_outline_color = Color(0.282353, 0.282353, 0.282353, 1)
-theme_override_constants/outline_size = 3
-theme_override_fonts/font = ExtResource("9_jn0el")
-theme_override_font_sizes/font_size = 11
-text = "Murder"
-horizontal_alignment = 1
-vertical_alignment = 1
-clip_text = true
-max_lines_visible = 1
-visible_characters = 15
-visible_ratio = 2.5
-
-[node name="Move3" type="TextureRect" parent="battle-gui/FightOptions"]
+[node name="Move2" type="TextureButton" parent="battle-gui/Panel"]
 layout_mode = 0
 offset_left = 2.0
-offset_top = 23.0
+offset_top = 34.0
 offset_right = 98.0
-offset_bottom = 47.0
-texture = SubResource("AtlasTexture_boify")
+offset_bottom = 64.0
+texture_normal = ExtResource("11_ls77h")
+texture_pressed = ExtResource("13_63v27")
 
-[node name="Label" type="Label" parent="battle-gui/FightOptions/Move3"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -37.0
-offset_top = 5.0
-offset_right = 37.0
-offset_bottom = 18.0
-grow_horizontal = 2
-theme = SubResource("Theme_wdfgg")
-theme_override_colors/font_color = Color(0.972549, 0.972549, 0.972549, 1)
-theme_override_colors/font_outline_color = Color(0.282353, 0.282353, 0.282353, 1)
-theme_override_constants/outline_size = 3
-theme_override_fonts/font = ExtResource("9_jn0el")
-theme_override_font_sizes/font_size = 11
-text = "Jizz"
-horizontal_alignment = 1
-vertical_alignment = 1
-clip_text = true
-max_lines_visible = 1
-visible_characters = 15
-visible_ratio = 3.75
-
-[node name="Move4" type="TextureRect" parent="battle-gui/FightOptions"]
+[node name="Move3" type="TextureButton" parent="battle-gui/Panel"]
 layout_mode = 0
-offset_left = 96.0
-offset_top = 23.0
-offset_right = 192.0
-offset_bottom = 47.0
-texture = SubResource("AtlasTexture_boify")
+offset_left = 100.0
+offset_top = 2.0
+offset_right = 196.0
+offset_bottom = 32.0
+texture_normal = ExtResource("11_ls77h")
+texture_pressed = ExtResource("13_63v27")
 
-[node name="Label" type="Label" parent="battle-gui/FightOptions/Move4"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -37.0
-offset_top = 5.0
-offset_right = 37.0
-offset_bottom = 18.0
-grow_horizontal = 2
-theme = SubResource("Theme_wdfgg")
-theme_override_colors/font_color = Color(0.972549, 0.972549, 0.972549, 1)
-theme_override_colors/font_outline_color = Color(0.282353, 0.282353, 0.282353, 1)
-theme_override_constants/outline_size = 3
-theme_override_fonts/font = ExtResource("9_jn0el")
-theme_override_font_sizes/font_size = 11
-text = "KILL."
-horizontal_alignment = 1
-vertical_alignment = 1
-clip_text = true
-max_lines_visible = 1
-visible_characters = 15
-visible_ratio = 3.0
-
-[node name="MoveType" type="TextureRect" parent="battle-gui/FightOptions"]
+[node name="Move4" type="TextureButton" parent="battle-gui/Panel"]
 layout_mode = 0
-offset_left = 208.0
-offset_top = 11.0
-offset_right = 240.0
-offset_bottom = 25.0
-texture = ExtResource("10_lat0m")
+offset_left = 100.0
+offset_top = 34.0
+offset_right = 196.0
+offset_bottom = 64.0
+texture_normal = ExtResource("11_ls77h")
+texture_pressed = ExtResource("13_63v27")
 
-[node name="MessageBox" type="TextureRect" parent="battle-gui"]
-visible = false
+[node name="Panel2" type="Panel" parent="battle-gui"]
 layout_mode = 0
-offset_top = 144.0
-offset_right = 256.0
-offset_bottom = 192.0
-texture = SubResource("CompressedTexture2D_nhejf")
-
-[node name="MessageText" type="RichTextLabel" parent="battle-gui/MessageBox"]
-layout_direction = 2
-layout_mode = 0
-offset_left = 14.0
-offset_top = 12.0
-offset_right = 242.0
-offset_bottom = 38.0
-auto_translate = false
-localize_numeral_system = false
-theme = SubResource("Theme_wdfgg")
-theme_override_colors/default_color = Color(0.282353, 0.282353, 0.282353, 1)
-theme_override_colors/font_shadow_color = Color(0.854902, 0.854902, 0.854902, 1)
-theme_override_constants/shadow_offset_x = 1
-theme_override_constants/shadow_offset_y = 1
-theme_override_constants/shadow_outline_size = 1
-theme_override_fonts/normal_font = ExtResource("8_g7bpw")
-theme_override_font_sizes/normal_font_size = 15
-text = "Amoongus shat on the floor and called
-you a slur! It was super effective!"
-scroll_active = false
-autowrap_mode = 0
-shortcut_keys_enabled = false
-metadata/_edit_use_anchors_ = true
+offset_left = 198.0
+offset_top = 128.0
+offset_right = 254.0
+offset_bottom = 190.0
+theme_override_styles/panel = ExtResource("9_4h4wa")
 
 [node name="PlayerDatabox" type="TextureRect" parent="battle-gui"]
 layout_mode = 0
 offset_left = 126.0
-offset_top = 103.0
+offset_top = 82.0
 offset_right = 256.0
-offset_bottom = 145.0
+offset_bottom = 124.0
 texture = ExtResource("11_yqj3d")
 
 [node name="HPBar" type="TextureRect" parent="battle-gui/PlayerDatabox"]
@@ -791,7 +642,10 @@ layout_mode = 2
 texture = ExtResource("31_s3fbg")
 
 [node name="FoeDatabox" type="TextureRect" parent="battle-gui"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.046875
+anchor_bottom = 0.046875
 offset_top = 1.0
 offset_right = 130.0
 offset_bottom = 32.0
