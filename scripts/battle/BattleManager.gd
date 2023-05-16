@@ -18,6 +18,7 @@ extends Node2D
 
 # store all possible states
 var states = [
+  "Intro",
   "PlayerTurn",
   "EnemyTurn",
   "Action",

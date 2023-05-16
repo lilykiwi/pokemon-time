@@ -57,8 +57,11 @@ var typeList = [
 func getTypeIndex(type):
   return typeList.find(type) # returns -1 if not found? i hope?
 
+# get the effectiveness of a move against a defender with 2 types
 func computeEffectiveness(moveType, type1, type2):
   
+  # TODO fix if type2 is -1 (none)
+
   # get the index of the move type
   var moveTypeIndex = getTypeIndex(moveType)
 
@@ -70,3 +73,4 @@ func computeEffectiveness(moveType, type1, type2):
   var effectiveness = typeTable[type1Index][moveTypeIndex] * typeTable[type2Index][moveTypeIndex]
 
   return effectiveness
+
