@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://w3ax232ll0ki"]
+
+[ext_resource type="Texture2D" uid="uid://4oxbh3mjvdok" path="res://sprites/BattleGui/platforms/player.png" id="1_onckq"]
+
+[resource]
+atlas = ExtResource("1_onckq")
+region = Rect2(0, 0, 256, 32)

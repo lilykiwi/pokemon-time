@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://tddg0qlaemnm" path="res://sprites/OptionsMenu/ThemeElements/pip0.tres" id="4_h6jse"]
 [ext_resource type="Script" path="res://scripts/debug/LoadScene.gd" id="5_uq3vx"]
 [ext_resource type="Script" path="res://scripts/debug/GenericButton.gd" id="5_wm8mh"]
-[ext_resource type="PackedScene" uid="uid://b65bpvptghoxi" path="res://scenes/battle.tscn" id="6_geujm"]
+[ext_resource type="PackedScene" uid="uid://cqjso84q5ugig" path="res://scenes/battle.tscn" id="6_geujm"]
 [ext_resource type="Script" path="res://scripts/debug/DisplayScale.gd" id="6_mci1d"]
 [ext_resource type="Script" path="res://scripts/debug/volume.gd" id="7_x875k"]
 [ext_resource type="Texture2D" uid="uid://qg4wwsygoxsb" path="res://sprites/OptionsMenu/ThemeElements/pip4.tres" id="8_bu5ly"]
