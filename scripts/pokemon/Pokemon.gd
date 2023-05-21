@@ -63,12 +63,12 @@ var hiddenAbility: String = ""
 var expYield: int
 
 # The pokemon's base EV yield
-var yieldEVHp: int
-var yieldEVAtk: int
-var yieldEVDef: int
-var yieldEVSpAtk: int
-var yieldEVSpDef: int
-var yieldEVSpd: int
+var yieldEVHp: int = 0
+var yieldEVAtk: int = 0
+var yieldEVDef: int = 0
+var yieldEVSpAtk: int = 0
+var yieldEVSpDef: int = 0
+var yieldEVSpd: int = 0
 
 # The pokemon's base Happiness
 var baseHappiness: int

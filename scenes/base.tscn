@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://duqadvsbngvq8"]
+
+[node name="base" type="Node2D"]
+
+[node name="ReferenceRect" type="ReferenceRect" parent="."]
+offset_right = 256.0
+offset_bottom = 192.0
+
+[node name="Tree" type="Tree" parent="."]
+offset_right = 128.0
+offset_bottom = 192.0

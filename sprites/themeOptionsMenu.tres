@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=11 format=3 uid="uid://c3y1jdrxdqepp"]
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://c3y1jdrxdqepp"]
 
 [ext_resource type="StyleBox" uid="uid://cvyojb03w15c3" path="res://sprites/OptionsMenu/ThemeElements/buttonNormal.tres" id="1_0bpcg"]
 [ext_resource type="StyleBox" uid="uid://di0e4rpojjgr7" path="res://sprites/OptionsMenu/ThemeElements/buttonDisabled.tres" id="1_e7oxl"]
@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://6mxxe64sipis" path="res://sprites/OptionsMenu/ThemeElements/checked_disabled.tres" id="4_8oyd6"]
 [ext_resource type="Texture2D" uid="uid://c5ew6lpgj6bh0" path="res://sprites/OptionsMenu/ThemeElements/unchecked.tres" id="5_sthpo"]
 [ext_resource type="Texture2D" uid="uid://bm3xjxvdp7f8n" path="res://sprites/OptionsMenu/ThemeElements/unchecked_disabled.tres" id="6_2p3x8"]
-[ext_resource type="FontFile" uid="uid://6koku71fwx35" path="res://Fonts/m5x7.ttf" id="10_pvsgf"]
 
 [resource]
 default_font = ExtResource("3_wedul")
@@ -51,13 +50,6 @@ LineEdit/fonts/font = ExtResource("3_wedul")
 LineEdit/styles/focus = ExtResource("3_hs3qr")
 LineEdit/styles/normal = ExtResource("1_0bpcg")
 LineEdit/styles/read_only = ExtResource("1_e7oxl")
-RichTextLabel/colors/default_color = Color(0.984314, 0.984314, 0.984314, 1)
-RichTextLabel/colors/font_shadow_color = Color(0.172549, 0.211765, 0.219608, 1)
-RichTextLabel/constants/shadow_offset_x = 1
-RichTextLabel/constants/shadow_offset_y = 1
-RichTextLabel/constants/shadow_outline_size = 0
-RichTextLabel/font_sizes/normal_font_size = 16
-RichTextLabel/fonts/normal_font = ExtResource("10_pvsgf")
 TextEdit/styles/focus = ExtResource("3_hs3qr")
 TextEdit/styles/normal = ExtResource("1_0bpcg")
 TextEdit/styles/read_only = ExtResource("1_e7oxl")

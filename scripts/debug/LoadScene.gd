@@ -29,7 +29,7 @@ func button_pressed():
     return
   else:
     print("Loading scene: " + scene_path.get_path())
-  set_process(true)
+    set_process(true)
 
 func _process(_time):
   if status == null:
@@ -38,9 +38,7 @@ func _process(_time):
     return
 
   while true:
-
     status = ResourceLoader.load_threaded_get_status(scene_path.get_path())
-
     if status == ResourceLoader.THREAD_LOAD_LOADED: # Finished loading.
       print("Loaded scene: " + scene_path.get_path())
       var resource = ResourceLoader.load_threaded_get(scene_path.get_path())

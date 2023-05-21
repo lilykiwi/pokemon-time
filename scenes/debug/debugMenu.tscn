@@ -1,24 +1,23 @@
-[gd_scene load_steps=19 format=3 uid="uid://cdcmwrn5ruw5p"]
+[gd_scene load_steps=20 format=3]
 
 [ext_resource type="Texture2D" uid="uid://bx5wisel8e1fa" path="res://sprites/title/bg.png" id="1_8dwhf"]
 [ext_resource type="Script" path="res://scenes/debug/DebugOverlay.gd" id="2_pbfwt"]
-[ext_resource type="Theme" uid="uid://c3y1jdrxdqepp" path="res://sprites/OptionsMenu/themeOptionsMenu.tres" id="2_w61yg"]
+[ext_resource type="Theme" uid="uid://c3y1jdrxdqepp" path="res://sprites/themeOptionsMenu.tres" id="2_w61yg"]
 [ext_resource type="FontFile" uid="uid://6koku71fwx35" path="res://Fonts/m5x7.ttf" id="3_d65i7"]
 [ext_resource type="Script" path="res://scripts/debug/TabButton.gd" id="4_6fprc"]
 [ext_resource type="Texture2D" uid="uid://tddg0qlaemnm" path="res://sprites/OptionsMenu/ThemeElements/pip0.tres" id="4_h6jse"]
 [ext_resource type="Script" path="res://scripts/debug/LoadScene.gd" id="5_uq3vx"]
 [ext_resource type="Script" path="res://scripts/debug/GenericButton.gd" id="5_wm8mh"]
-[ext_resource type="PackedScene" uid="uid://cqjso84q5ugig" path="res://scenes/battle.tscn" id="6_geujm"]
+[ext_resource type="PackedScene" uid="uid://tflhq1p6k8qx" path="res://scenes/battle.tscn" id="6_geujm"]
 [ext_resource type="Script" path="res://scripts/debug/DisplayScale.gd" id="6_mci1d"]
 [ext_resource type="Script" path="res://scripts/debug/volume.gd" id="7_x875k"]
 [ext_resource type="Texture2D" uid="uid://qg4wwsygoxsb" path="res://sprites/OptionsMenu/ThemeElements/pip4.tres" id="8_bu5ly"]
-[ext_resource type="Script" path="res://scenes/MessageBox.gd" id="13_fdl7c"]
+[ext_resource type="Texture2D" path="res://sprites/TextFrames/wide/dark1.tres" id="13_cwypj"]
+[ext_resource type="Script" path="res://scripts/MessageBox.gd" id="13_lomqv"]
 [ext_resource type="StyleBox" uid="uid://cvyojb03w15c3" path="res://sprites/OptionsMenu/ThemeElements/buttonNormal.tres" id="14_46spe"]
 [ext_resource type="StyleBox" uid="uid://dpo8pv6clxt8f" path="res://sprites/OptionsMenu/ThemeElements/buttonHighlight.tres" id="15_mci0g"]
 [ext_resource type="FontFile" uid="uid://b6pot5irfnq1y" path="res://Fonts/power green small.ttf" id="16_q7vb2"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3pyr2"]
-load_path = "res://.godot/imported/overlay_message.png-3c7d662fded170b9fb47f0e02c5cb2b5.ctex"
+[ext_resource type="Texture2D" uid="uid://p00mnwxj0tdr" path="res://sprites/TextFrames/nextArrow.png" id="18_tpsy8"]
 
 [sub_resource type="Theme" id="Theme_mu0n5"]
 default_font = ExtResource("16_q7vb2")
@@ -44,7 +43,7 @@ Button/styles/hover = ExtResource("15_mci0g")
 Button/styles/normal = ExtResource("14_46spe")
 Button/styles/pressed = ExtResource("15_mci0g")
 
-[node name="debugScene" type="Node2D"]
+[node name="root" type="Node2D"]
 
 [node name="fallbackbg" type="TextureRect" parent="."]
 unique_name_in_owner = true
@@ -60,8 +59,6 @@ border_color = Color(1, 1, 1, 1)
 
 [node name="DebugOverlay" type="ReferenceRect" parent="."]
 unique_name_in_owner = true
-offset_right = 256.0
-offset_bottom = 192.0
 border_width = 0.0
 script = ExtResource("2_pbfwt")
 
@@ -70,7 +67,7 @@ unique_name_in_owner = true
 layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
-offset_right = 78.0
+offset_right = 67.0
 offset_bottom = 60.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
@@ -87,12 +84,49 @@ theme_override_colors/default_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_colors/font_shadow_color = Color(0.282353, 0.282353, 0.282353, 1)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
-theme_override_constants/shadow_outline_size = 1
+theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/normal_font = ExtResource("3_d65i7")
 theme_override_font_sizes/normal_font_size = 16
 text = "Debug Menu"
 scroll_active = false
 autowrap_mode = 0
+
+[node name="Team" type="Button" parent="DebugOverlay/TabsList"]
+visible = false
+custom_minimum_size = Vector2(0, 19)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("2_w61yg")
+theme_override_constants/outline_size = 0
+action_mode = 0
+script = ExtResource("4_6fprc")
+metadata/focused = true
+
+[node name="Label" type="RichTextLabel" parent="DebugOverlay/TabsList/Team"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 2.0
+offset_right = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+auto_translate = false
+localize_numeral_system = false
+mouse_filter = 1
+theme = ExtResource("2_w61yg")
+theme_override_colors/default_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_colors/font_shadow_color = Color(0.282353, 0.282353, 0.282353, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 1
+theme_override_fonts/normal_font = ExtResource("3_d65i7")
+theme_override_font_sizes/normal_font_size = 16
+text = "Team"
+scroll_active = false
 
 [node name="Scenes" type="Button" parent="DebugOverlay/TabsList"]
 custom_minimum_size = Vector2(0, 19)
@@ -124,7 +158,7 @@ theme_override_colors/default_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_colors/font_shadow_color = Color(0.282353, 0.282353, 0.282353, 1)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
-theme_override_constants/shadow_outline_size = 1
+theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/normal_font = ExtResource("3_d65i7")
 theme_override_font_sizes/normal_font_size = 16
 text = "Scenes"
@@ -159,7 +193,7 @@ theme_override_colors/default_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_colors/font_shadow_color = Color(0.282353, 0.282353, 0.282353, 1)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
-theme_override_constants/shadow_outline_size = 1
+theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/normal_font = ExtResource("3_d65i7")
 theme_override_font_sizes/normal_font_size = 16
 text = "Display"
@@ -204,7 +238,7 @@ scroll_active = false
 [node name="OptionsList" type="VBoxContainer" parent="DebugOverlay"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 82.0
+offset_left = 69.0
 offset_top = 2.0
 offset_right = 254.0
 offset_bottom = 81.0
@@ -259,7 +293,7 @@ theme_override_colors/default_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_colors/font_shadow_color = Color(0.282353, 0.282353, 0.282353, 1)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
-theme_override_constants/shadow_outline_size = 1
+theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/normal_font = ExtResource("3_d65i7")
 theme_override_font_sizes/normal_font_size = 16
 text = "Battle Test"
@@ -276,7 +310,7 @@ theme_override_colors/default_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_colors/font_shadow_color = Color(0.282353, 0.282353, 0.282353, 1)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
-theme_override_constants/shadow_outline_size = 1
+theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/normal_font = ExtResource("3_d65i7")
 theme_override_font_sizes/normal_font_size = 16
 text = "Display"
@@ -307,7 +341,7 @@ theme_override_colors/default_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_colors/font_shadow_color = Color(0.282353, 0.282353, 0.282353, 1)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
-theme_override_constants/shadow_outline_size = 1
+theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/normal_font = ExtResource("3_d65i7")
 theme_override_font_sizes/normal_font_size = 16
 text = "Scale"
@@ -337,7 +371,7 @@ theme_override_colors/default_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_colors/font_shadow_color = Color(0.282353, 0.282353, 0.282353, 1)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
-theme_override_constants/shadow_outline_size = 1
+theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/normal_font = ExtResource("3_d65i7")
 theme_override_font_sizes/normal_font_size = 16
 text = "1x"
@@ -367,7 +401,7 @@ theme_override_colors/default_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_colors/font_shadow_color = Color(0.282353, 0.282353, 0.282353, 1)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
-theme_override_constants/shadow_outline_size = 1
+theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/normal_font = ExtResource("3_d65i7")
 theme_override_font_sizes/normal_font_size = 16
 text = "2x"
@@ -397,7 +431,7 @@ theme_override_colors/default_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_colors/font_shadow_color = Color(0.282353, 0.282353, 0.282353, 1)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
-theme_override_constants/shadow_outline_size = 1
+theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/normal_font = ExtResource("3_d65i7")
 theme_override_font_sizes/normal_font_size = 16
 text = "3x"
@@ -427,7 +461,7 @@ theme_override_colors/default_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_colors/font_shadow_color = Color(0.282353, 0.282353, 0.282353, 1)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
-theme_override_constants/shadow_outline_size = 1
+theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/normal_font = ExtResource("3_d65i7")
 theme_override_font_sizes/normal_font_size = 16
 text = "4x"
@@ -457,7 +491,7 @@ theme_override_colors/default_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_colors/font_shadow_color = Color(0.282353, 0.282353, 0.282353, 1)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
-theme_override_constants/shadow_outline_size = 1
+theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/normal_font = ExtResource("3_d65i7")
 theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
@@ -829,11 +863,12 @@ offset_bottom = 13.0
 texture = ExtResource("4_h6jse")
 
 [node name="MessageBox" type="TextureRect" parent="."]
+unique_name_in_owner = true
 offset_top = 144.0
 offset_right = 256.0
 offset_bottom = 192.0
-texture = SubResource("CompressedTexture2D_3pyr2")
-script = ExtResource("13_fdl7c")
+texture = ExtResource("13_cwypj")
+script = ExtResource("13_lomqv")
 
 [node name="MessageText" type="RichTextLabel" parent="MessageBox"]
 layout_direction = 2
@@ -845,11 +880,11 @@ offset_bottom = 38.0
 auto_translate = false
 localize_numeral_system = false
 theme = SubResource("Theme_mu0n5")
-theme_override_colors/default_color = Color(0.282353, 0.282353, 0.282353, 1)
-theme_override_colors/font_shadow_color = Color(0.854902, 0.854902, 0.854902, 1)
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.282353, 0.282353, 0.282353, 1)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
-theme_override_constants/shadow_outline_size = 1
+theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/normal_font = ExtResource("3_d65i7")
 theme_override_font_sizes/normal_font_size = 15
 text = "Amoongus shat on the floor and called you a slur! It was super effective!"
@@ -857,3 +892,11 @@ scroll_active = false
 shortcut_keys_enabled = false
 visible_characters_behavior = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="DoneArrow" type="TextureRect" parent="MessageBox"]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 34.0
+offset_right = 248.0
+offset_bottom = 42.0
+texture = ExtResource("18_tpsy8")

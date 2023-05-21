@@ -61,7 +61,7 @@ func SetupFocus():
   # iterate over the list of RichTextLabels to find the index of the label with the same text as this node
   var targetIndex = -1
   for i in range(list.size()):
-    if list[i].get_text() == label:
+    if list[i] is RichTextLabel and list[i].get_text() == label:
       targetIndex = i
       break
 
