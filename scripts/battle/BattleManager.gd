@@ -43,22 +43,38 @@ var state: int = -1
 var subState: int = -1
 
 # store the player and enemy team
-# TODO: make these use Pokemon objects
+# NOTE: for future use, specify a range for wild pokemon.
 var player = [
-  "Bulbasaur",
+  Pokemon_Bulbasaur.new(
+    10, # level
+    [   # startingMoves
+      Move_Tackle.new(),
+      Move_Growl.new(),
+      Move_VineWhip.new(),
+      Move_LeechSeed.new(),
+    ]
+  ),
 ]
 var enemy = [
-  "Bulbasaur",
+  Pokemon_Bulbasaur.new(
+    10, # level
+    [   # startingMoves
+      Move_Tackle.new(),
+      Move_Growl.new(),
+      Move_VineWhip.new(),
+      Move_LeechSeed.new(),
+    ]
+  ),
 ]
 
 # store the player and enemy pokemon
-var player_pokemon: Pokemon = null
-var enemy_pokemon: Pokemon = null
+# TODO: reference party index rather than instance object
+# TODO: double battles
+var player_pokemon: int = 0
+var enemy_pokemon: int = 0
 
 var selectBox: Panel = null
-
 var attackBox: Panel = null
-# we know that the attack box has 4 buttons, so we reference them using get_child(n) (0-3). get_child(4) is the PP box
 var attackBoxType: TextureRect = null
 var attackBoxPPCurrent: Label = null
 var attackBoxPPMax: Label = null
@@ -71,87 +87,6 @@ var enemyDataBox: TextureRect = null
 # var ListPokemon: Panel = null todo
 # var ListItem: Panel = null todo
 
-# store the player and enemy pokemon's moves
-# TODO: for now, we'll just store the move name and type
-# TODO: these aren't accurate to bulbasaur
-var playerMoves: Array = [
-  ["Tackle", "Normal"],
-  ["Scratch", "Normal"],
-  ["Ember", "Fire"],
-  ["Water Gun", "Water"],
-]
-
-# we need a 2d array to store the effectiveness of each type against each other type
-# initialise them all as 1.0
-# there are 18 types, so 18x18
-var typeTable = [
-#  Defender type (x axis)
-#  Nor  Fir  Wat  Gra  Ele  Ice  Fig  Poi  Gro  Fly  Psy  Bug  Roc  Gho  Dra  Dar  Ste  Fai  ???   Attacker Type (y axis)
-  [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.5, 0.0, 1.0, 1.0, 0.5, 1.0, 0.0], # Normal
-  [1.0, 0.5, 0.5, 2.0, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 0.5, 1.0, 0.5, 1.0, 2.0, 1.0, 0.0], # Fire
-  [1.0, 2.0, 0.5, 0.5, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 2.0, 1.0, 0.5, 1.0, 1.0, 1.0, 0.0], # Water
-  [1.0, 0.5, 2.0, 0.5, 1.0, 1.0, 1.0, 0.5, 2.0, 0.5, 1.0, 0.5, 2.0, 1.0, 0.5, 1.0, 0.5, 1.0, 0.0], # Grass
-  [1.0, 1.0, 2.0, 0.5, 0.5, 1.0, 1.0, 1.0, 0.0, 2.0, 1.0, 1.0, 1.0, 1.0, 0.5, 1.0, 1.0, 1.0, 0.0], # Electric
-  [1.0, 0.5, 0.5, 2.0, 1.0, 0.5, 1.0, 1.0, 2.0, 2.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 0.5, 1.0, 0.0], # Ice
-  [2.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 0.5, 1.0, 0.5, 0.5, 0.5, 2.0, 0.0, 1.0, 2.0, 2.0, 0.5, 0.0], # Fighting
-  [1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 0.5, 0.5, 1.0, 1.0, 1.0, 0.5, 0.5, 1.0, 1.0, 0.0, 2.0, 0.0], # Poison
-  [1.0, 2.0, 1.0, 0.5, 2.0, 1.0, 1.0, 2.0, 1.0, 0.0, 1.0, 0.5, 2.0, 1.0, 1.0, 1.0, 2.0, 1.0, 0.0], # Ground
-  [1.0, 1.0, 1.0, 2.0, 0.5, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 2.0, 0.5, 1.0, 1.0, 1.0, 0.5, 1.0, 0.0], # Flying
-  [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 2.0, 1.0, 1.0, 0.5, 1.0, 1.0, 1.0, 1.0, 0.0, 0.5, 1.0, 0.0], # Psychic
-  [1.0, 0.5, 1.0, 2.0, 1.0, 1.0, 0.5, 0.5, 1.0, 0.5, 2.0, 1.0, 1.0, 0.5, 1.0, 2.0, 0.5, 0.5, 0.0], # Bug
-  [1.0, 2.0, 1.0, 1.0, 1.0, 2.0, 0.5, 1.0, 0.5, 2.0, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 0.5, 1.0, 0.0], # Rock
-  [0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 2.0, 1.0, 0.5, 0.5, 1.0, 0.0], # Ghost
-  [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 0.5, 0.0, 0.0], # Dragon
-  [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.5, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 2.0, 1.0, 0.5, 0.5, 0.5, 0.0], # Dark
-  [1.0, 0.5, 0.5, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 0.5, 2.0, 0.0], # Steel
-  [1.0, 0.5, 1.0, 1.0, 1.0, 1.0, 2.0, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 2.0, 0.5, 1.0, 0.0], # Fairy
-  [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], # ??? (none)
-]
-
-# we need a list of all the types
-var typeList = [
-  "Normal",
-  "Fire",
-  "Water",
-  "Grass",
-  "Electric",
-  "Ice",
-  "Fighting",
-  "Poison",
-  "Ground",
-  "Flying",
-  "Psychic",
-  "Bug",
-  "Rock",
-  "Ghost",
-  "Dragon",
-  "Dark",
-  "Steel",
-  "Fairy",
-  "Unknown"
-]
-
-# get the index of the type in the type table
-func getTypeIndex(type):
-  return typeList.find(type) # returns -1 if not found? i hope?
-
-# get the effectiveness of a move against a defender with 2 types
-func computeEffectiveness(moveType, type1, type2):
-  
-  # TODO fix if type2 is -1 (none)
-
-  # get the index of the move type
-  var moveTypeIndex = getTypeIndex(moveType)
-
-  # get the index of the defender types
-  var type1Index = getTypeIndex(type1)
-  var type2Index = getTypeIndex(type2)
-
-  # get the effectiveness of the move against the defender
-  var effectiveness = typeTable[type1Index][moveTypeIndex] * typeTable[type2Index][moveTypeIndex]
-
-  return effectiveness
-
 func _ready():
   # the state starts at intro, so we need to set up the intro
   messageBox = get_node("../%MessageBox")
@@ -163,19 +98,28 @@ func _ready():
   enemyDataBox = get_node("%EnemyDatabox")
 
   # set up the moves in the attack box
-  for i in range(playerMoves.size()):
+  for i in range(player[player_pokemon].currentMoves.size()):
+    var move: Move = player[player_pokemon].currentMoves[i]
     var button: TextureButton = attackBox.get_child(i)
-    button.get_child(0).set_text(playerMoves[i][0])
+    button.get_child(0).set_text(move.moveName)
+    var type: Type.list = move.moveType
     
     # set the textures based on the move type
     # TODO: relocate this to be less messy
-    button.texture_normal = load("res://sprites/BattleGui/cursor-fight/moveTypes/" + playerMoves[i][1] + ".tres")
-    button.texture_hover = load("res://sprites/BattleGui/cursor-fight/moveTypes/" + playerMoves[i][1] + "-focus.tres")
-    button.texture_pressed = load("res://sprites/BattleGui/cursor-fight/moveTypes/" + playerMoves[i][1] + "-pressed.tres")
+    if type == Type.list.NONE:
+      # we shouldn't get here, but just in case
+      button.texture_normal = load("res://sprites/BattleGui/cursor-fight/moveTypes/unknown.tres")
+      button.texture_hover = load("res://sprites/BattleGui/cursor-fight/moveTypes/unknown-focus.tres")
+      button.texture_pressed = load("res://sprites/BattleGui/cursor-fight/moveTypes/unknown-pressed.tres")
+    else:
+      button.texture_normal = load("res://sprites/BattleGui/cursor-fight/moveTypes/" + Type.typeToString(type) + ".tres")
+      button.texture_hover = load("res://sprites/BattleGui/cursor-fight/moveTypes/" + Type.typeToString(type) + "-focus.tres")
+      button.texture_pressed = load("res://sprites/BattleGui/cursor-fight/moveTypes/" + Type.typeToString(type) + "-pressed.tres")
 
     # connect the button's draw_mode_changed signal to the battle system's draw_mode_changed signal
     button.connect("draw_mode_changed", _on_draw_mode_changed)
 
+  # we know that the attack box has 4 buttons, so we reference them using get_child(n) (0-3). get_child(4) is the PP box
   # set up the attack box type, pp current, and pp max
   attackBoxType = attackBox.get_child(4).find_child("TypeBox")
   attackBoxPPCurrent = attackBox.get_child(4).find_child("ppCurrent")
@@ -225,13 +169,12 @@ func _on_draw_mode_changed(buttonInstance, drawMode):
     # get the index of the button
     var index = attackBox.get_children().find(buttonInstance)
     # get the move type
-    var moveType = playerMoves[index][1]
+    var move = player[player_pokemon].currentMoves[index]
     # set the attack box type
-    attackBoxType.texture = load("res://sprites/BattleGui/types/" + moveType + ".tres")
+    attackBoxType.texture = load("res://sprites/BattleGui/types/" + Type.typeToString(move.moveType) + ".tres")
     # set the attack box pp current and pp max
-    # TODO: get the pp current and pp max from the move and pokemon
-    attackBoxPPCurrent.set_text("10")
-    attackBoxPPMax.set_text("10")
+    attackBoxPPCurrent.set_text(str(move.ppCurrent))
+    attackBoxPPMax.set_text(str(move.pp))
 
 func _on_state_changed(newState, newSubState):
   # this function is called when the state changes
@@ -297,5 +240,19 @@ func Action(actionType):
       # TODO: check if we're allowed
       pass
 
-func UseMove(_i):
-  pass
+func UseMove(i):
+  if player[player_pokemon].currentMoves[i].type != Move:
+    # the move doesn't exist. weird?
+    return
+  
+  # TODO: check if the move has pp left
+  # TODO: check if the move is disabled
+  # TODO: compute accuracy
+  # TODO: compute damage
+  # TODO: compute status effects
+  # TODO: compute critical hits
+  # TODO: compute type effectiveness
+
+  var _move = player[player_pokemon].currentMoves[i]
+
+

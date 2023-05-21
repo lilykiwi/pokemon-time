@@ -20,7 +20,7 @@
 [ext_resource type="Script" path="res://scripts/battle/ButtonTextMover.gd" id="12_7wo3r"]
 [ext_resource type="Texture2D" uid="uid://cg5g762w0lb5s" path="res://sprites/BattleGui/hpbar.png" id="12_xmnc8"]
 [ext_resource type="Texture2D" uid="uid://bx3rne8etceoq" path="res://sprites/BattleGui/overlay_exp.png" id="13_0rw5y"]
-[ext_resource type="Theme" uid="uid://c3y1jdrxdqepp" path="res://sprites/OptionsMenu/themeOptionsMenu.tres" id="13_aurya"]
+[ext_resource type="Theme" uid="uid://c3y1jdrxdqepp" path="res://sprites/themeOptionsMenu.tres" id="13_aurya"]
 [ext_resource type="FontFile" uid="uid://cwchw2hf7ulia" path="res://Fonts/m3x6.ttf" id="13_l8clq"]
 [ext_resource type="Texture2D" uid="uid://yjr8otu814rt" path="res://sprites/BattleGui/cursor-fight/actions/items.tres" id="13_lisdq"]
 [ext_resource type="Texture2D" uid="uid://boaxsoe5gie8e" path="res://sprites/BattleGui/female.png" id="14_ae67x"]
@@ -111,7 +111,6 @@ grow_vertical = 2
 
 [node name="SelectBox" type="Panel" parent="battle-gui"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 0
 offset_top = 126.0
 offset_right = 256.0

@@ -1,7 +1,4 @@
-# A pokemon has an id, name, type, as well as starting stat spreads.
-# we need to implement multiple 
-class_name Pokemon
-extends Resource
+class_name Pokemon extends Object
 
 # The pokemon's national dex number
 var dexNum: int
@@ -22,9 +19,6 @@ var backShinySprite: Texture2D
 # held items in the wild, along with their chances
 var wildItems: Dictionary = {}
 
-# the growth rate type
-var growthRate: String
-
 # Gender Ratio
 var genderThreshold: int # 0-255. 256 = male only, 257 = female only, 258 = genderless
 var description: String
@@ -32,9 +26,11 @@ var weight: int
 var height: int
 
 # The pokemon's type
-var pType1: String
-# the second type
-var pType2: String
+# Type.list.NONE default
+var types: Vector2i = Vector2i(
+  Type.list.NONE,
+  Type.list.NONE
+)
 
 # The pokemon's base stats
 var baseHp: int
@@ -57,7 +53,7 @@ var eventMoves: Array = []
 # The abilities the pokemon can have
 var abilities: Array = []
 # The pokemon's hidden ability
-var hiddenAbility: String = ""
+var hiddenAbility: Ability = null
 
 # The pokemon's base experience yield
 var expYield: int
@@ -83,50 +79,20 @@ var captureRate: int
 # TODO: make this a dictionary of pokemon: [ level, item, etc. ]
 var evolutionChain: Dictionary = {}
 
-# Nature stuff
-
-var natures = [
-  "Hardy",
-  "Lonely",
-  "Brave",
-  "Adamant",
-  "Naughty",
-  "Bold",
-  "Docile",
-  "Relaxed",
-  "Impish",
-  "Lax",
-  "Timid",
-  "Hasty",
-  "Serious",
-  "Jolly",
-  "Naive",
-  "Modest",
-  "Mild",
-  "Quiet",
-  "Bashful",
-  "Rash",
-  "Calm",
-  "Gentle",
-  "Sassy",
-  "Careful",
-  "Quirky" 
-]
-
 # levelling rate. this affects xp-to-next using a dif algorithm for each. this can be:
-# slow, medium-slow, medium, medium-fast, fast, erratic, fluctuating
-var levellingRates = [
-  "slow",
-  "medium-slow",
-  "medium-fast",
-  "fast",
-  "erratic",
-  "fluctuating"
-]
+enum levellingRates {
+  SLOW,
+  MEDIUM_SLOW,
+  MEDIUM_FAST,
+  FAST,
+  ERRATIC,
+  FLUCTUATING,
+}
 
-var levellingRate: String = "medium-slow"
+# the levelling rate type
+var levellingRate: levellingRates
 
-# TODO: move the below variables to a separate script, and make it a child of this script:
+# ---------------------------------------------------------------------------------------------------------------------
 # these values represent an instance of a pokemon, compared with a prototype for the dex.
 
 # The pokemon's pid number
@@ -134,9 +100,6 @@ var pid: int
 
 # Shiny Pokemon. do not set
 var shiny: bool
-
-# Origin Game
-# var game: String
 
 # Met Location
 var metLocation: String
@@ -160,9 +123,10 @@ var nickname: String
 # The OT
 var ot: String
 # The OT's ID
-var otId: int
+#var otId: int
 # The OT's secret ID
-var otSecretId: int
+#var otSecretId: int
+
 # Gender of the pokemon
 var gender: String
 
@@ -173,7 +137,7 @@ var xp: int
 var level: int
 # The pokemon's current experience, as a percentage of the total experience needed to level up
 # We must not set this directly. We should calculate it using xp.
-var expPercent: float
+var expPercent: int
 
 # The pokemon's current stats (COMPUTE THESE, DO NOT SET THEM MANUALLY)
 var currentHp: int
@@ -217,15 +181,14 @@ var currentMoves: Array = []
 var statuses: Array = []
 
 # The pokemon's current ability
-var ability: String
+var ability: Ability
 
 # The pokemon's current nature
-# TODO: implement nature stat modifiers
-var nature: String
+var nature: Nature.natures
 
 # The pokemon's current held item
 # TODO: implement item objects
-var item: String
+var item: Item
 
 # The pokemon's current happiness
 var happiness: int
@@ -239,7 +202,7 @@ var giveHiddenAbility: bool = false
 # party index
 var partyIndex: int = -1
 
-func generate(): 
+func generate(startingLevel: int): 
   # todo: get the player's name when caught
   ot = ""
   # do we need these? seems antiquitated.
@@ -270,7 +233,7 @@ func generate():
     elif genderThreshold == 258:
       gender = "genderless"
     else: 
-      print("")
+      printerr("ERROR: Gender ratio is misconfigured for " + pName)
   else:
     # we need to work it out using mod
     # this differs dramatically from the typical technique, but it's easier
@@ -285,7 +248,7 @@ func generate():
   # -- Nature ---------------------------------------------------------------------------------------------------------
 
   # TODO: stat modifiers
-  nature = natures[pid % natures.size()]
+  nature = Nature.intToNature(pid % 25)
 
   # TODO: Breeding & Nature
   # TODO: Synchronize
@@ -297,10 +260,12 @@ func generate():
 
   # we *could* grab one bit.... but mod is easy.
 
-  if hiddenAbility != "" && giveHiddenAbility:
+  if hiddenAbility != null && giveHiddenAbility:
     ability = hiddenAbility
-  else:
+  elif abilities.size() != 0:
     ability = abilities[pid % abilities.size()]
+  else:
+    printerr("ERROR: Pokemon has no abilities set:" + pName)
 
   # TODO: Breeding & Ability
 
@@ -351,18 +316,41 @@ func generate():
   # if we're an egg, we can have any move we can learn up to our level and egg moves
   # if we're a trainer pokemon, we can specify which moves we have. for now this is TODO.
 
+  # -- Stats ----------------------------------------------------------------------------------------------------------
+
+  calculateStats()
+
+  # -- Level ----------------------------------------------------------------------------------------------------------
+
+  # we are specified a level, so we can calculate our xp
+  level = startingLevel
+  xp = levelToExp(level)
+  # check this
+  expPercent = floori((xp - levelToExp(level - 1)) / (levelToExp(level) - levelToExp(level - 1)))
+  
+
+
+
 
 
 # function to calculate the pokemon's stats
 func calculateStats():
   # calculate the pokemon's current stats
   # TODO going to need to double check this math
-  currentHp = floori((2 * baseHp + ivHp + floori(evHp / 4.0)) * level / 100.0) + level + 10
-  currentAtk = floori((2 * baseAtk + ivAtk + floori(evAtk / 4.0)) * level / 100.0) + 5
-  currentDef = floori((2 * baseDef + ivDef + floori(evDef / 4.0)) * level / 100.0) + 5
-  currentSpAtk = floori((2 * baseSpAtk + ivSpAtk + floori(evSpAtk / 4.0)) * level / 100.0) + 5
-  currentSpDef = floori((2 * baseSpDef + ivSpDef + floori(evSpDef / 4.0)) * level / 100.0) + 5
-  currentSpd = floori((2 * baseSpd + ivSpd + floori(evSpd / 4.0)) * level / 100.0) + 5
+  maxHp = floori((2 * baseHp + ivHp + floori(evHp / 4.0)) * level / 100.0) + level + 10
+  maxAtk = floori((2 * baseAtk + ivAtk + floori(evAtk / 4.0)) * level / 100.0) + 5
+  maxDef = floori((2 * baseDef + ivDef + floori(evDef / 4.0)) * level / 100.0) + 5
+  maxSpAtk = floori((2 * baseSpAtk + ivSpAtk + floori(evSpAtk / 4.0)) * level / 100.0) + 5
+  maxSpDef = floori((2 * baseSpDef + ivSpDef + floori(evSpDef / 4.0)) * level / 100.0) + 5
+  maxSpd = floori((2 * baseSpd + ivSpd + floori(evSpd / 4.0)) * level / 100.0) + 5
+
+  # set the current stats to the max stats
+  currentHp = maxHp
+  currentAtk = maxAtk
+  currentDef = maxDef
+  currentSpAtk = maxSpAtk
+  currentSpDef = maxSpDef
+  currentSpd = maxSpd
 
 # function to add EVs
 # TODO check if the pokemon has max EVs (252 each, 510 total)
@@ -420,12 +408,12 @@ func removeStatus(status: String):
   statuses.erase(statuses.find(status))
 
 # function to add a move and check if the pokemon can learn it, by source.
-func addMove(move: String, source: String):
+func addMove(move: Move, source: String):
   if (checkMove(move, source)):
     currentMoves.append(move)
 
 # function to check if the pokemon can learn a move, by source. returns true or false.
-func checkMove(move: String, source: String):
+func checkMove(move: Move, source: String):
   match source:
     "level":
       return true if move in moves else false
@@ -437,18 +425,21 @@ func checkMove(move: String, source: String):
       return true if move in tutorMoves else false
     "event":
       return true if move in eventMoves else false
+    "debug":
+      print_debug("DEBUG: initialised move " + move.moveName + " for " + pName)
+      return true
     _: 
       return false
 
 # function to remove a move
-func removeMove(move: String):
+func removeMove(move: Move) -> void:
   currentMoves.erase(currentMoves.find(move))
 
 # function to swap a move's index
-func swapMove(start: int, end: int):
-  # check if the moves exists
-  if currentMoves.find(start) == -1 or currentMoves.find(end) == -1:
-    print("One or more moves do not exist.")
+func swapMove(start: int, end: int) -> void:
+  # check if the index is valid
+  if start < 0 or start > currentMoves.size() or end < 0 or end > currentMoves.size():
+    printerr("ERROR: Invalid move index for " + pName + ": " + str(start) + ", " + str(end))
     return
 
   var temp = currentMoves[start]
@@ -456,49 +447,53 @@ func swapMove(start: int, end: int):
   currentMoves[end] = temp
 
 # get a move by index
-func getMove(index: int):
+func getMove(index: int) -> Move:
+  if index < 0 or index > currentMoves.size():
+    printerr("ERROR: Invalid move index for " + pName + ": " + str(index))
+    return null
   return currentMoves[index]
 
-# function to calculate the pokemon's current level
-func calculateLevel():
-  # calculate the pokemon's current level
-  # TODO going to need to double check this math
-  if xp < 1000000:
-    level = floori(sqrt(xp))
-  else:
-    level = floori(sqrt(xp / 4.0))
-
-func expToLevel(xp: int):
+func expToLevel(val: int) -> int:
   for i in range(1, 101):
-    if levelToExp(i) > xp:
+    if levelToExp(i) > val:
       return i - 1
-  pass
+  printerr("ERROR: Could not calculate level for " + pName)
+  return -1
 
 # function to calculate the pokemon's current experience progress
-func levelToExp(level: int):
+func levelToExp(val: int) -> int:
   # calculate the pokemon's current experience progress
   match levellingRate:
-    "slow":
-      return floor((5 * level * level * level) / 4.0)
-    "medium-slow":
-      return ((6 * level * level * level) / 5.0) - (15 * level * level) + (100 * level) - 140
-    "medium-fast":
-      return level * level * level
-    "fast":
-      return (4 * level * level * level) / 5.0
-    "erratic":
+    levellingRates.SLOW:
+      return floori ((5 * val * val * val) / 4.0)
+
+    levellingRates.MEDIUM_SLOW:
+      return floori ((6 * val * val * val) / 5.0) - (15 * val * val) + (100 * val) - 140
+
+    levellingRates.MEDIUM_FAST:
+      return floori (val * val * val)
+
+    levellingRates.FAST:
+      return floori ((4 * val * val * val) / 5.0)
+
+    levellingRates.ERRATIC:
       if level <= 50:
-        return floori((100 - level) * level * level) / 50.0
+        return floori (((100 - val) * val * val) / 50.0)
       elif level <= 68:
-        return floori((150 - level) * level * level) / 100.0
+        return floori (((150 - val) * val * val) / 100.0)
       elif level <= 98:
-        return floori(floori((1911 - 10 * level) / 3.0) * level * level) / 500.0
+        return floori ((floori((1911 - 10 * val) / 3.0) * val * val) / 500.0)
       else:
-        return floori((160 - level) * (level * level * level)) / 100.0
-    "fluctuating":
-      if level <= 15:
-        return floori ((level * level * level) * (floori((level + 1) / 3.0) + 24) / 50.0)
-      elif level <= 36:
-        return floori ((level * level * level) * (level + 14) / 50.0)
+        return floori (((160 - val) * (val * val * val)) / 100.0)
+
+    levellingRates.FLUCTUATING:
+      if val <= 15:
+        return floori ((val * val * val) * (floori((val + 1) / 3.0) + 24) / 50.0)
+      elif val <= 36:
+        return floori ((val * val * val) * (val + 14) / 50.0)
       else:
-        return floori ((level * level * level) * (floori(level / 2.0) + 32) / 50.0)
+        return floori ((val * val * val) * (floori(val / 2.0) + 32) / 50.0)
+
+    _:
+      printerr("ERROR: Invalid levelling rate for " + pName)
+      return -1

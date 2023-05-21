@@ -18,6 +18,8 @@ func _process(_delta):
   var temp = get_draw_mode()
   if last == temp:
     return # no change
+  if labelChild == null:
+    return # no label
   else:
     emit_signal("draw_mode_changed", self, temp)
   match temp:

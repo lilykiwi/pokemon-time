@@ -1,5 +1,3 @@
-extends Node2D
+class_name Ability extends Object
 
-# Abilities need arbitrary code to function. any ability inherits from this.
-func Ability():
-  pass
+# todo!
