@@ -68,7 +68,6 @@ var enemy = [
 ]
 
 # store the player and enemy pokemon
-# TODO: reference party index rather than instance object
 # TODO: double battles
 var player_pokemon: int = 0
 var enemy_pokemon: int = 0
@@ -141,10 +140,10 @@ func _ready():
   selectBox.get_children()[3].connect("pressed", Action.bind("Run"))
 
   # set up signals for all the buttons in the attack box
-  attackBox.get_children()[0].connect("pressed", UseMove.bind(0))
-  attackBox.get_children()[1].connect("pressed", UseMove.bind(1))
-  attackBox.get_children()[2].connect("pressed", UseMove.bind(2))
-  attackBox.get_children()[3].connect("pressed", UseMove.bind(3))
+  attackBox.get_children()[0].connect("pressed", UseMove.bind(0, player[player_pokemon], enemy[enemy_pokemon]))
+  attackBox.get_children()[1].connect("pressed", UseMove.bind(1, player[player_pokemon], enemy[enemy_pokemon]))
+  attackBox.get_children()[2].connect("pressed", UseMove.bind(2, player[player_pokemon], enemy[enemy_pokemon]))
+  attackBox.get_children()[3].connect("pressed", UseMove.bind(3, player[player_pokemon], enemy[enemy_pokemon]))
 
   # set the state to intro
   emit_signal("change_state", states.INTRO, subStates.INTRO_TEXT)
@@ -240,19 +239,167 @@ func Action(actionType):
       # TODO: check if we're allowed
       pass
 
-func UseMove(i):
-  if player[player_pokemon].currentMoves[i].type != Move:
+# return an int?
+# icky tbh. we should probably return a new object that contains the status effects and damage
+# that way the AI can use this function when weighing up options, as well as the move proc itself
+# >0 for damage
+# 0 for status with no damage
+# -1 for miss
+# -2 for illegal
+# -3 for error
+# this is a mess. instead we should return
+# a value for whether it hits (bool)
+# a value for the amount of recoil it does (int)
+# a value for the amount of damage it does (int)
+# a list of status effects it applies (array)
+# a list of status effects it removes (array)
+# a list of stat changes it applies (array)
+# a list of stat changes it removes (array)
+#   - NOTE: we need to specify self and/or targets
+# a list of other effects it applies, like weather (array)
+# a list of other effects it removes, like weather (array)
+# maybe we move this to a separate class?
+func UseMove(i: int, user: Pokemon, target: Pokemon) -> bool:
+  if !(player[player_pokemon].currentMoves[i] is Move):
     # the move doesn't exist. weird?
-    return
+    printerr("Move doesn't exist: " + str(i) + ", " + str(player[player_pokemon].currentMoves[i]))
+    return false
   
-  # TODO: check if the move has pp left
-  # TODO: check if the move is disabled
-  # TODO: compute accuracy
-  # TODO: compute damage
   # TODO: compute status effects
   # TODO: compute critical hits
   # TODO: compute type effectiveness
 
-  var _move = player[player_pokemon].currentMoves[i]
+  var move = player[player_pokemon].currentMoves[i]
 
+  if move.ppCurrent <= 0:
+    # the move has no pp left
+    # TODO: we shouldn't get here as the button should be disabled if the move has no pp left
+    return false
+
+  if move.disabled:
+    # the move is disabled
+    # TODO: we shouldn't get here as the button should be disabled if the move is disabled
+    return false
+
+  # accuracy check: relies on our accuracy modifier, the move's accuracy, a random number, and the target's evasion
+  # if the accuracy value is -1, the move always hits - i.e. skip this section
+  # T = AccuracyMove * StageMultiplier * Other
+  # T is the computed threshold
+  # AccuracyMove is the move's accuracy, 1-100
+  # StageMultiplier is the evasion and accuracy stage multiplier, ranges from -6 to 6 and is a sum of the two.
+  # Other is a modifier for Ability effects, fog, move effects, item effects, etc. 
+  # https://bulbapedia.bulbagarden.net/wiki/Category:Moves_that_cannot_miss
+
+  if move.accuracy != -1:
+    # TODO: stagemod
+    # sum: -6 to 6
+    # -6   -5   -4   -3   -2   -1   0    1    2    3    4    5    6
+    # 3/9, 3/8, 3/7, 3/6, 3/5, 3/4, 3/3, 4/3, 5/3, 6/3, 7/3, 8/3, 9/3
+    var hitThreshold = move.accuracy
+    if randi() % 100 > hitThreshold:
+      # the move missed
+      print("The move missed!")
+      print("Hit threshold: " + str(hitThreshold))
+      return false
+
+  # damage calculation
+  # https://bulbapedia.bulbagarden.net/wiki/Damage
+
+  if (move.moveClass == Move.moveClasses.NONE):
+    # the move is invalid
+    printerr("Invalid move: " + str(move.moveName))
+    return false
+  
+  if (move.moveClass == Move.moveClasses.STATUS):
+    printerr("TODO status move:", str(move.moveName))
+    return false
+
+  # TODO: some moves have a fixed damage value
+  # TODO: some moves also apply a status effect
+
+  var damage = 0
+
+  # TODO: https://bulbapedia.bulbagarden.net/wiki/Category:Moves_that_use_stats_from_different_categories
+
+  if (move.moveClass == Move.moveClasses.PHYSICAL):
+    # physical move
+    damage = ((2*user.level)/5.0 * move.power * (user.currentAtk / float(target.currentDef))) / 50 + 2
+  if (move.moveClass == Move.moveClasses.SPECIAL):
+    # special move
+    damage = ((2*user.level)/5.0 * move.power * (user.currentSpAtk / float(target.currentSpDef))) / 50 + 2
+  
+  # 0.75x if more than one target, otherwise 1.0x
+
+  # TODO: Parental Bond -> ability for Mega Kangaskhan
+
+  # TODO: Weather
+  # -- FLAT 1.0x if Cloud Nine or Air Lock ability is present on field
+  # - 1.5x if water in rain
+  # - 0.5x if fire in rain
+  # - 1.5x if fire in sun (or Hydro Steam)
+  # - 0.5x if water in sun (except for Hydro Steam)
+
+  # TODO: 2x if last move is Glaive Rush -> move for Baxcalibur (are we adding this?)
+
+  # TODO: crit check
+  # 1.5x if crit (gen5 is 2x, but meh)
+  # https://bulbapedia.bulbagarden.net/wiki/Critical_hit
+
+  # random damage range 0.85 - 1.00
+  var randomMod = randi() % 15 + 85
+  damage *= (randomMod / 100.0)
+
+  # TODO: apply stab
+
+  # type modifier
+  # we can get the types of the pokemon from the target pokemon's type list
+  # see Type.gd for more info on how this works
+  var typeMod = Type.computeEffectiveness(move.moveType, target.types[0], target.types[1])
+  damage *= typeMod
+
+  # TODO: burn check
+  # 0.5x if user is burned, move is physical, and ability isn't guts.
+  # otherwise 1.0x
+
+  # Extra Checks - ALL STACK MULTIPLICATIVELY:
+  # Dynamax - 2.0x with Behemoth Blade, Behemoth Bash, Dynamax Cannon if Dynamaxed (are we adding this?)
+  # Minimize - 2.0x for https://bulbapedia.bulbagarden.net/wiki/Minimize_(move)#Vulnerability_to_moves
+  # Earthquake and Magnitude - 2.0x if target is in Dig invulnerability
+  # Surf and Whirlpool - 2.0x if target is in Dive invulnerability
+  # Reflect, Light Screen, Aurora Veil - 0.5x if target is behind one of these and move is affected by it
+  #   -> https://bulbapedia.bulbagarden.net/wiki/Reflect_(move)#Generation_V_onwards
+  #   -> https://bulbapedia.bulbagarden.net/wiki/Light_Screen_(move)#Generation_V_onwards
+  #   -> https://bulbapedia.bulbagarden.net/wiki/Aurora_Veil_(move)#Effect
+  # Collision Course and Electro Drift - ~1.3333x (5461/4096) gen 9 stuff do we care
+  # Fluffy, 0.5 if check passes
+  # Punk Rock, 0.5 if check passes
+  # Ice Scales, 0.5 if check passes
+  # Friend Guard, 0.75 if check passes
+  # Filter, Prism Armor, and Solid Rock, 0.75 if check passes
+  # Neuroforce, 1.25 if check passes
+  # Sniper, 1.5x if check passes
+  # Tinted Lens, 2.0x if check passes
+  # Fluffy, 2.0x if check passes (if move is fire type)
+  # Type-resist Berries, 0.5x if check passes
+  #    -> 0.25x if ability is Ripen
+  # Expert Belt, ~1.2x (4915/4096) if held by the attacker and the move is super effective (type mod > 1.0)
+  # Life Orb, ~1.3x (5324/4096) if held by attacker
+  # Metronome, up to 2.0x, add ~0.2x (819/4096) for each consecutive use of the same move
+
+  # ZMove is 0.25 if conditions are met (meh)
+  # TeraShield sure is a thing. (meh)
+
+  # TODO: type coersion and rounding
+  if damage > 1 and damage < 0:
+    damage = 1
+
+  if damage < 0:
+    print("Damage is less than 0: " + str(damage))
+    return false
+
+  ## TODO: apply status effects
+  # we round to an int here. the games typically round on each operation, but we don't need to do that.
+  print(str(round(damage)))
+
+  return true
 

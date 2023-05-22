@@ -173,6 +173,15 @@ var evSpAtk: int
 var evSpDef: int
 var evSpd: int
 
+# stages for in-battle stat modifiers
+var atkStage: int = 0
+var defStage: int = 0
+var spAtkStage: int = 0
+var spDefStage: int = 0
+var spdStage: int = 0
+var accStage: int = 0
+var evaStage: int = 0
+
 # The pokemon's current moves
 # we can only have 4 moves at a time
 var currentMoves: Array = []
