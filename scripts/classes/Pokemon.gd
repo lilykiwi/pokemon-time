@@ -221,6 +221,8 @@ func generate(startingLevel: int):
   # this is 0-4,294,967,295, 32bit but Godot is 64bit
   pid = randi() % 4294967295
 
+  setNickname(pName)
+
   # -- Shininess ------------------------------------------------------------------------------------------------------
 
   # we can work out shiny from this
@@ -247,7 +249,7 @@ func generate(startingLevel: int):
     # we need to work it out using mod
     # this differs dramatically from the typical technique, but it's easier
     # and we don't need to worry about memory & storage at this stage.
-    if (pid % 255 > genderThreshold):
+    if (pid % 255 < genderThreshold):
       gender = "male"
     else:
       gender = "female"
@@ -338,10 +340,6 @@ func generate(startingLevel: int):
   expPercent = floori((xp - levelToExp(level - 1)) / (levelToExp(level) - levelToExp(level - 1)))
   
 
-
-
-
-
 # function to calculate the pokemon's stats
 func calculateStats():
   # calculate the pokemon's current stats
@@ -404,7 +402,7 @@ func addEVs(stat: String, amount: int):
       else:
         evSpd += delta
     _:
-      print("EV not added." + stat + " is not a valid stat.")
+      print("EV not added. " + stat + " is not a valid stat.")
 
 # function to add a status
 # TODO check if the pokemon already has this status
@@ -415,6 +413,14 @@ func addStatus(status: String):
 # TODO check if the pokemon has this status
 func removeStatus(status: String):
   statuses.erase(statuses.find(status))
+
+func doDamage(damage: int):
+  currentHp -= damage
+  if currentHp < 0:
+    currentHp = 0
+    #emit_signal("pokemon_fainted", self)
+  # update the health bar
+  #emit_signal("update_health", self)
 
 # function to add a move and check if the pokemon can learn it, by source.
 func addMove(move: Move, source: String):
@@ -461,6 +467,12 @@ func getMove(index: int) -> Move:
     printerr("ERROR: Invalid move index for " + pName + ": " + str(index))
     return null
   return currentMoves[index]
+
+func setNickname(name: String) -> void:
+  nickname = name
+
+func resetNickname() -> void:
+  nickname = pName
 
 func expToLevel(val: int) -> int:
   for i in range(1, 101):

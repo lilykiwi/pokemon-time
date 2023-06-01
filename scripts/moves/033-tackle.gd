@@ -6,8 +6,10 @@ func _init():
   id = 33
   power = 50
   #priority = 0
+  #var critRatio = 0
   moveName = "Tackle"
   moveType = Type.list.NORMAL
+  #moveTargetStat = Move.defenderStat.NONE
   moveClass = Move.moveClasses.PHYSICAL
   moveTarget = Move.moveTargets.SINGLE
   accuracy = 100
@@ -31,6 +33,17 @@ func _init():
   #  0, # evasion
   #]
   #statChangeChance = 0
+  #selfStatChangeType = Move.statChangeTypes.NONE
+  #selfStatChanges = [
+  #  0, # attack
+  #  0, # defense
+  #  0, # special attack
+  #  0, # special defense
+  #  0, # speed
+  #  0, # accuracy
+  #  0, # evasion
+  #]
+  #selfStatChangeChance = 0
   makesContact = true
   affectedByProtect = true
   #affectedByMagicCoat = false

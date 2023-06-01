@@ -21,6 +21,7 @@ signal change_state(newState, newSubState)
 enum states {
   INTRO,
   PLAYER_TURN,
+  PLAYER_MOVE_INVALID,
   ENEMY_TURN,
   ACTION,
   END_BATTLE,
@@ -35,6 +36,7 @@ enum subStates {
   PLAYER_ATTACK,
   PLAYER_ITEM,
   PLAYER_POKEMON,
+  ENEMY_DECIDE,
 }
 
 var messageBox: MessageBox = null
@@ -79,9 +81,43 @@ var attackBoxPPCurrent: Label = null
 var attackBoxPPMax: Label = null
 
 var playerDataBox: TextureRect = null
-
 var enemyDataBox: TextureRect = null
 
+var playerNicknameLabel: RichTextLabel
+var playerLevelLabel: RichTextLabel
+var playerHPLabel: Label
+var playerHPBar: TextureProgressBar
+var playerEXPBar: TextureProgressBar
+var playerGenderIcon: TextureRect
+var playerStatusLabelFirst: TextureRect
+var playerStatusLabelSecond: TextureRect
+var playerPokemonList: Array[Node] = []
+var playerPokemonStats: Array[Node] = []
+
+var enemyNicknameLabel: RichTextLabel
+var enemyLevelLabel: RichTextLabel
+var enemyHPBar: TextureProgressBar
+var enemyGenderIcon: TextureRect
+var enemyCaughtLabel: TextureRect
+var enemyStatusLabelFirst: TextureRect
+var enemyStatusLabelSecond: TextureRect
+var enemyPokemonList: Array[Node] = []
+var enemyPokemonStats: Array[Node] = []
+
+@export_category("BattleGui Sprites") # set these in editor
+@export
+var genderLabelMale: Texture2D = null
+@export
+var genderLabelFemale: Texture2D = null
+
+@export
+var ballReady: Texture2D = null
+@export
+var ballStatus: Texture2D = null
+@export
+var ballFainted: Texture2D = null
+@export
+var ballEmpty: Texture2D = null
 
 # var ListPokemon: Panel = null todo
 # var ListItem: Panel = null todo
@@ -123,9 +159,84 @@ func _ready():
   attackBoxType = attackBox.get_child(4).find_child("TypeBox")
   attackBoxPPCurrent = attackBox.get_child(4).find_child("ppCurrent")
   attackBoxPPMax = attackBox.get_child(4).find_child("ppMax")
-  
-  
 
+  # set up the player data box
+  playerDataBox = get_node("%PlayerDatabox")
+  playerNicknameLabel = playerDataBox.get_node("./NicknameLabel")
+  playerLevelLabel = playerDataBox.get_node("./LevelLabel")
+  playerHPLabel = playerDataBox.get_node("./HPLabel")
+  playerHPBar = playerDataBox.get_node("./HPBar")
+  playerEXPBar = playerDataBox.get_node("./XPBar")
+  playerGenderIcon = playerDataBox.get_node("./GenderIcon")
+  playerStatusLabelFirst = playerDataBox.get_node("./Status1")
+  playerStatusLabelSecond = playerDataBox.get_node("./Status2")
+  playerPokemonList = playerDataBox.get_node("./BallContainer").get_children()
+  playerPokemonStats = playerDataBox.get_node("./StatsContainer").get_children()
+
+  # initialise the values we want
+  playerNicknameLabel.set_text(player[player_pokemon].nickname)
+  playerLevelLabel.set_text(str(player[player_pokemon].level))
+  playerHPLabel.set_text(str(player[player_pokemon].currentHp) + "/" + str(player[player_pokemon].maxHp))
+  playerHPBar.max_value = player[player_pokemon].maxHp
+  playerHPBar.value = player[player_pokemon].currentHp
+  playerEXPBar.max_value = 100
+  playerEXPBar.value = player[player_pokemon].expPercent
+
+  if player[player_pokemon].gender == "female":
+    playerGenderIcon.texture = genderLabelFemale
+  elif player[player_pokemon].gender == "male":
+    playerGenderIcon.texture = genderLabelMale
+  else:
+    playerGenderIcon.hide() # no gender, hide it :>
+
+  for i in range(player.size()):
+    var temp: Pokemon = player[i]
+    if temp.statuses.size() != 0:
+      playerPokemonList[i].texture = ballStatus
+    elif temp.currentHp == 0:
+      playerPokemonList[i].texture = ballFainted
+    else:
+      playerPokemonList[i].texture = ballReady
+
+  # set up the enemy data box
+  enemyDataBox = get_node("%EnemyDatabox")
+  enemyNicknameLabel = enemyDataBox.get_node("./NicknameLabel")
+  enemyLevelLabel = enemyDataBox.get_node("./LevelLabel")
+  enemyHPBar = enemyDataBox.get_node("./HPBar")
+  enemyGenderIcon = enemyDataBox.get_node("./GenderIcon")
+  enemyCaughtLabel = enemyDataBox.get_node("./IconOwned")
+  enemyStatusLabelFirst = enemyDataBox.get_node("./Status1")
+  enemyStatusLabelSecond = enemyDataBox.get_node("./Status2")
+  enemyPokemonList = enemyDataBox.get_node("./BallContainer").get_children()
+
+  # initialise the values we want
+  enemyNicknameLabel.set_text(player[player_pokemon].nickname)
+  enemyLevelLabel.set_text(str(player[player_pokemon].level))
+  enemyHPBar.max_value = player[player_pokemon].maxHp
+  enemyHPBar.value = player[player_pokemon].currentHp
+
+  if enemy[enemy_pokemon].gender == "female":
+    enemyGenderIcon.texture = genderLabelFemale
+  elif enemy[enemy_pokemon].gender == "male":
+    enemyGenderIcon.texture = genderLabelMale
+  else:
+    enemyGenderIcon.hide() # no gender, hide it :>
+
+  for i in range(enemy.size()):
+    var temp: Pokemon = enemy[i]
+    if temp.statuses.size() != 0:
+      enemyPokemonList[i].texture = ballStatus
+    elif temp.currentHp == 0:
+      enemyPokemonList[i].texture = ballFainted
+    else:
+      enemyPokemonList[i].texture = ballReady
+
+  # TODO: implement caught pokemon, pokedex, etc
+  #if enemy[enemy_pokemon].caught:
+  #  enemyCaughtLabel.texture = ballCaught
+  #else:
+  #  enemyCaughtLabel.texture = ballUncaught
+  
   # connect the messageBox text_done signal to the battle system's text_done signal
   messageBox.connect("text_done", text_done)
 
@@ -156,6 +267,9 @@ func text_done():
       # the intro is done, so we need to set up the player and enemy pokemon
       # TODO: throw pokeball intro state
       emit_signal("change_state", states.PLAYER_TURN, subStates.PLAYER_ACTION)
+    states.PLAYER_MOVE_INVALID:
+      # the player's move was invalid, so we need to go back to the player's attack choice
+      emit_signal("change_state", states.PLAYER_TURN, subStates.PLAYER_ATTACK)
 
 func _on_draw_mode_changed(buttonInstance, drawMode):
   # this function is called when a button's draw mode changes
@@ -189,23 +303,22 @@ func _on_state_changed(newState, newSubState):
   if newState == states.PLAYER_TURN and newSubState == subStates.PLAYER_ACTION:
     # unhide the select box and data boxes. hide the attack box
     manageHideShow(true, false, true, true)
+    # grab focus on the first button
+    selectBox.get_children()[0].grab_focus()
 
   if newState == states.PLAYER_TURN and newSubState == subStates.PLAYER_ATTACK:
     # unhide the attack box, hide the select box
     manageHideShow(false, true, true, true)
-
+    # grab focus on the first move
+    # FIXME: should grab focus on the LAST USED button. fix this with focus overhaul :>
+    attackBox.get_children()[0].grab_focus()
   
-  #if newState == states.ENEMY_TURN:
-  #  # TODO: AI STUFF HERE 
-  #  pass
-  #if newState == states.ACTION:
-  #  selectBox.hide()
-  #  attackBox.hide()
-  #  playerDataBox.hide()
-  #  enemyDataBox.hide()
-  #  # TODO: compute outcomes with speed, moves, etc.
-  #  # TODO: 
-  #  pass
+  if newState == states.PLAYER_MOVE_INVALID:
+    manageHideShow(false, false, true, true)
+
+  if newState == states.ENEMY_TURN and newSubState == subStates.ENEMY_DECIDE:
+    manageHideShow(false, false, true, true)
+    # todo: AI stuff coming up
 
 func manageHideShow(selectBoxVal, attackBoxVal, playerDataBoxVal, enemyDataBoxVal):
   selectBox.visible = selectBoxVal
@@ -259,147 +372,46 @@ func Action(actionType):
 # a list of other effects it applies, like weather (array)
 # a list of other effects it removes, like weather (array)
 # maybe we move this to a separate class?
-func UseMove(i: int, user: Pokemon, target: Pokemon) -> bool:
-  if !(player[player_pokemon].currentMoves[i] is Move):
+func UseMove(i: int, user: Pokemon, target: Pokemon) -> void:
+  if !(user.currentMoves[i] is Move):
     # the move doesn't exist. weird?
-    printerr("Move doesn't exist: " + str(i) + ", " + str(player[player_pokemon].currentMoves[i]))
-    return false
+    printerr("Move doesn't exist: " + str(i) + ", " + str(user.currentMoves[i]))
+    return 
   
   # TODO: compute status effects
   # TODO: compute critical hits
   # TODO: compute type effectiveness
 
-  var move = player[player_pokemon].currentMoves[i]
+  var move = user.currentMoves[i]
 
   if move.ppCurrent <= 0:
     # the move has no pp left
     # TODO: we shouldn't get here as the button should be disabled if the move has no pp left
-    return false
+    messageBox.displayText(["This move is out of PP!"])
+    emit_signal("change_state", states.PLAYER_MOVE_INVALID, subStates.PLAYER_ACTION)
+    return 
 
   if move.disabled:
     # the move is disabled
     # TODO: we shouldn't get here as the button should be disabled if the move is disabled
-    return false
+    messageBox.displayText(["This move is disabled!"])
+    # set the state to PLAYER_MOVE_INVALID
+    emit_signal("change_state", states.PLAYER_MOVE_INVALID, subStates.PLAYER_ACTION)
+    return
 
-  # accuracy check: relies on our accuracy modifier, the move's accuracy, a random number, and the target's evasion
-  # if the accuracy value is -1, the move always hits - i.e. skip this section
-  # T = AccuracyMove * StageMultiplier * Other
-  # T is the computed threshold
-  # AccuracyMove is the move's accuracy, 1-100
-  # StageMultiplier is the evasion and accuracy stage multiplier, ranges from -6 to 6 and is a sum of the two.
-  # Other is a modifier for Ability effects, fog, move effects, item effects, etc. 
-  # https://bulbapedia.bulbagarden.net/wiki/Category:Moves_that_cannot_miss
+  var outcome = move.computeMove(user, target)
+  outcome.printInfo()
 
-  if move.accuracy != -1:
-    # TODO: stagemod
-    # sum: -6 to 6
-    # -6   -5   -4   -3   -2   -1   0    1    2    3    4    5    6
-    # 3/9, 3/8, 3/7, 3/6, 3/5, 3/4, 3/3, 4/3, 5/3, 6/3, 7/3, 8/3, 9/3
-    var hitThreshold = move.accuracy
-    if randi() % 100 > hitThreshold:
-      # the move missed
-      print("The move missed!")
-      print("Hit threshold: " + str(hitThreshold))
-      return false
+  move.ppCurrent -= 1
 
-  # damage calculation
-  # https://bulbapedia.bulbagarden.net/wiki/Damage
+  if outcome.miss:
+    # the move missed
+    messageBox.displayText(["The move missed!"])
+    return
 
-  if (move.moveClass == Move.moveClasses.NONE):
-    # the move is invalid
-    printerr("Invalid move: " + str(move.moveName))
-    return false
+  if outcome.damage > 0:
+    # the move did damage
+    messageBox.displayText(["The move did " + str(outcome.damage) + " damage!"])
   
-  if (move.moveClass == Move.moveClasses.STATUS):
-    printerr("TODO status move:", str(move.moveName))
-    return false
-
-  # TODO: some moves have a fixed damage value
-  # TODO: some moves also apply a status effect
-
-  var damage = 0
-
-  # TODO: https://bulbapedia.bulbagarden.net/wiki/Category:Moves_that_use_stats_from_different_categories
-
-  if (move.moveClass == Move.moveClasses.PHYSICAL):
-    # physical move
-    damage = ((2*user.level)/5.0 * move.power * (user.currentAtk / float(target.currentDef))) / 50 + 2
-  if (move.moveClass == Move.moveClasses.SPECIAL):
-    # special move
-    damage = ((2*user.level)/5.0 * move.power * (user.currentSpAtk / float(target.currentSpDef))) / 50 + 2
-  
-  # 0.75x if more than one target, otherwise 1.0x
-
-  # TODO: Parental Bond -> ability for Mega Kangaskhan
-
-  # TODO: Weather
-  # -- FLAT 1.0x if Cloud Nine or Air Lock ability is present on field
-  # - 1.5x if water in rain
-  # - 0.5x if fire in rain
-  # - 1.5x if fire in sun (or Hydro Steam)
-  # - 0.5x if water in sun (except for Hydro Steam)
-
-  # TODO: 2x if last move is Glaive Rush -> move for Baxcalibur (are we adding this?)
-
-  # TODO: crit check
-  # 1.5x if crit (gen5 is 2x, but meh)
-  # https://bulbapedia.bulbagarden.net/wiki/Critical_hit
-
-  # random damage range 0.85 - 1.00
-  var randomMod = randi() % 15 + 85
-  damage *= (randomMod / 100.0)
-
-  # TODO: apply stab
-
-  # type modifier
-  # we can get the types of the pokemon from the target pokemon's type list
-  # see Type.gd for more info on how this works
-  var typeMod = Type.computeEffectiveness(move.moveType, target.types[0], target.types[1])
-  damage *= typeMod
-
-  # TODO: burn check
-  # 0.5x if user is burned, move is physical, and ability isn't guts.
-  # otherwise 1.0x
-
-  # Extra Checks - ALL STACK MULTIPLICATIVELY:
-  # Dynamax - 2.0x with Behemoth Blade, Behemoth Bash, Dynamax Cannon if Dynamaxed (are we adding this?)
-  # Minimize - 2.0x for https://bulbapedia.bulbagarden.net/wiki/Minimize_(move)#Vulnerability_to_moves
-  # Earthquake and Magnitude - 2.0x if target is in Dig invulnerability
-  # Surf and Whirlpool - 2.0x if target is in Dive invulnerability
-  # Reflect, Light Screen, Aurora Veil - 0.5x if target is behind one of these and move is affected by it
-  #   -> https://bulbapedia.bulbagarden.net/wiki/Reflect_(move)#Generation_V_onwards
-  #   -> https://bulbapedia.bulbagarden.net/wiki/Light_Screen_(move)#Generation_V_onwards
-  #   -> https://bulbapedia.bulbagarden.net/wiki/Aurora_Veil_(move)#Effect
-  # Collision Course and Electro Drift - ~1.3333x (5461/4096) gen 9 stuff do we care
-  # Fluffy, 0.5 if check passes
-  # Punk Rock, 0.5 if check passes
-  # Ice Scales, 0.5 if check passes
-  # Friend Guard, 0.75 if check passes
-  # Filter, Prism Armor, and Solid Rock, 0.75 if check passes
-  # Neuroforce, 1.25 if check passes
-  # Sniper, 1.5x if check passes
-  # Tinted Lens, 2.0x if check passes
-  # Fluffy, 2.0x if check passes (if move is fire type)
-  # Type-resist Berries, 0.5x if check passes
-  #    -> 0.25x if ability is Ripen
-  # Expert Belt, ~1.2x (4915/4096) if held by the attacker and the move is super effective (type mod > 1.0)
-  # Life Orb, ~1.3x (5324/4096) if held by attacker
-  # Metronome, up to 2.0x, add ~0.2x (819/4096) for each consecutive use of the same move
-
-  # ZMove is 0.25 if conditions are met (meh)
-  # TeraShield sure is a thing. (meh)
-
-  # TODO: type coersion and rounding
-  if damage > 1 and damage < 0:
-    damage = 1
-
-  if damage < 0:
-    print("Damage is less than 0: " + str(damage))
-    return false
-
-  ## TODO: apply status effects
-  # we round to an int here. the games typically round on each operation, but we don't need to do that.
-  print(str(round(damage)))
-
-  return true
-
+  emit_signal("change_state", states.ENEMY_TURN, subStates.ENEMY_DECIDE)
+      

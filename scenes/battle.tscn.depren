@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://cptqtbveuxux3"]
+[gd_scene load_steps=56 format=3]
 
 [ext_resource type="Script" path="res://scripts/battle/BattleManager.gd" id="1_hw1vv"]
 [ext_resource type="Texture2D" uid="uid://dpmjn8hvogb5a" path="res://sprites/BattleGui/platforms/player/0.tres" id="2_1fhfb"]

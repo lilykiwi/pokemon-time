@@ -8,7 +8,8 @@ func _init():
   #priority = 0
   moveName = "Growl"
   moveType = Type.list.NORMAL
-  moveClass = Move.moveClasses.STATUS
+  moveClass = Move.moveClasses.ONLY_STATUS
+  #moveTargetStat = Move.defenderStat.NONE
   moveTarget = Move.moveTargets.ADJACENT_FOES
   accuracy = 100
   pp = 40
@@ -37,4 +38,4 @@ func _init():
   #affectedBySnatch = false
   affectedByMirrorMove = true
   #affectedByKingsRock = false
-	
+  

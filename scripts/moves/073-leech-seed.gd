@@ -8,7 +8,8 @@ func _init():
   #priority = 0
   moveName = "Leech Seed"
   moveType = Type.list.GRASS
-  moveClass = Move.moveClasses.STATUS
+  moveClass = Move.moveClasses.ONLY_STATUS
+  #moveTargetStat = Move.defenderStat.NONE
   moveTarget = Move.moveTargets.SINGLE
   accuracy = 90
   pp = 10

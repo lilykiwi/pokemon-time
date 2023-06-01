@@ -9,6 +9,7 @@ func _init():
   moveName = "Vine Whip"
   moveType = Type.list.GRASS
   moveClass = Move.moveClasses.PHYSICAL
+  #moveTargetStat = Move.defenderStat.NONE
   moveTarget = Move.moveTargets.SINGLE
   accuracy = 100
   pp = 15
