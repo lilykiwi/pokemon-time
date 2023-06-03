@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=10 format=3 uid="uid://cpbkjkru54o0n"]
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://cpbkjkru54o0n"]
 
 [ext_resource type="StyleBox" uid="uid://di0e4rpojjgr7" path="res://sprites/OptionsMenu/ThemeElements/buttonDisabled.tres" id="1_x1ks7"]
 [ext_resource type="StyleBox" uid="uid://dpo8pv6clxt8f" path="res://sprites/OptionsMenu/ThemeElements/buttonHighlight.tres" id="2_fnn6r"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://c5ew6lpgj6bh0" path="res://sprites/OptionsMenu/ThemeElements/unchecked.tres" id="7_guitf"]
 [ext_resource type="Texture2D" uid="uid://bm3xjxvdp7f8n" path="res://sprites/OptionsMenu/ThemeElements/unchecked_disabled.tres" id="8_p4jmg"]
 [ext_resource type="FontFile" uid="uid://b6pot5irfnq1y" path="res://Fonts/power green small.ttf" id="9_bgsjr"]
+[ext_resource type="FontFile" uid="uid://6koku71fwx35" path="res://Fonts/m5x7.ttf" id="9_rd6ef"]
 
 [resource]
 default_font = ExtResource("9_bgsjr")
@@ -45,6 +46,13 @@ CheckButton/icons/unchecked = ExtResource("7_guitf")
 CheckButton/icons/unchecked_disabled = ExtResource("8_p4jmg")
 CheckButton/icons/unchecked_disabled_mirrored = ExtResource("8_p4jmg")
 CheckButton/icons/unchecked_mirrored = ExtResource("7_guitf")
+Label/colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+Label/colors/font_shadow_color = Color(0.282353, 0.282353, 0.282353, 1)
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/constants/shadow_outline_size = 0
+Label/font_sizes/font_size = 15
+Label/fonts/font = ExtResource("9_rd6ef")
 LineEdit/font_sizes/font_size = 11
 LineEdit/fonts/font = ExtResource("9_bgsjr")
 LineEdit/styles/focus = ExtResource("3_1wd11")

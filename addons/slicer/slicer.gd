@@ -12,6 +12,7 @@ var resourcePicker: EditorResourcePicker = null
 var itemFlowContainer: HFlowContainer = null
 
 var exportToNewFolder: CheckButton = null
+var exportNextTo: CheckButton = null
 var folderName: LineEdit = null
 
 var exportButton: Button = null

@@ -1,0 +1,152 @@
+[gd_scene load_steps=13 format=3 uid="uid://w6op5qjox108"]
+
+[ext_resource type="Texture2D" uid="uid://3fn0tne2m48x" path="res://sprites/map/map_bg.png" id="1_6i8ef"]
+[ext_resource type="Texture2D" uid="uid://vpv2l7unw2rp" path="res://sprites/map/map_roads.png" id="2_ia4nd"]
+[ext_resource type="Texture2D" uid="uid://vrub0jgs2125" path="res://sprites/map/map_locations.png" id="3_55ufa"]
+[ext_resource type="Texture2D" uid="uid://dpyh3jpkgdv1u" path="res://sprites/map/red-1x1.tres" id="4_ij4nd"]
+[ext_resource type="Script" path="res://scripts/map/CityIcon.gd" id="5_2fmjb"]
+[ext_resource type="Texture2D" uid="uid://c78b1ip4ipgwq" path="res://sprites/map/grey-1x1.tres" id="6_qxo14"]
+[ext_resource type="Texture2D" uid="uid://cqa227u8g5vcy" path="res://sprites/map/grey-2x2.tres" id="7_j0k3l"]
+[ext_resource type="Texture2D" uid="uid://jpuxwli3s26p" path="res://sprites/map/red-2x2.tres" id="8_iu7bm"]
+[ext_resource type="Texture2D" uid="uid://cmhmqg67jsmmo" path="res://sprites/map/grey-1x2.tres" id="9_h73se"]
+[ext_resource type="Texture2D" uid="uid://buhg0bx1e8psx" path="res://sprites/map/red-1x2.tres" id="10_wmkqj"]
+[ext_resource type="Texture2D" uid="uid://btpkxuptoghdh" path="res://sprites/map/grey-2x1.tres" id="11_bj7u5"]
+[ext_resource type="Texture2D" uid="uid://dap32vsimrot1" path="res://sprites/map/red-2x1.tres" id="12_by1o5"]
+
+[node name="MapView" type="Node2D"]
+
+[node name="MapBg" type="Sprite2D" parent="."]
+position = Vector2(160, 120)
+texture = ExtResource("1_6i8ef")
+
+[node name="MapRoads" type="Sprite2D" parent="."]
+position = Vector2(160, 120)
+texture = ExtResource("2_ia4nd")
+
+[node name="MapLocations" type="Sprite2D" parent="."]
+position = Vector2(160, 120)
+texture = ExtResource("3_55ufa")
+
+[node name="0" type="Sprite2D" parent="MapLocations"]
+position = Vector2(12, -52)
+texture = ExtResource("4_ij4nd")
+script = ExtResource("5_2fmjb")
+visitedSprite = ExtResource("4_ij4nd")
+unvisitedSprite = ExtResource("6_qxo14")
+destinationName = "Snowdrift Town"
+alwaysVisited = true
+
+[node name="1" type="Sprite2D" parent="MapLocations"]
+position = Vector2(52, -28)
+texture = ExtResource("6_qxo14")
+script = ExtResource("5_2fmjb")
+visitedSprite = ExtResource("4_ij4nd")
+unvisitedSprite = ExtResource("6_qxo14")
+
+[node name="2" type="Sprite2D" parent="MapLocations"]
+position = Vector2(4, 44)
+texture = ExtResource("6_qxo14")
+script = ExtResource("5_2fmjb")
+visitedSprite = ExtResource("4_ij4nd")
+unvisitedSprite = ExtResource("6_qxo14")
+cityNumber = 2
+
+[node name="3" type="Sprite2D" parent="MapLocations"]
+position = Vector2(52, 52)
+texture = ExtResource("6_qxo14")
+script = ExtResource("5_2fmjb")
+visitedSprite = ExtResource("4_ij4nd")
+unvisitedSprite = ExtResource("6_qxo14")
+cityNumber = 3
+
+[node name="4" type="Sprite2D" parent="MapLocations"]
+position = Vector2(84, 68)
+texture = ExtResource("6_qxo14")
+script = ExtResource("5_2fmjb")
+visitedSprite = ExtResource("4_ij4nd")
+unvisitedSprite = ExtResource("6_qxo14")
+cityNumber = 4
+
+[node name="5" type="Sprite2D" parent="MapLocations"]
+position = Vector2(44, 76)
+texture = ExtResource("6_qxo14")
+script = ExtResource("5_2fmjb")
+visitedSprite = ExtResource("4_ij4nd")
+unvisitedSprite = ExtResource("6_qxo14")
+cityNumber = 5
+
+[node name="6" type="Sprite2D" parent="MapLocations"]
+position = Vector2(-52, 84)
+texture = ExtResource("6_qxo14")
+script = ExtResource("5_2fmjb")
+visitedSprite = ExtResource("4_ij4nd")
+unvisitedSprite = ExtResource("6_qxo14")
+cityNumber = 6
+
+[node name="7" type="Sprite2D" parent="MapLocations"]
+position = Vector2(-68, -92)
+texture = ExtResource("6_qxo14")
+script = ExtResource("5_2fmjb")
+visitedSprite = ExtResource("4_ij4nd")
+unvisitedSprite = ExtResource("6_qxo14")
+cityNumber = 7
+
+[node name="8" type="Sprite2D" parent="MapLocations"]
+position = Vector2(12, -100)
+texture = ExtResource("6_qxo14")
+script = ExtResource("5_2fmjb")
+visitedSprite = ExtResource("4_ij4nd")
+unvisitedSprite = ExtResource("6_qxo14")
+destinationName = "Glacialspring Town"
+cityNumber = 8
+
+[node name="9" type="Sprite2D" parent="MapLocations"]
+position = Vector2(80, 0)
+texture = ExtResource("7_j0k3l")
+script = ExtResource("5_2fmjb")
+visitedSprite = ExtResource("8_iu7bm")
+unvisitedSprite = ExtResource("7_j0k3l")
+cityNumber = 9
+
+[node name="10" type="Sprite2D" parent="MapLocations"]
+position = Vector2(0, 8)
+texture = ExtResource("7_j0k3l")
+script = ExtResource("5_2fmjb")
+visitedSprite = ExtResource("8_iu7bm")
+unvisitedSprite = ExtResource("7_j0k3l")
+cityNumber = 10
+
+[node name="11" type="Sprite2D" parent="MapLocations"]
+position = Vector2(-40, -40)
+texture = ExtResource("7_j0k3l")
+script = ExtResource("5_2fmjb")
+visitedSprite = ExtResource("8_iu7bm")
+unvisitedSprite = ExtResource("7_j0k3l")
+cityNumber = 11
+
+[node name="12" type="Sprite2D" parent="MapLocations"]
+position = Vector2(-96, 64)
+texture = ExtResource("7_j0k3l")
+script = ExtResource("5_2fmjb")
+visitedSprite = ExtResource("8_iu7bm")
+unvisitedSprite = ExtResource("7_j0k3l")
+cityNumber = 12
+
+[node name="13" type="Sprite2D" parent="MapLocations"]
+position = Vector2(-52, 16)
+texture = ExtResource("9_h73se")
+script = ExtResource("5_2fmjb")
+visitedSprite = ExtResource("10_wmkqj")
+unvisitedSprite = ExtResource("9_h73se")
+cityNumber = 13
+
+[node name="14" type="Sprite2D" parent="MapLocations"]
+position = Vector2(-112, 12)
+texture = ExtResource("11_bj7u5")
+script = ExtResource("5_2fmjb")
+visitedSprite = ExtResource("12_by1o5")
+unvisitedSprite = ExtResource("11_bj7u5")
+cityNumber = 14
+
+[node name="Cursor" type="Sprite2D" parent="."]
+position = Vector2(172, 68)

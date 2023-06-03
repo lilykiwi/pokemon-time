@@ -32,11 +32,24 @@ enum subStates {
   INTRO_TEXT,
   #INTRO_THROW_POKEBALL, TODO
   PLAYER_ACTION,
-  PLAYER_SELECT,
   PLAYER_ATTACK,
   PLAYER_ITEM,
   PLAYER_POKEMON,
+  PLAYER_RUN,
   ENEMY_DECIDE,
+}
+
+enum weatherStates {
+  NONE,
+  SUNLIGHT,
+  RAIN,
+  SANDSTORM,
+  HAIL,
+  SNOW,
+  FOG,
+  HARSH_SUNLIGHT,
+  HEAVY_RAIN,
+  STRONG_WINDS,
 }
 
 var messageBox: MessageBox = null
@@ -68,6 +81,9 @@ var enemy = [
     ]
   ),
 ]
+
+var currentWeather: int = 0
+var currentWeatherTurns: int = -1
 
 # store the player and enemy pokemon
 # TODO: double battles
@@ -326,7 +342,6 @@ func manageHideShow(selectBoxVal, attackBoxVal, playerDataBoxVal, enemyDataBoxVa
   playerDataBox.visible = playerDataBoxVal
   enemyDataBox.visible = enemyDataBoxVal
 
-
 # functional stuff
 func Action(actionType):
   match actionType:
@@ -352,35 +367,11 @@ func Action(actionType):
       # TODO: check if we're allowed
       pass
 
-# return an int?
-# icky tbh. we should probably return a new object that contains the status effects and damage
-# that way the AI can use this function when weighing up options, as well as the move proc itself
-# >0 for damage
-# 0 for status with no damage
-# -1 for miss
-# -2 for illegal
-# -3 for error
-# this is a mess. instead we should return
-# a value for whether it hits (bool)
-# a value for the amount of recoil it does (int)
-# a value for the amount of damage it does (int)
-# a list of status effects it applies (array)
-# a list of status effects it removes (array)
-# a list of stat changes it applies (array)
-# a list of stat changes it removes (array)
-#   - NOTE: we need to specify self and/or targets
-# a list of other effects it applies, like weather (array)
-# a list of other effects it removes, like weather (array)
-# maybe we move this to a separate class?
 func UseMove(i: int, user: Pokemon, target: Pokemon) -> void:
   if !(user.currentMoves[i] is Move):
     # the move doesn't exist. weird?
     printerr("Move doesn't exist: " + str(i) + ", " + str(user.currentMoves[i]))
     return 
-  
-  # TODO: compute status effects
-  # TODO: compute critical hits
-  # TODO: compute type effectiveness
 
   var move = user.currentMoves[i]
 

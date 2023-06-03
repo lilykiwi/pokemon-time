@@ -1,0 +1,742 @@
+[gd_scene load_steps=13 format=3]
+
+[ext_resource type="Script" path="res://scenes/debug/DebugOverlay.gd" id="1_ml74c"]
+[ext_resource type="Theme" uid="uid://c3y1jdrxdqepp" path="res://sprites/themeOptionsMenu.tres" id="2_fkanw"]
+[ext_resource type="Script" path="res://scripts/debug/LoadScene.gd" id="3_peamh"]
+[ext_resource type="PackedScene" uid="uid://cptqtbveuxux3" path="res://scenes/screen/battle.tscn" id="4_ut4g7"]
+[ext_resource type="Theme" uid="uid://cpbkjkru54o0n" path="res://sprites/mainTheme.tres" id="5_5k6wi"]
+[ext_resource type="FontFile" uid="uid://6koku71fwx35" path="res://Fonts/m5x7.ttf" id="6_aqu1r"]
+[ext_resource type="PackedScene" uid="uid://inydo08go6ae" path="res://scenes/locales/00-Snowdrift-Town.tscn" id="7_a762s"]
+[ext_resource type="Script" path="res://scripts/debug/DisplayScale.gd" id="8_qshdq"]
+[ext_resource type="Texture2D" uid="uid://tddg0qlaemnm" path="res://sprites/OptionsMenu/ThemeElements/pip0.tres" id="9_x5x38"]
+[ext_resource type="Texture2D" uid="uid://qg4wwsygoxsb" path="res://sprites/OptionsMenu/ThemeElements/pip4.tres" id="10_33q6y"]
+[ext_resource type="Script" path="res://scripts/debug/volume.gd" id="11_7fgjf"]
+[ext_resource type="Script" path="res://scripts/debug/GenericButton.gd" id="12_ettsa"]
+
+[node name="DebugOverlay" type="ReferenceRect"]
+offset_right = 256.0
+offset_bottom = 192.0
+border_width = 0.0
+script = ExtResource("1_ml74c")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_right = 216.0
+offset_bottom = 192.0
+follow_focus = true
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="OptionsList" type="VBoxContainer" parent="ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/separation = 2
+
+[node name="Debug Menu" type="Button" parent="ScrollContainer/OptionsList"]
+custom_minimum_size = Vector2(0, 19)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("2_fkanw")
+theme_override_constants/outline_size = 0
+script = ExtResource("3_peamh")
+metadata/Scene = ExtResource("4_ut4g7")
+
+[node name="Label2" type="Label" parent="ScrollContainer/OptionsList/Debug Menu"]
+layout_mode = 2
+offset_right = 176.0
+offset_bottom = 15.0
+theme = ExtResource("5_5k6wi")
+text = "== Debug Menu =="
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Scenes" type="RichTextLabel" parent="ScrollContainer/OptionsList"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+auto_translate = false
+localize_numeral_system = false
+mouse_filter = 1
+theme = ExtResource("2_fkanw")
+theme_override_colors/default_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_colors/font_shadow_color = Color(0.282353, 0.282353, 0.282353, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 1
+theme_override_fonts/normal_font = ExtResource("6_aqu1r")
+theme_override_font_sizes/normal_font_size = 16
+text = "Test Scenes"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/OptionsList"]
+layout_mode = 2
+
+[node name="Battle" type="Button" parent="ScrollContainer/OptionsList/HBoxContainer"]
+custom_minimum_size = Vector2(0, 19)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("2_fkanw")
+theme_override_constants/outline_size = 0
+script = ExtResource("3_peamh")
+metadata/Scene = ExtResource("4_ut4g7")
+
+[node name="Label" type="RichTextLabel" parent="ScrollContainer/OptionsList/HBoxContainer/Battle"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 2.0
+offset_right = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+auto_translate = false
+localize_numeral_system = false
+mouse_filter = 1
+theme = ExtResource("2_fkanw")
+theme_override_colors/default_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_colors/font_shadow_color = Color(0.282353, 0.282353, 0.282353, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/normal_font = ExtResource("6_aqu1r")
+theme_override_font_sizes/normal_font_size = 16
+text = "Battle"
+scroll_active = false
+
+[node name="Overworld" type="Button" parent="ScrollContainer/OptionsList/HBoxContainer"]
+custom_minimum_size = Vector2(0, 19)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("2_fkanw")
+theme_override_constants/outline_size = 0
+script = ExtResource("3_peamh")
+metadata/Scene = ExtResource("7_a762s")
+
+[node name="Label" type="RichTextLabel" parent="ScrollContainer/OptionsList/HBoxContainer/Overworld"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 2.0
+offset_right = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+auto_translate = false
+localize_numeral_system = false
+mouse_filter = 1
+theme = ExtResource("2_fkanw")
+theme_override_colors/default_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_colors/font_shadow_color = Color(0.282353, 0.282353, 0.282353, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/normal_font = ExtResource("6_aqu1r")
+theme_override_font_sizes/normal_font_size = 16
+text = "Locale"
+scroll_active = false
+
+[node name="Overworld2" type="Button" parent="ScrollContainer/OptionsList"]
+custom_minimum_size = Vector2(0, 19)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("2_fkanw")
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("6_aqu1r")
+theme_override_font_sizes/font_size = 15
+script = ExtResource("3_peamh")
+metadata/Scene = ExtResource("7_a762s")
+
+[node name="Label" type="RichTextLabel" parent="ScrollContainer/OptionsList/Overworld2"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 2.0
+offset_right = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+auto_translate = false
+localize_numeral_system = false
+mouse_filter = 1
+theme = ExtResource("2_fkanw")
+theme_override_colors/default_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_colors/font_shadow_color = Color(0.282353, 0.282353, 0.282353, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/normal_font = ExtResource("6_aqu1r")
+theme_override_font_sizes/normal_font_size = 16
+text = "[!!!] Clear Loaded Scenes"
+scroll_active = false
+
+[node name="Display" type="RichTextLabel" parent="ScrollContainer/OptionsList"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+auto_translate = false
+localize_numeral_system = false
+mouse_filter = 1
+theme = ExtResource("2_fkanw")
+theme_override_colors/default_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_colors/font_shadow_color = Color(0.282353, 0.282353, 0.282353, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/normal_font = ExtResource("6_aqu1r")
+theme_override_font_sizes/normal_font_size = 16
+text = "Display"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Scale" type="Button" parent="ScrollContainer/OptionsList"]
+custom_minimum_size = Vector2(0, 19)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("2_fkanw")
+theme_override_constants/outline_size = 0
+script = ExtResource("8_qshdq")
+
+[node name="Label" type="RichTextLabel" parent="ScrollContainer/OptionsList/Scale"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 2.0
+offset_right = 31.0
+offset_bottom = 18.0
+auto_translate = false
+localize_numeral_system = false
+mouse_filter = 1
+theme = ExtResource("2_fkanw")
+theme_override_colors/default_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_colors/font_shadow_color = Color(0.282353, 0.282353, 0.282353, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/normal_font = ExtResource("6_aqu1r")
+theme_override_font_sizes/normal_font_size = 16
+text = "Scale"
+scroll_active = false
+
+[node name="Pip1" type="TextureRect" parent="ScrollContainer/OptionsList/Scale"]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 6.0
+offset_right = 44.0
+offset_bottom = 13.0
+texture = ExtResource("9_x5x38")
+metadata/checked = false
+
+[node name="LabelX1" type="RichTextLabel" parent="ScrollContainer/OptionsList/Scale"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 0
+offset_left = 46.0
+offset_top = 2.0
+offset_right = 58.0
+offset_bottom = 18.0
+auto_translate = false
+localize_numeral_system = false
+mouse_filter = 1
+theme = ExtResource("2_fkanw")
+theme_override_colors/default_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_colors/font_shadow_color = Color(0.282353, 0.282353, 0.282353, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/normal_font = ExtResource("6_aqu1r")
+theme_override_font_sizes/normal_font_size = 16
+text = "1x"
+scroll_active = false
+
+[node name="Pip2" type="TextureRect" parent="ScrollContainer/OptionsList/Scale"]
+layout_mode = 0
+offset_left = 63.0
+offset_top = 6.0
+offset_right = 68.0
+offset_bottom = 13.0
+texture = ExtResource("10_33q6y")
+metadata/checked = true
+
+[node name="LabelX2" type="RichTextLabel" parent="ScrollContainer/OptionsList/Scale"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 0
+offset_left = 70.0
+offset_top = 2.0
+offset_right = 82.0
+offset_bottom = 18.0
+auto_translate = false
+localize_numeral_system = false
+mouse_filter = 1
+theme = ExtResource("2_fkanw")
+theme_override_colors/default_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_colors/font_shadow_color = Color(0.282353, 0.282353, 0.282353, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/normal_font = ExtResource("6_aqu1r")
+theme_override_font_sizes/normal_font_size = 16
+text = "2x"
+scroll_active = false
+
+[node name="Pip3" type="TextureRect" parent="ScrollContainer/OptionsList/Scale"]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 6.0
+offset_right = 92.0
+offset_bottom = 13.0
+texture = ExtResource("9_x5x38")
+metadata/checked = false
+
+[node name="LabelX3" type="RichTextLabel" parent="ScrollContainer/OptionsList/Scale"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 0
+offset_left = 94.0
+offset_top = 2.0
+offset_right = 106.0
+offset_bottom = 18.0
+auto_translate = false
+localize_numeral_system = false
+mouse_filter = 1
+theme = ExtResource("2_fkanw")
+theme_override_colors/default_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_colors/font_shadow_color = Color(0.282353, 0.282353, 0.282353, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/normal_font = ExtResource("6_aqu1r")
+theme_override_font_sizes/normal_font_size = 16
+text = "3x"
+scroll_active = false
+
+[node name="Pip4" type="TextureRect" parent="ScrollContainer/OptionsList/Scale"]
+layout_mode = 0
+offset_left = 111.0
+offset_top = 6.0
+offset_right = 116.0
+offset_bottom = 13.0
+texture = ExtResource("9_x5x38")
+metadata/checked = false
+
+[node name="LabelX4" type="RichTextLabel" parent="ScrollContainer/OptionsList/Scale"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 0
+offset_left = 118.0
+offset_top = 2.0
+offset_right = 130.0
+offset_bottom = 18.0
+auto_translate = false
+localize_numeral_system = false
+mouse_filter = 1
+theme = ExtResource("2_fkanw")
+theme_override_colors/default_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_colors/font_shadow_color = Color(0.282353, 0.282353, 0.282353, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/normal_font = ExtResource("6_aqu1r")
+theme_override_font_sizes/normal_font_size = 16
+text = "4x"
+scroll_active = false
+
+[node name="Pip5" type="TextureRect" parent="ScrollContainer/OptionsList/Scale"]
+layout_mode = 0
+offset_left = 135.0
+offset_top = 6.0
+offset_right = 140.0
+offset_bottom = 13.0
+texture = ExtResource("9_x5x38")
+metadata/checked = false
+
+[node name="LabelX5" type="RichTextLabel" parent="ScrollContainer/OptionsList/Scale"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 0
+offset_left = 142.0
+offset_top = 2.0
+offset_right = 168.0
+offset_bottom = 18.0
+auto_translate = false
+localize_numeral_system = false
+mouse_filter = 1
+theme = ExtResource("2_fkanw")
+theme_override_colors/default_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_colors/font_shadow_color = Color(0.282353, 0.282353, 0.282353, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/normal_font = ExtResource("6_aqu1r")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "Auto"
+scroll_active = false
+
+[node name="Audio" type="RichTextLabel" parent="ScrollContainer/OptionsList"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+auto_translate = false
+localize_numeral_system = false
+mouse_filter = 1
+theme = ExtResource("2_fkanw")
+theme_override_colors/default_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_colors/font_shadow_color = Color(0.282353, 0.282353, 0.282353, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 1
+theme_override_fonts/normal_font = ExtResource("6_aqu1r")
+theme_override_font_sizes/normal_font_size = 16
+text = "Audio"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Main Volume" type="Button" parent="ScrollContainer/OptionsList"]
+custom_minimum_size = Vector2(0, 19)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("2_fkanw")
+theme_override_constants/outline_size = 0
+script = ExtResource("11_7fgjf")
+
+[node name="Label" type="RichTextLabel" parent="ScrollContainer/OptionsList/Main Volume"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 1.0
+offset_right = 106.0
+offset_bottom = 17.0
+auto_translate = false
+localize_numeral_system = false
+mouse_filter = 1
+theme = ExtResource("2_fkanw")
+theme_override_colors/default_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_colors/font_shadow_color = Color(0.282353, 0.282353, 0.282353, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 1
+theme_override_fonts/normal_font = ExtResource("6_aqu1r")
+theme_override_font_sizes/normal_font_size = 16
+text = "Main Volume"
+scroll_active = false
+
+[node name="Pips" type="Control" parent="ScrollContainer/OptionsList/Main Volume"]
+anchors_preset = 0
+mouse_filter = 1
+
+[node name="Pip1" type="TextureRect" parent="ScrollContainer/OptionsList/Main Volume/Pips"]
+layout_mode = 0
+offset_left = 113.0
+offset_top = 6.0
+offset_right = 118.0
+offset_bottom = 13.0
+texture = ExtResource("9_x5x38")
+
+[node name="Pip2" type="TextureRect" parent="ScrollContainer/OptionsList/Main Volume/Pips"]
+layout_mode = 0
+offset_left = 107.0
+offset_top = 6.0
+offset_right = 112.0
+offset_bottom = 13.0
+texture = ExtResource("9_x5x38")
+
+[node name="Pip3" type="TextureRect" parent="ScrollContainer/OptionsList/Main Volume/Pips"]
+layout_mode = 0
+offset_left = 119.0
+offset_top = 6.0
+offset_right = 124.0
+offset_bottom = 13.0
+texture = ExtResource("9_x5x38")
+
+[node name="Pip4" type="TextureRect" parent="ScrollContainer/OptionsList/Main Volume/Pips"]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 6.0
+offset_right = 130.0
+offset_bottom = 13.0
+texture = ExtResource("9_x5x38")
+
+[node name="Pip5" type="TextureRect" parent="ScrollContainer/OptionsList/Main Volume/Pips"]
+layout_mode = 0
+offset_left = 131.0
+offset_top = 6.0
+offset_right = 136.0
+offset_bottom = 13.0
+texture = ExtResource("9_x5x38")
+
+[node name="Pip6" type="TextureRect" parent="ScrollContainer/OptionsList/Main Volume/Pips"]
+layout_mode = 0
+offset_left = 143.0
+offset_top = 6.0
+offset_right = 148.0
+offset_bottom = 13.0
+texture = ExtResource("9_x5x38")
+
+[node name="Pip7" type="TextureRect" parent="ScrollContainer/OptionsList/Main Volume/Pips"]
+layout_mode = 0
+offset_left = 137.0
+offset_top = 6.0
+offset_right = 142.0
+offset_bottom = 13.0
+texture = ExtResource("9_x5x38")
+
+[node name="Pip8" type="TextureRect" parent="ScrollContainer/OptionsList/Main Volume/Pips"]
+layout_mode = 0
+offset_left = 149.0
+offset_top = 6.0
+offset_right = 154.0
+offset_bottom = 13.0
+texture = ExtResource("9_x5x38")
+
+[node name="Pip9" type="TextureRect" parent="ScrollContainer/OptionsList/Main Volume/Pips"]
+layout_mode = 0
+offset_left = 155.0
+offset_top = 6.0
+offset_right = 160.0
+offset_bottom = 13.0
+texture = ExtResource("9_x5x38")
+
+[node name="Pip10" type="TextureRect" parent="ScrollContainer/OptionsList/Main Volume/Pips"]
+layout_mode = 0
+offset_left = 161.0
+offset_top = 6.0
+offset_right = 166.0
+offset_bottom = 13.0
+texture = ExtResource("9_x5x38")
+
+[node name="SFX Volume" type="Button" parent="ScrollContainer/OptionsList"]
+custom_minimum_size = Vector2(0, 19)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("2_fkanw")
+theme_override_constants/outline_size = 0
+script = ExtResource("12_ettsa")
+
+[node name="Label" type="RichTextLabel" parent="ScrollContainer/OptionsList/SFX Volume"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 1.0
+offset_right = 106.0
+offset_bottom = 17.0
+auto_translate = false
+localize_numeral_system = false
+mouse_filter = 1
+theme = ExtResource("2_fkanw")
+theme_override_colors/default_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_colors/font_shadow_color = Color(0.282353, 0.282353, 0.282353, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 1
+theme_override_fonts/normal_font = ExtResource("6_aqu1r")
+theme_override_font_sizes/normal_font_size = 16
+text = "SFX Volume"
+scroll_active = false
+
+[node name="Pips" type="Control" parent="ScrollContainer/OptionsList/SFX Volume"]
+anchors_preset = 0
+mouse_filter = 1
+
+[node name="Pip1" type="TextureRect" parent="ScrollContainer/OptionsList/SFX Volume/Pips"]
+layout_mode = 0
+offset_left = 113.0
+offset_top = 6.0
+offset_right = 118.0
+offset_bottom = 13.0
+texture = ExtResource("9_x5x38")
+
+[node name="Pip2" type="TextureRect" parent="ScrollContainer/OptionsList/SFX Volume/Pips"]
+layout_mode = 0
+offset_left = 107.0
+offset_top = 6.0
+offset_right = 112.0
+offset_bottom = 13.0
+texture = ExtResource("9_x5x38")
+
+[node name="Pip3" type="TextureRect" parent="ScrollContainer/OptionsList/SFX Volume/Pips"]
+layout_mode = 0
+offset_left = 119.0
+offset_top = 6.0
+offset_right = 124.0
+offset_bottom = 13.0
+texture = ExtResource("9_x5x38")
+
+[node name="Pip4" type="TextureRect" parent="ScrollContainer/OptionsList/SFX Volume/Pips"]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 6.0
+offset_right = 130.0
+offset_bottom = 13.0
+texture = ExtResource("9_x5x38")
+
+[node name="Pip5" type="TextureRect" parent="ScrollContainer/OptionsList/SFX Volume/Pips"]
+layout_mode = 0
+offset_left = 131.0
+offset_top = 6.0
+offset_right = 136.0
+offset_bottom = 13.0
+texture = ExtResource("9_x5x38")
+
+[node name="Pip6" type="TextureRect" parent="ScrollContainer/OptionsList/SFX Volume/Pips"]
+layout_mode = 0
+offset_left = 143.0
+offset_top = 6.0
+offset_right = 148.0
+offset_bottom = 13.0
+texture = ExtResource("9_x5x38")
+
+[node name="Pip7" type="TextureRect" parent="ScrollContainer/OptionsList/SFX Volume/Pips"]
+layout_mode = 0
+offset_left = 137.0
+offset_top = 6.0
+offset_right = 142.0
+offset_bottom = 13.0
+texture = ExtResource("9_x5x38")
+
+[node name="Pip8" type="TextureRect" parent="ScrollContainer/OptionsList/SFX Volume/Pips"]
+layout_mode = 0
+offset_left = 149.0
+offset_top = 6.0
+offset_right = 154.0
+offset_bottom = 13.0
+texture = ExtResource("9_x5x38")
+
+[node name="Pip9" type="TextureRect" parent="ScrollContainer/OptionsList/SFX Volume/Pips"]
+layout_mode = 0
+offset_left = 155.0
+offset_top = 6.0
+offset_right = 160.0
+offset_bottom = 13.0
+texture = ExtResource("9_x5x38")
+
+[node name="Pip10" type="TextureRect" parent="ScrollContainer/OptionsList/SFX Volume/Pips"]
+layout_mode = 0
+offset_left = 161.0
+offset_top = 6.0
+offset_right = 166.0
+offset_bottom = 13.0
+texture = ExtResource("9_x5x38")
+
+[node name="Music Volume" type="Button" parent="ScrollContainer/OptionsList"]
+custom_minimum_size = Vector2(0, 19)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("2_fkanw")
+theme_override_constants/outline_size = 0
+script = ExtResource("12_ettsa")
+
+[node name="Label" type="RichTextLabel" parent="ScrollContainer/OptionsList/Music Volume"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 1.0
+offset_right = 106.0
+offset_bottom = 17.0
+auto_translate = false
+localize_numeral_system = false
+mouse_filter = 1
+theme = ExtResource("2_fkanw")
+theme_override_colors/default_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_colors/font_shadow_color = Color(0.282353, 0.282353, 0.282353, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 1
+theme_override_fonts/normal_font = ExtResource("6_aqu1r")
+theme_override_font_sizes/normal_font_size = 16
+text = "Music Volume"
+scroll_active = false
+
+[node name="Pips" type="Control" parent="ScrollContainer/OptionsList/Music Volume"]
+anchors_preset = 0
+mouse_filter = 1
+
+[node name="Pip1" type="TextureRect" parent="ScrollContainer/OptionsList/Music Volume/Pips"]
+layout_mode = 0
+offset_left = 113.0
+offset_top = 6.0
+offset_right = 118.0
+offset_bottom = 13.0
+texture = ExtResource("9_x5x38")
+
+[node name="Pip2" type="TextureRect" parent="ScrollContainer/OptionsList/Music Volume/Pips"]
+layout_mode = 0
+offset_left = 107.0
+offset_top = 6.0
+offset_right = 112.0
+offset_bottom = 13.0
+texture = ExtResource("9_x5x38")
+
+[node name="Pip3" type="TextureRect" parent="ScrollContainer/OptionsList/Music Volume/Pips"]
+layout_mode = 0
+offset_left = 119.0
+offset_top = 6.0
+offset_right = 124.0
+offset_bottom = 13.0
+texture = ExtResource("9_x5x38")
+
+[node name="Pip4" type="TextureRect" parent="ScrollContainer/OptionsList/Music Volume/Pips"]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 6.0
+offset_right = 130.0
+offset_bottom = 13.0
+texture = ExtResource("9_x5x38")
+
+[node name="Pip5" type="TextureRect" parent="ScrollContainer/OptionsList/Music Volume/Pips"]
+layout_mode = 0
+offset_left = 131.0
+offset_top = 6.0
+offset_right = 136.0
+offset_bottom = 13.0
+texture = ExtResource("9_x5x38")
+
+[node name="Pip6" type="TextureRect" parent="ScrollContainer/OptionsList/Music Volume/Pips"]
+layout_mode = 0
+offset_left = 143.0
+offset_top = 6.0
+offset_right = 148.0
+offset_bottom = 13.0
+texture = ExtResource("9_x5x38")
+
+[node name="Pip7" type="TextureRect" parent="ScrollContainer/OptionsList/Music Volume/Pips"]
+layout_mode = 0
+offset_left = 137.0
+offset_top = 6.0
+offset_right = 142.0
+offset_bottom = 13.0
+texture = ExtResource("9_x5x38")
+
+[node name="Pip8" type="TextureRect" parent="ScrollContainer/OptionsList/Music Volume/Pips"]
+layout_mode = 0
+offset_left = 149.0
+offset_top = 6.0
+offset_right = 154.0
+offset_bottom = 13.0
+texture = ExtResource("9_x5x38")
+
+[node name="Pip9" type="TextureRect" parent="ScrollContainer/OptionsList/Music Volume/Pips"]
+layout_mode = 0
+offset_left = 155.0
+offset_top = 6.0
+offset_right = 160.0
+offset_bottom = 13.0
+texture = ExtResource("9_x5x38")
+
+[node name="Pip10" type="TextureRect" parent="ScrollContainer/OptionsList/Music Volume/Pips"]
+layout_mode = 0
+offset_left = 161.0
+offset_top = 6.0
+offset_right = 166.0
+offset_bottom = 13.0
+texture = ExtResource("9_x5x38")

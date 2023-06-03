@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://brsjmwubkf1v3"]
+
+[ext_resource type="Texture2D" uid="uid://bx5wisel8e1fa" path="res://sprites/title/bg.png" id="1_mytng"]
+[ext_resource type="Texture2D" uid="uid://b4w5ivn8w07kn" path="res://sprites/title/logo.png" id="2_8q3dh"]
+[ext_resource type="Texture2D" uid="uid://b3uvswk4tgqp4" path="res://sprites/title/press-start-white.tres" id="3_34658"]
+[ext_resource type="Texture2D" uid="uid://b6rfs5av6g0b5" path="res://sprites/title/press-start-grey.tres" id="4_hk32l"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s1iin"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_34658")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_hk32l")
+}],
+"loop": true,
+"name": &"flashing",
+"speed": 2.0
+}]
+
+[node name="000-titleScreen" type="Node2D"]
+
+[node name="background" type="TextureRect" parent="."]
+offset_right = 256.0
+offset_bottom = 192.0
+texture = ExtResource("1_mytng")
+
+[node name="logo" type="TextureRect" parent="."]
+offset_left = 25.0
+offset_top = 42.0
+offset_right = 231.0
+offset_bottom = 120.0
+texture = ExtResource("2_8q3dh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(128, 180)
+sprite_frames = SubResource("SpriteFrames_s1iin")
+animation = &"flashing"

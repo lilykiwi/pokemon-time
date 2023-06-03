@@ -1,0 +1,323 @@
+[gd_scene load_steps=17 format=3 uid="uid://bjtr1kssota5f"]
+
+[ext_resource type="Script" path="res://scripts/StateManager.gd" id="1_3upgc"]
+[ext_resource type="Texture2D" uid="uid://bx5wisel8e1fa" path="res://sprites/title/bg.png" id="1_omh5q"]
+[ext_resource type="Texture2D" path="res://sprites/TextFrames/wide/dark1.tres" id="2_ydw5a"]
+[ext_resource type="Script" path="res://scripts/MessageBox.gd" id="3_c2hlh"]
+[ext_resource type="StyleBox" uid="uid://cvyojb03w15c3" path="res://sprites/OptionsMenu/ThemeElements/buttonNormal.tres" id="4_251h8"]
+[ext_resource type="StyleBox" uid="uid://dpo8pv6clxt8f" path="res://sprites/OptionsMenu/ThemeElements/buttonHighlight.tres" id="5_mwdeu"]
+[ext_resource type="FontFile" uid="uid://b6pot5irfnq1y" path="res://Fonts/power green small.ttf" id="6_a2r0j"]
+[ext_resource type="FontFile" uid="uid://6koku71fwx35" path="res://Fonts/m5x7.ttf" id="7_5ohdw"]
+[ext_resource type="Texture2D" uid="uid://p00mnwxj0tdr" path="res://sprites/TextFrames/nextArrow.png" id="8_snmdg"]
+[ext_resource type="Theme" uid="uid://c3y1jdrxdqepp" path="res://sprites/themeOptionsMenu.tres" id="11_pmjm1"]
+[ext_resource type="Script" path="res://scripts/debug/DebugOverlay.gd" id="11_w2mpc"]
+[ext_resource type="PackedScene" uid="uid://cptqtbveuxux3" path="res://scenes/screen/battle.tscn" id="13_puvr2"]
+[ext_resource type="Theme" uid="uid://cpbkjkru54o0n" path="res://sprites/mainTheme.tres" id="14_p84ri"]
+[ext_resource type="Texture2D" uid="uid://tddg0qlaemnm" path="res://sprites/OptionsMenu/ThemeElements/pip0.tres" id="17_j468k"]
+[ext_resource type="Texture2D" uid="uid://qg4wwsygoxsb" path="res://sprites/OptionsMenu/ThemeElements/pip4.tres" id="18_c4ctl"]
+
+[sub_resource type="Theme" id="Theme_mu0n5"]
+default_font = ExtResource("6_a2r0j")
+default_font_size = 11
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/h_separation = 2
+Button/constants/outline_size = 0
+Button/styles/disabled = ExtResource("4_251h8")
+Button/styles/focus = ExtResource("5_mwdeu")
+Button/styles/hover = ExtResource("5_mwdeu")
+Button/styles/normal = ExtResource("4_251h8")
+Button/styles/pressed = ExtResource("5_mwdeu")
+
+[node name="root" type="Node2D"]
+script = ExtResource("1_3upgc")
+debug = true
+
+[node name="fallbackbg" type="TextureRect" parent="."]
+unique_name_in_owner = true
+z_index = -4096
+offset_right = 256.0
+offset_bottom = 192.0
+texture = ExtResource("1_omh5q")
+
+[node name="loadStack" type="ReferenceRect" parent="."]
+unique_name_in_owner = true
+offset_right = 256.0
+offset_bottom = 192.0
+border_color = Color(1, 1, 1, 1)
+
+[node name="MessageBox" type="TextureRect" parent="."]
+unique_name_in_owner = true
+offset_top = 144.0
+offset_right = 256.0
+offset_bottom = 192.0
+texture = ExtResource("2_ydw5a")
+script = ExtResource("3_c2hlh")
+
+[node name="MessageText" type="RichTextLabel" parent="MessageBox"]
+layout_direction = 2
+layout_mode = 0
+offset_left = 14.0
+offset_top = 12.0
+offset_right = 242.0
+offset_bottom = 38.0
+auto_translate = false
+localize_numeral_system = false
+theme = SubResource("Theme_mu0n5")
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.282353, 0.282353, 0.282353, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/normal_font = ExtResource("7_5ohdw")
+theme_override_font_sizes/normal_font_size = 15
+text = "Amoongus shat on the floor and called you a slur! It was super effective!"
+scroll_active = false
+shortcut_keys_enabled = false
+visible_characters_behavior = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="DoneArrow" type="TextureRect" parent="MessageBox"]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 34.0
+offset_right = 248.0
+offset_bottom = 42.0
+texture = ExtResource("8_snmdg")
+
+[node name="DebugOverlay" type="ReferenceRect" parent="."]
+unique_name_in_owner = true
+offset_right = 256.0
+offset_bottom = 192.0
+border_width = 0.0
+script = ExtResource("11_w2mpc")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="DebugOverlay"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_right = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="OptionsList" type="VBoxContainer" parent="DebugOverlay/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/separation = 2
+
+[node name="Debug Menu" type="Button" parent="DebugOverlay/ScrollContainer/OptionsList"]
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("11_pmjm1")
+theme_override_constants/outline_size = 0
+metadata/Scene = ExtResource("13_puvr2")
+
+[node name="Label2" type="Label" parent="DebugOverlay/ScrollContainer/OptionsList/Debug Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = -3.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("14_p84ri")
+text = "== Debug Menu =="
+horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Scenes" type="RichTextLabel" parent="DebugOverlay/ScrollContainer/OptionsList"]
+visible = false
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+auto_translate = false
+localize_numeral_system = false
+mouse_filter = 1
+theme = ExtResource("11_pmjm1")
+theme_override_colors/default_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_colors/font_shadow_color = Color(0.282353, 0.282353, 0.282353, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 1
+theme_override_fonts/normal_font = ExtResource("7_5ohdw")
+theme_override_font_sizes/normal_font_size = 16
+text = "Test Scenes"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Scale" type="Button" parent="DebugOverlay/ScrollContainer/OptionsList"]
+custom_minimum_size = Vector2(0, 19)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("11_pmjm1")
+theme_override_constants/outline_size = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DebugOverlay/ScrollContainer/OptionsList/Scale"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_right = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Scale" type="Label" parent="DebugOverlay/ScrollContainer/OptionsList/Scale/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("14_p84ri")
+text = "Scale"
+
+[node name="Pip1" type="TextureRect" parent="DebugOverlay/ScrollContainer/OptionsList/Scale/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("17_j468k")
+stretch_mode = 3
+metadata/checked = false
+
+[node name="1x" type="Label" parent="DebugOverlay/ScrollContainer/OptionsList/Scale/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("14_p84ri")
+text = "1x"
+
+[node name="Pip2" type="TextureRect" parent="DebugOverlay/ScrollContainer/OptionsList/Scale/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("18_c4ctl")
+stretch_mode = 3
+metadata/checked = true
+
+[node name="2x" type="Label" parent="DebugOverlay/ScrollContainer/OptionsList/Scale/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("14_p84ri")
+text = "2x"
+
+[node name="Pip3" type="TextureRect" parent="DebugOverlay/ScrollContainer/OptionsList/Scale/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("17_j468k")
+stretch_mode = 3
+metadata/checked = false
+
+[node name="3x" type="Label" parent="DebugOverlay/ScrollContainer/OptionsList/Scale/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("14_p84ri")
+text = "3x"
+
+[node name="Pip4" type="TextureRect" parent="DebugOverlay/ScrollContainer/OptionsList/Scale/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("17_j468k")
+stretch_mode = 3
+metadata/checked = false
+
+[node name="4x" type="Label" parent="DebugOverlay/ScrollContainer/OptionsList/Scale/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("14_p84ri")
+text = "4x"
+
+[node name="Pip5" type="TextureRect" parent="DebugOverlay/ScrollContainer/OptionsList/Scale/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("17_j468k")
+stretch_mode = 3
+metadata/checked = false
+
+[node name="Auto" type="Label" parent="DebugOverlay/ScrollContainer/OptionsList/Scale/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("14_p84ri")
+text = "Auto
+"
+
+[node name="Main Volume" type="Button" parent="DebugOverlay/ScrollContainer/OptionsList"]
+custom_minimum_size = Vector2(0, 19)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("11_pmjm1")
+theme_override_constants/outline_size = 0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="DebugOverlay/ScrollContainer/OptionsList/Main Volume"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_right = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 1
+
+[node name="Label2" type="Label" parent="DebugOverlay/ScrollContainer/OptionsList/Main Volume/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("14_p84ri")
+text = "Main Volume  "
+
+[node name="Pip1" type="TextureRect" parent="DebugOverlay/ScrollContainer/OptionsList/Main Volume/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("17_j468k")
+stretch_mode = 5
+
+[node name="Pip2" type="TextureRect" parent="DebugOverlay/ScrollContainer/OptionsList/Main Volume/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("17_j468k")
+stretch_mode = 3
+
+[node name="Pip3" type="TextureRect" parent="DebugOverlay/ScrollContainer/OptionsList/Main Volume/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("17_j468k")
+stretch_mode = 3
+
+[node name="Pip4" type="TextureRect" parent="DebugOverlay/ScrollContainer/OptionsList/Main Volume/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("17_j468k")
+stretch_mode = 3
+
+[node name="Pip5" type="TextureRect" parent="DebugOverlay/ScrollContainer/OptionsList/Main Volume/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("17_j468k")
+stretch_mode = 3
+
+[node name="Pip6" type="TextureRect" parent="DebugOverlay/ScrollContainer/OptionsList/Main Volume/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("17_j468k")
+stretch_mode = 3
+
+[node name="Pip7" type="TextureRect" parent="DebugOverlay/ScrollContainer/OptionsList/Main Volume/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("17_j468k")
+stretch_mode = 3
+
+[node name="Pip8" type="TextureRect" parent="DebugOverlay/ScrollContainer/OptionsList/Main Volume/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("17_j468k")
+stretch_mode = 3
+
+[node name="Pip9" type="TextureRect" parent="DebugOverlay/ScrollContainer/OptionsList/Main Volume/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("17_j468k")
+stretch_mode = 3
+
+[node name="Pip10" type="TextureRect" parent="DebugOverlay/ScrollContainer/OptionsList/Main Volume/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("17_j468k")
+stretch_mode = 3

@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://cy18hb35f3fen"]
+
+[ext_resource type="Texture2D" uid="uid://gij8skdesjlb" path="res://sprites/Overworld/items/items_overworld.png" id="1_s8vsw"]
+
+[resource]
+atlas = ExtResource("1_s8vsw")
+region = Rect2(48, 0, 16, 16)
