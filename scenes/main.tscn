@@ -1,15 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://bjtr1kssota5f"]
+[gd_scene load_steps=10 format=3 uid="uid://dw3135sa8mpdn"]
 
 [ext_resource type="Script" path="res://scripts/StateManager.gd" id="1_3upgc"]
-[ext_resource type="Texture2D" uid="uid://bx5wisel8e1fa" path="res://sprites/title/bg.png" id="1_omh5q"]
-[ext_resource type="Texture2D" path="res://sprites/TextFrames/wide/dark1.tres" id="2_ydw5a"]
+[ext_resource type="Texture2D" path="res://sprites/Screens/TextFrames/wide/dark1.tres" id="3_74qka"]
 [ext_resource type="Script" path="res://scripts/MessageBox.gd" id="3_c2hlh"]
-[ext_resource type="StyleBox" uid="uid://cvyojb03w15c3" path="res://sprites/OptionsMenu/ThemeElements/buttonNormal.tres" id="4_251h8"]
-[ext_resource type="StyleBox" uid="uid://dpo8pv6clxt8f" path="res://sprites/OptionsMenu/ThemeElements/buttonHighlight.tres" id="5_mwdeu"]
+[ext_resource type="StyleBox" uid="uid://bl2aenv10oanu" path="res://sprites/Screens/OptionsMenu/ThemeElements/buttonNormal.tres" id="3_gai11"]
+[ext_resource type="StyleBox" uid="uid://cuihejwyjdsfd" path="res://sprites/Screens/OptionsMenu/ThemeElements/buttonHighlight.tres" id="4_3qae4"]
 [ext_resource type="FontFile" uid="uid://b6pot5irfnq1y" path="res://Fonts/power green small.ttf" id="6_a2r0j"]
 [ext_resource type="FontFile" uid="uid://6koku71fwx35" path="res://Fonts/m5x7.ttf" id="7_5ohdw"]
-[ext_resource type="Texture2D" uid="uid://p00mnwxj0tdr" path="res://sprites/TextFrames/nextArrow.png" id="8_snmdg"]
-[ext_resource type="Script" path="res://scripts/debug/DebugOverlay.gd" id="11_w2mpc"]
+[ext_resource type="Script" path="res://scripts/screens/DebugOverlay.gd" id="8_tgn1h"]
 
 [sub_resource type="Theme" id="Theme_mu0n5"]
 default_font = ExtResource("6_a2r0j")
@@ -29,11 +27,11 @@ Button/colors/icon_normal_color = Color(1, 1, 1, 1)
 Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
 Button/constants/h_separation = 2
 Button/constants/outline_size = 0
-Button/styles/disabled = ExtResource("4_251h8")
-Button/styles/focus = ExtResource("5_mwdeu")
-Button/styles/hover = ExtResource("5_mwdeu")
-Button/styles/normal = ExtResource("4_251h8")
-Button/styles/pressed = ExtResource("5_mwdeu")
+Button/styles/disabled = ExtResource("3_gai11")
+Button/styles/focus = ExtResource("4_3qae4")
+Button/styles/hover = ExtResource("4_3qae4")
+Button/styles/normal = ExtResource("3_gai11")
+Button/styles/pressed = ExtResource("4_3qae4")
 
 [node name="root" type="Node2D"]
 script = ExtResource("1_3upgc")
@@ -44,9 +42,15 @@ unique_name_in_owner = true
 z_index = -4096
 offset_right = 256.0
 offset_bottom = 192.0
-texture = ExtResource("1_omh5q")
 
-[node name="LoadStack" type="ReferenceRect" parent="."]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_right = 256.0
+offset_bottom = 192.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+size = Vector2i(256, 192)
+
+[node name="LoadStack" type="ReferenceRect" parent="SubViewportContainer/SubViewport"]
 unique_name_in_owner = true
 offset_right = 256.0
 offset_bottom = 192.0
@@ -54,10 +58,12 @@ border_color = Color(1, 1, 1, 1)
 
 [node name="MessageBox" type="TextureRect" parent="."]
 unique_name_in_owner = true
+visible = false
+z_index = 3076
 offset_top = 144.0
 offset_right = 256.0
 offset_bottom = 192.0
-texture = ExtResource("2_ydw5a")
+texture = ExtResource("3_74qka")
 script = ExtResource("3_c2hlh")
 
 [node name="MessageText" type="RichTextLabel" parent="MessageBox"]
@@ -89,11 +95,12 @@ offset_left = 240.0
 offset_top = 34.0
 offset_right = 248.0
 offset_bottom = 42.0
-texture = ExtResource("8_snmdg")
 
 [node name="DebugOverlay" type="ReferenceRect" parent="."]
 unique_name_in_owner = true
+visible = false
+z_index = 4096
 offset_right = 256.0
 offset_bottom = 192.0
 border_width = 0.0
-script = ExtResource("11_w2mpc")
+script = ExtResource("8_tgn1h")

@@ -54,6 +54,8 @@ enum weatherStates {
 
 var messageBox: MessageBox = null
 
+var _state_manager: StateManager = null
+
 var state: int = -1
 var subState: int = -1
 

@@ -1,0 +1,14 @@
+[gd_resource type="StyleBoxTexture" load_steps=3 format=3]
+
+[ext_resource type="Texture2D" uid="uid://deunnwiliqtf4" path="res://sprites/Screens/TextFrames/box-dark.png" id="1_jglo4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mmxkr"]
+atlas = ExtResource("1_jglo4")
+region = Rect2(128, 128, 32, 32)
+
+[resource]
+texture = SubResource("AtlasTexture_mmxkr")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0

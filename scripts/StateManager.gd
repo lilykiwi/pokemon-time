@@ -18,11 +18,12 @@ class_name StateManager extends Node
 
 # locale
 enum Locales {
+  NONE = -1,
   SNOWDRIFT_TOWN
 }
 
-var locale = null
-var player: Player = null
+var locale: Locales = Locales.NONE
+var player: Player  = null
 
 var messageBox: MessageBox = null
 var debugOverlay: DebugOverlay = null
@@ -62,7 +63,7 @@ var GameStateSceneName = {
   GameStates.DEBUG: "dontFreeMe",
   GameStates.TITLE_SCREEN: "TitleScreen",
   GameStates.MAIN_MENU: "MainMenu",
-  GameStates.OVERWORLD: "Locale_",
+  GameStates.OVERWORLD: "ow_",
   GameStates.BATTLE: "Battle",
   GameStates.MAP: "Map",
   GameStates.ITEMS: "Items",
@@ -179,11 +180,13 @@ func _on_game_state_changed(state: StateManager.GameStates):
       printerr("todo")
       return
     GameStates.OVERWORLD:
-      printerr("todo")
-      return
+      if get_index_if_loaded(GameStates.OVERWORLD) == -1:
+        # load the title screen
+        self.loadScene("res://scenes/locales/ow_000-Snowdrift-Town.tscn", loadStack)
     GameStates.BATTLE:
-      printerr("todo")
-      return
+      if get_index_if_loaded(GameStates.BATTLE) == -1:
+        # load the title screen
+        self.loadScene("res://scenes/screen/Battle.tscn", loadStack)
     GameStates.MAP:
       printerr("todo")
       return
@@ -202,6 +205,8 @@ func _on_game_state_changed(state: StateManager.GameStates):
     _:
       printerr("Invalid game state: " + str(state))
       return
+
+# State Stuff ------------------------------------------------------------------
 
 func get_index_if_loaded(state: GameStates) -> int:
   # returns the index of the state if it's loaded, or -1 if it's not
@@ -242,9 +247,13 @@ func get_top_state():
 func get_state_name(state: GameStates):
   return GameStateStrings[state]
 
+# Resource Loading -------------------------------------------------------------
+
 func _on_load_complete(_resource):
   if _resource is PackedScene:
-    loadTarget.add_child(_resource.instantiate())
+    var _scene = _resource.instantiate()
+    _scene._state_manager = self
+    loadTarget.add_child(_scene)
 
 func loadScene(scene_path: String, target: Node = %loadStack):
   # initilise the loader
@@ -279,3 +288,9 @@ func _process(_delta):
       # emit the load complete signal
       emit_signal("load_complete", self.resource)
   set_process(false)
+
+# Save/Load -------------------------------------------------------------------
+#
+#func save_game_data() -> Dictionary:
+#  var save_dict = {}
+#  return {}

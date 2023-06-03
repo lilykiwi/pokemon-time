@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3]
+
+[ext_resource type="Texture2D" uid="uid://bs6wr7ajr43d6" path="res://sprites/Screens/BattleGui/platforms/enemy.png" id="1_gkp4d"]
+
+[resource]
+atlas = ExtResource("1_gkp4d")
+region = Rect2(384, 256, 128, 64)

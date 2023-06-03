@@ -1,7 +1,0 @@
-[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://r16d6400y3bm"]
-
-[ext_resource type="Texture2D" uid="uid://csjuoelvddnsl" path="res://sprites/BattleGui/cursor-fight/fight_atlas_focus.png" id="1_cfd6j"]
-
-[resource]
-atlas = ExtResource("1_cfd6j")
-region = Rect2(96, 150, 96, 30)

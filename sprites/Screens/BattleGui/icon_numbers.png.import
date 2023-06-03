@@ -1,0 +1,21 @@
+[remap]
+
+importer="font_data_image"
+type="FontFile"
+uid="uid://cl215mmk671xn"
+path="res://.godot/imported/icon_numbers.png-11afe0324641a1638881a6282369dfd2.fontdata"
+
+[deps]
+
+source_file="res://sprites/Screens/BattleGui/icon_numbers.png"
+dest_files=["res://.godot/imported/icon_numbers.png-11afe0324641a1638881a6282369dfd2.fontdata"]
+
+[params]
+
+character_ranges=PackedStringArray("\'0\'", "\'1\'", "\'2\'", "\'3\'", "\'4\'", "\'5\'", "\'6\'", "\'7\'", "\'8\'", "\'9\'", "\'/\'")
+columns=4
+rows=4
+image_margin=Rect2i(0, 0, 0, 0)
+character_margin=Rect2i(0, 0, 0, 0)
+fallbacks=[]
+compress=true

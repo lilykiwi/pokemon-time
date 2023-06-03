@@ -1,0 +1,63 @@
+[gd_resource type="Theme" load_steps=11 format=3]
+
+[ext_resource type="StyleBox" path="res://sprites/Screens/OptionsMenu/ThemeElements/buttonNormal.tres" id="1_0bpcg"]
+[ext_resource type="StyleBox" path="res://sprites/Screens/OptionsMenu/ThemeElements/buttonDisabled.tres" id="1_e7oxl"]
+[ext_resource type="StyleBox" path="res://sprites/Screens/OptionsMenu/ThemeElements/buttonHighlight.tres" id="2_u7l7e"]
+[ext_resource type="Texture2D" path="res://sprites/Screens/OptionsMenu/ThemeElements/checked.tres" id="3_88pq4"]
+[ext_resource type="StyleBox" path="res://sprites/Screens/OptionsMenu/ThemeElements/buttonHover.tres" id="3_hs3qr"]
+[ext_resource type="FontFile" uid="uid://b6pot5irfnq1y" path="res://Fonts/power green small.ttf" id="3_wedul"]
+[ext_resource type="Texture2D" path="res://sprites/Screens/OptionsMenu/ThemeElements/checked_disabled.tres" id="4_8oyd6"]
+[ext_resource type="Texture2D" path="res://sprites/Screens/OptionsMenu/ThemeElements/unchecked.tres" id="5_sthpo"]
+[ext_resource type="Texture2D" path="res://sprites/Screens/OptionsMenu/ThemeElements/unchecked_disabled.tres" id="6_2p3x8"]
+[ext_resource type="FontFile" uid="uid://6koku71fwx35" path="res://Fonts/m5x7.ttf" id="10_pvsgf"]
+
+[resource]
+default_font = ExtResource("3_wedul")
+default_font_size = 11
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/h_separation = 2
+Button/constants/outline_size = 0
+Button/styles/disabled = ExtResource("1_e7oxl")
+Button/styles/focus = ExtResource("2_u7l7e")
+Button/styles/hover = ExtResource("3_hs3qr")
+Button/styles/normal = ExtResource("1_0bpcg")
+Button/styles/pressed = ExtResource("2_u7l7e")
+CheckBox/icons/checked = ExtResource("3_88pq4")
+CheckBox/icons/checked_disabled = ExtResource("4_8oyd6")
+CheckBox/icons/unchecked = ExtResource("5_sthpo")
+CheckBox/icons/unchecked_disabled = ExtResource("6_2p3x8")
+CheckButton/icons/checked = ExtResource("3_88pq4")
+CheckButton/icons/checked_disabled = ExtResource("4_8oyd6")
+CheckButton/icons/checked_disabled_mirrored = ExtResource("4_8oyd6")
+CheckButton/icons/checked_mirrored = ExtResource("3_88pq4")
+CheckButton/icons/unchecked = ExtResource("5_sthpo")
+CheckButton/icons/unchecked_disabled = ExtResource("6_2p3x8")
+CheckButton/icons/unchecked_disabled_mirrored = ExtResource("6_2p3x8")
+CheckButton/icons/unchecked_mirrored = ExtResource("5_sthpo")
+LineEdit/font_sizes/font_size = 11
+LineEdit/fonts/font = ExtResource("3_wedul")
+LineEdit/styles/focus = ExtResource("3_hs3qr")
+LineEdit/styles/normal = ExtResource("1_0bpcg")
+LineEdit/styles/read_only = ExtResource("1_e7oxl")
+RichTextLabel/colors/default_color = Color(0.984314, 0.984314, 0.984314, 1)
+RichTextLabel/colors/font_shadow_color = Color(0.172549, 0.211765, 0.219608, 1)
+RichTextLabel/constants/shadow_offset_x = 1
+RichTextLabel/constants/shadow_offset_y = 1
+RichTextLabel/constants/shadow_outline_size = 0
+RichTextLabel/font_sizes/normal_font_size = 16
+RichTextLabel/fonts/normal_font = ExtResource("10_pvsgf")
+TextEdit/styles/focus = ExtResource("3_hs3qr")
+TextEdit/styles/normal = ExtResource("1_0bpcg")
+TextEdit/styles/read_only = ExtResource("1_e7oxl")

@@ -1,39 +1,43 @@
-[gd_scene load_steps=6 format=3 uid="uid://brsjmwubkf1v3"]
+[gd_scene load_steps=7 format=3 uid="uid://by38q18uef2nm"]
 
-[ext_resource type="Texture2D" uid="uid://bx5wisel8e1fa" path="res://sprites/title/bg.png" id="1_mytng"]
-[ext_resource type="Texture2D" uid="uid://b4w5ivn8w07kn" path="res://sprites/title/logo.png" id="2_8q3dh"]
-[ext_resource type="Texture2D" uid="uid://b3uvswk4tgqp4" path="res://sprites/title/press-start-white.tres" id="3_34658"]
-[ext_resource type="Texture2D" uid="uid://b6rfs5av6g0b5" path="res://sprites/title/press-start-grey.tres" id="4_hk32l"]
+[ext_resource type="Script" path="res://scripts/screens/TitleScreen.gd" id="1_43iaj"]
+[ext_resource type="Texture2D" path="res://sprites/Screens/TitleScreen/press-start-white.tres" id="2_7jckp"]
+[ext_resource type="Texture2D" uid="uid://bx5wisel8e1fa" path="res://sprites/Screens/TitleScreen/bg.png" id="2_m3qv4"]
+[ext_resource type="Texture2D" path="res://sprites/Screens/TitleScreen/press-start-grey.tres" id="3_4nvfw"]
+[ext_resource type="Texture2D" uid="uid://b4w5ivn8w07kn" path="res://sprites/Screens/TitleScreen/logo.png" id="3_fidcm"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_s1iin"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_34658")
+"texture": ExtResource("2_7jckp")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_hk32l")
+"texture": ExtResource("3_4nvfw")
 }],
 "loop": true,
 "name": &"flashing",
 "speed": 2.0
 }]
 
-[node name="TitleScreen" type="Node2D"]
+[node name="TitleScreen" type="Node2D" node_paths=PackedStringArray("pressStart")]
+script = ExtResource("1_43iaj")
+pressStart = NodePath("PressStart")
 
 [node name="background" type="TextureRect" parent="."]
 offset_right = 256.0
 offset_bottom = 192.0
-texture = ExtResource("1_mytng")
+texture = ExtResource("2_m3qv4")
 
 [node name="logo" type="TextureRect" parent="."]
 offset_left = 25.0
 offset_top = 42.0
 offset_right = 231.0
 offset_bottom = 120.0
-texture = ExtResource("2_8q3dh")
+texture = ExtResource("3_fidcm")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="PressStart" type="AnimatedSprite2D" parent="."]
 position = Vector2(128, 180)
 sprite_frames = SubResource("SpriteFrames_s1iin")
 animation = &"flashing"
+frame_progress = 0.990328

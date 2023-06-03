@@ -1,7 +1,0 @@
-[gd_resource type="AtlasTexture" load_steps=2 format=3]
-
-[ext_resource type="Texture2D" uid="uid://bcdew45qwlj5f" path="res://sprites/TextFrames/textFramesDark.png" id="1_e2eji"]
-
-[resource]
-atlas = ExtResource("1_e2eji")
-region = Rect2(256, 336, 256, 48)

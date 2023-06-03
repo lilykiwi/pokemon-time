@@ -1,7 +1,0 @@
-[gd_resource type="AtlasTexture" load_steps=2 format=3]
-
-[ext_resource type="Texture2D" uid="uid://cg5g762w0lb5s" path="res://sprites/BattleGui/hpbar.png" id="1_1x1qx"]
-
-[resource]
-atlas = ExtResource("1_1x1qx")
-region = Rect2(0, 6, 48, 3)
