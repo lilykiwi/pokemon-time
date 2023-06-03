@@ -19,7 +19,7 @@ animations = [{
 "speed": 2.0
 }]
 
-[node name="000-titleScreen" type="Node2D"]
+[node name="TitleScreen" type="Node2D"]
 
 [node name="background" type="TextureRect" parent="."]
 offset_right = 256.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://w6op5qjox108"]
+[gd_scene load_steps=13 format=3]
 
 [ext_resource type="Texture2D" uid="uid://3fn0tne2m48x" path="res://sprites/map/map_bg.png" id="1_6i8ef"]
 [ext_resource type="Texture2D" uid="uid://vpv2l7unw2rp" path="res://sprites/map/map_roads.png" id="2_ia4nd"]

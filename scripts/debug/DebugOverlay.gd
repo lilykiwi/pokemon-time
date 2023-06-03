@@ -33,12 +33,15 @@ func _unhandled_input(event):
       _state_manager.push_state(StateManager.GameStates.DEBUG)
 
 var debugButtons: Array = [
-  
+  StateLoaderButton.new(StateManager.GameStates.OVERWORLD),
+  StateLoaderButton.new(StateManager.GameStates.BATTLE),
   DisplayScalingButton.new(),
   AudioButton.new(AudioButton.VolumeType.MAIN),
   AudioButton.new(AudioButton.VolumeType.SFX),
   AudioButton.new(AudioButton.VolumeType.MUSIC),
 ]
+
+var debugOverlayTheme: Theme = preload("res://sprites/mainTheme.tres")
 
 var scrollContainer: ScrollContainer
 var vBoxContainer: VBoxContainer
@@ -58,9 +61,12 @@ func _init():
   vBoxContainer.size_flags_horizontal = SIZE_EXPAND_FILL
   scrollContainer.add_child(vBoxContainer)
 
-  for button in debugButtons:
-    vBoxContainer.add_child(button)
-    #button.initButtons()
+  # we want a header label that says "Debug Menu"
+  var headerLabel = Label.new()
+  headerLabel.set_name("DebugHeaderLabel")
+  headerLabel.set_text("Debug Menu")
+  headerLabel.theme = debugOverlayTheme
+  vBoxContainer.add_child(headerLabel)
 
 func _ready():
   # get the StateManager from the parent node
@@ -72,6 +78,14 @@ func _ready():
   else: 
     print("DebugMenu: StateManager found in parent node")
 
+  # assign the state manager in each of our children buttons
+  for button in debugButtons:
+    button._state_manager = self._state_manager
+
+  for button in debugButtons:
+    vBoxContainer.add_child(button)
+    #button.initButtons()
+
 func setFocus():
   # 
   return
@@ -79,12 +93,12 @@ func setFocus():
 class GenericButton extends Button:
 
   var debugOverlayTheme: Theme = preload("res://sprites/mainTheme.tres")
+  var _state_manager: StateManager = null
 
   func SetStyle():
     self.theme = debugOverlayTheme
     self.size_flags_horizontal = Control.SIZE_EXPAND_FILL
     self.custom_minimum_size = Vector2(0, 19)
-
     return
     
 # a button to toggle the display scaling types
@@ -177,6 +191,7 @@ class AudioButton extends DebugOverlay.GenericButton:
   var volumeTypeStrings = ["Main", "SFX", "Music"]
     
   var pips = []
+  # 11 values, 0-10 inclusive
   var value = 5
 
   var volumeType: int = -1
@@ -224,91 +239,61 @@ class AudioButton extends DebugOverlay.GenericButton:
     root = get_tree().get_root()
     self.pressed.connect(self.button_pressed)
 
+    update_pips()
+
   func update_pips():
     for i in range(0, 10):
-      pips[i].set_texture(active if i == value else inactive)
+      pips[i].set_texture(active if i < value else inactive)
 
   func button_pressed():
-    value = (value + 1) % 10
+    value = (value + 1) % 11
     # todo: set the volume
     update_pips()
 
   # todo: left + right buttons to change volume up/down
   #func button_left():
-  #  value = (value - 1) % 10
+  #  value = (value - 1) % 11
   #  update_pips()
   #
   #func button_right():
   #  button_pressed()
 
 
-class SceneLoaderButton extends GenericButton:
+class StateLoaderButton extends GenericButton:
 
-  var loader
-  var time_max
-  var load_target
-  var scene_path
-  var status
   var hbox: HBoxContainer
+  var label: Label
+  var target_state: StateManager.GameStates
 
-  func _init():
+  func _init(state: StateManager.GameStates):
+    # store the target state
+    target_state = state
+
     # we want to create a HBoxContainer for storing the label
     hbox = HBoxContainer.new()
     hbox.set_name("SceneLoaderHBox")
-    hbox.set_anchors_preset(PRESET_FULL_RECT)
+    self.add_child(hbox)
+
+    # add a label to the HBoxContainer
+    label = Label.new()
+    label.set_name("SceneLoaderLabel")
+    hbox.add_child(label)
+
+  # Called when the node enters the scene tree for the first time.
+  func _ready():
+    SetStyle()
+
     hbox.size = Vector2(164, 19)
     hbox.set_position(Vector2(6, 0))
     hbox.add_theme_constant_override("separation", 1)
 
-    # add a label to the HBoxContainer
-    var label = Label.new()
-    label.set_name("SceneLoaderLabel")
-    label.set_text("Load Scene (todo)")
+    label.set_text(_state_manager.get_state_name(target_state))
     label.size_flags_horizontal = SIZE_EXPAND_FILL
 
-  # TODO: integrate this with the new state system
-
-  ## Called when the node enters the scene tree for the first time.
-  func _ready():
-    SetStyle()
-  #  self.pressed.connect(self.button_pressed)
-  #
-  #func button_pressed():
-  #  # get the scene from our meta
-  #  scene_path = self.get_meta("Scene")
-  #
-  #  # grab the node and clear it
-  #  load_target = get_node("%LoadTarget")
-  #
-  #  # initilise the loader
-  #  status = ResourceLoader.load_threaded_request(scene_path.get_path(), "PackedScene", false)
-  #  if status != OK:
-  #    print("Failed to load scene: " + scene_path.get_path())
-  #    print("Error: " + str(status))
-  #    return
-  #  else:
-  #    print("Loading scene: " + scene_path.get_path())
-  #    set_process(true)
-  #
-  #func _process(_time):
-  #  if status == null:
-  #    # no need to process anymore
-  #    set_process(false)
-  #    return
-  #
-  #  while true:
-  #    status = ResourceLoader.load_threaded_get_status(scene_path.get_path())
-  #    if status == ResourceLoader.THREAD_LOAD_LOADED: # Finished loading.
-  #      print("Loaded scene: " + scene_path.get_path())
-  #      var resource = ResourceLoader.load_threaded_get(scene_path.get_path())
-  #      status = null
-  #      # instantiate
-  #      load_target.add_child(resource.instantiate())
-  #      break
-  #    elif status == ResourceLoader.THREAD_LOAD_IN_PROGRESS: # Still loading.
-  #      print(ResourceLoader.load_threaded_get_status(scene_path.get_path()))
-  #    else: # Error during loading. THREAD_LOAD_INVALID_RESOURCE or THREAD_LOAD_FAILED 
-  #      print("Error loading scene: " + str(status))
-  #      status = null
-  #      break
-
+    self.pressed.connect(self.button_pressed)
+  
+  func button_pressed():
+    if _state_manager != null:
+      _state_manager.push_state(target_state)
+    else:
+      printerr("SceneLoaderButton: _state_manager is null!")
