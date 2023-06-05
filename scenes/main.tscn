@@ -43,14 +43,7 @@ z_index = -4096
 offset_right = 256.0
 offset_bottom = 192.0
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-offset_right = 256.0
-offset_bottom = 192.0
-
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
-size = Vector2i(256, 192)
-
-[node name="LoadStack" type="ReferenceRect" parent="SubViewportContainer/SubViewport"]
+[node name="LoadStack" type="ReferenceRect" parent="."]
 unique_name_in_owner = true
 offset_right = 256.0
 offset_bottom = 192.0

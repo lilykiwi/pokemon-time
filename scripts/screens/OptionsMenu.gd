@@ -1,4 +1,7 @@
-class_name OptionsMenu extends Node
+class_name OptionsMenu extends GenericScreen
+
+func _init():
+  super(true) # needs a subviewport
 
 # a button to toggle the display scaling types
 class DisplayScalingButton extends MainMenu.GenericButton:

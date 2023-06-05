@@ -1,4 +1,4 @@
-extends Node2D
+extends GenericScreen
 
 # Battles have a turn-based combat system. The player and the enemy take turns to attack each other until one of them is defeated.
 # The player can choose to attack, use an item, change pokemon, or run away from the battle.
@@ -53,8 +53,6 @@ enum weatherStates {
 }
 
 var messageBox: MessageBox = null
-
-var _state_manager: StateManager = null
 
 var state: int = -1
 var subState: int = -1
@@ -140,9 +138,14 @@ var ballEmpty: Texture2D = null
 # var ListPokemon: Panel = null todo
 # var ListItem: Panel = null todo
 
+func _init() -> void:
+  super(true) # needs subviewport
+
 func _ready():
   # the state starts at intro, so we need to set up the intro
-  messageBox = get_node("../%MessageBox")
+  #messageBox = get_node("../%MessageBox")
+  # we now want to grab this from our _state_manager!
+  messageBox = _state_manager.messageBox
 
   # get the select box and attack box
   selectBox = get_node("%SelectBox")
@@ -161,13 +164,13 @@ func _ready():
     # TODO: relocate this to be less messy
     if type == Type.list.NONE:
       # we shouldn't get here, but just in case
-      button.texture_normal = load("res://sprites/BattleGui/cursor-fight/moveTypes/unknown.tres")
-      button.texture_hover = load("res://sprites/BattleGui/cursor-fight/moveTypes/unknown-focus.tres")
-      button.texture_pressed = load("res://sprites/BattleGui/cursor-fight/moveTypes/unknown-pressed.tres")
+      button.texture_normal = load("res://sprites/Screens/BattleGui/cursor-fight/moveTypes/unknown.tres")
+      button.texture_hover = load("res://sprites/Screens/BattleGui/cursor-fight/moveTypes/unknown-focus.tres")
+      button.texture_pressed = load("res://sprites/Screens/BattleGui/cursor-fight/moveTypes/unknown-pressed.tres")
     else:
-      button.texture_normal = load("res://sprites/BattleGui/cursor-fight/moveTypes/" + Type.typeToString(type) + ".tres")
-      button.texture_hover = load("res://sprites/BattleGui/cursor-fight/moveTypes/" + Type.typeToString(type) + "-focus.tres")
-      button.texture_pressed = load("res://sprites/BattleGui/cursor-fight/moveTypes/" + Type.typeToString(type) + "-pressed.tres")
+      button.texture_normal = load("res://sprites/Screens/BattleGui/cursor-fight/moveTypes/" + Type.typeToString(type) + ".tres")
+      button.texture_hover = load("res://sprites/Screens/BattleGui/cursor-fight/moveTypes/" + Type.typeToString(type) + "-focus.tres")
+      button.texture_pressed = load("res://sprites/Screens/BattleGui/cursor-fight/moveTypes/" + Type.typeToString(type) + "-pressed.tres")
 
     # connect the button's draw_mode_changed signal to the battle system's draw_mode_changed signal
     button.connect("draw_mode_changed", _on_draw_mode_changed)
@@ -302,7 +305,7 @@ func _on_draw_mode_changed(buttonInstance, drawMode):
     # get the move type
     var move = player[player_pokemon].currentMoves[index]
     # set the attack box type
-    attackBoxType.texture = load("res://sprites/BattleGui/types/" + Type.typeToString(move.moveType) + ".tres")
+    attackBoxType.texture = load("res://sprites/Screens/BattleGui/types/" + Type.typeToString(move.moveType) + ".tres")
     # set the attack box pp current and pp max
     attackBoxPPCurrent.set_text(str(move.ppCurrent))
     attackBoxPPMax.set_text(str(move.pp))

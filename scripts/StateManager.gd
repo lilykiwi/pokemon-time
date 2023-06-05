@@ -118,26 +118,32 @@ var legalSubstates = {
   ],
 }
 
-var states = [
+var states: Array[GameStates] = [
   GameStates.BASE,
 ]
 
 signal game_state_changed(state) # emitted when the game state changes. contains new top level state
-signal load_complete(resource)   # emitted when a resource is loaded by ResourceLoader. contains the resource
-
-var loadStatus: int = 4
-var loadPath: String = "[none]"
-var loadTarget: Node = null
-var resource: Resource = null
-# 0 - ResourceLoader.THREAD_LOAD_INVALID_RESOURCE
-# 1 - ResourceLoader.THREAD_LOAD_IN_PROGRESS
-# 2 - ResourceLoader.THREAD_LOAD_FAILED
-# 3 - ResourceLoader.THREAD_LOAD_LOADED
-# 4 - not loading
 
 func _init():
   # disable loader processing until we need it
   set_process(false)
+
+  # for now we can hardcode a new player.
+  # in future we'll load or generate this, but for now meh.
+  player = Player.new(
+    Player.pModel.HERB,
+    [
+      Pokemon_Bulbasaur.new(
+        5,
+        [Move_Tackle.new(), Move_Growl.new()],
+      ),
+    ],
+    "Lily",
+    0,
+    5000,
+    0b00000000,
+    0b00000000000000,
+  )
 
   # bind to the game state changed signal
   connect("game_state_changed", self._on_game_state_changed)
@@ -159,9 +165,13 @@ func _on_game_state_changed(state: StateManager.GameStates):
   for i in range(states.size()):
     print("  " + str(i) + ": " + GameStateStrings[states[i]])
 
+  # clear the message box
+  messageBox.clearText()
+
   if state == GameStates.DEBUG:
     # unhide the debug menu and query it for focus
     debugOverlay.show()
+    debugOverlay.setFocus()
   else:
     # hide the debug menu
     debugOverlay.hide()
@@ -181,7 +191,8 @@ func _on_game_state_changed(state: StateManager.GameStates):
       return
     GameStates.OVERWORLD:
       if get_index_if_loaded(GameStates.OVERWORLD) == -1:
-        # load the title screen
+        # load the map
+        # TODO: other locales lol
         self.loadScene("res://scenes/locales/ow_000-Snowdrift-Town.tscn", loadStack)
     GameStates.BATTLE:
       if get_index_if_loaded(GameStates.BATTLE) == -1:
@@ -219,12 +230,19 @@ func push_state(state: GameStates):
   print("Pushing state: " + GameStateStrings[state])
   # check if the state is a valid substate of the current back state
   while get_top_state() != GameStates.BASE:
-    if not (legalSubstates[states.back()].has(state) or (state == GameStates.DEBUG and debug)):
-      # pop the top state
+    if   not (legalSubstates[states.back()].has(state) \
+      or (state == GameStates.DEBUG and debug))        \
+      and (get_top_state() != state):
+      # pop the top state UNSAFE
       pop_state()
+      #printerr("Attempted to push an invalid state: " + GameStateStrings[state] + " while in " + GameStateStrings[states.back()])
+      #print("TODO: pop to a valid state")
     else:
       break
-  states.push_back(state)
+  if get_top_state() != state:
+    # if we already have the state loaded, don't load it again
+    # otherwise, push it (which will load it)
+    states.push_back(state)
   emit_signal("game_state_changed", states.back())
 
 func pop_state():
@@ -247,13 +265,56 @@ func get_top_state():
 func get_state_name(state: GameStates):
   return GameStateStrings[state]
 
+func get_state_stack() -> Array[GameStates]:
+  return states
+
 # Resource Loading -------------------------------------------------------------
+
+# TODO: implement a queue system for loading resources. this will allow us to
+# load multiple resources at the same time. currently this behaviour will result
+# in blocking any subsequent load while loadStatus is 1 (THREAD_LOAD_IN_PROGRESS)
+# we could implement this by having a loadClass that contains all the info about
+# a given resource
+# - loadPath
+# - loadTarget
+
+signal load_complete(resource)   # emitted when a resource is loaded by ResourceLoader. contains the resource
+
+var loadStatus: int = 4
+var loadPath: String = "[none]"
+var loadTarget: Node = null
+var loadTargetSprite2D: Sprite2D = null
+var resource: Resource = null
+# 0 - ResourceLoader.THREAD_LOAD_INVALID_RESOURCE
+# 1 - ResourceLoader.THREAD_LOAD_IN_PROGRESS
+# 2 - ResourceLoader.THREAD_LOAD_FAILED
+# 3 - ResourceLoader.THREAD_LOAD_LOADED
+# 4 - not loading
 
 func _on_load_complete(_resource):
   if _resource is PackedScene:
     var _scene = _resource.instantiate()
-    _scene._state_manager = self
+    if not _scene is GenericScreen:
+      printerr("Attempted to load a non-screen scene")
+      return
+    # if the scene needs a subviewport, create one
+    if _scene._needs_subviewport:
+      var newSubViewPortContainer = SubViewportContainer.new()
+      var newSubViewPort = SubViewport.new()
+      newSubViewPortContainer.size = Vector2(256, 192)
+      newSubViewPort.size          = Vector2(256, 192)
+      newSubViewPortContainer.name = _scene.name + "_SubViewportContainer"
+      newSubViewPort.name          = "SubViewport"
+      newSubViewPortContainer.add_child(newSubViewPort)
+      loadTarget.add_child(newSubViewPortContainer)
+      loadTarget = newSubViewPort
+    _scene.register_state_manager(self)
     loadTarget.add_child(_scene)
+  if _resource is Texture:
+    if loadTargetSprite2D is Sprite2D && loadTargetSprite2D != null:
+      loadTargetSprite2D = _resource
+    else:
+      printerr("Attempted to load a sprite into a non-sprite target")
 
 func loadScene(scene_path: String, target: Node = %loadStack):
   # initilise the loader
@@ -266,6 +327,16 @@ func loadScene(scene_path: String, target: Node = %loadStack):
   self.loadStatus = ResourceLoader.load_threaded_request(scene_path, "PackedScene", false)
   self.loadPath = scene_path
   self.loadTarget = target
+  set_process(true)
+
+func loadSprite(sprite_path: String, target: Sprite2D = null):
+  if target == null:
+    return
+  else:
+    print("Loading " + sprite_path)
+  self.load_status = ResourceLoader.load_threaded_request(sprite_path, "Texture", false)
+  self.loadPath = sprite_path
+  self.loadTargetSprite2D = target
   set_process(true)
 
 func _process(_delta):
@@ -283,7 +354,7 @@ func _process(_delta):
     ResourceLoader.THREAD_LOAD_FAILED:
       printerr("Failed to load " + self.loadPath)
     ResourceLoader.THREAD_LOAD_LOADED:
-      print("Loaded scene: " + self.loadPath)
+      print("Loaded resource: " + self.loadPath)
       self.resource = ResourceLoader.load_threaded_get(self.loadPath)
       # emit the load complete signal
       emit_signal("load_complete", self.resource)

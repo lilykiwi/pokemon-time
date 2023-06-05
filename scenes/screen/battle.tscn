@@ -79,7 +79,7 @@ Button/styles/hover = ExtResource("41_ygfjl")
 Button/styles/normal = ExtResource("40_3o3fs")
 Button/styles/pressed = ExtResource("41_ygfjl")
 
-[node name="battle" type="Node2D"]
+[node name="Battle" type="Node2D"]
 z_index = 64
 script = ExtResource("1_vsbi2")
 genderLabelMale = ExtResource("2_yiupj")

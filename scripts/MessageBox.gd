@@ -84,3 +84,11 @@ func displayText(textToShow: Array):
     self.hide()
     emit_signal("text_done")
     return
+
+func clearText():
+  text = []
+  textIndex = 0
+  caret = 0
+  self.hide()
+  emit_signal("text_done")
+  return

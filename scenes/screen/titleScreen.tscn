@@ -20,9 +20,10 @@ animations = [{
 "speed": 2.0
 }]
 
-[node name="TitleScreen" type="Node2D" node_paths=PackedStringArray("pressStart")]
+[node name="TitleScreen" type="Node2D" node_paths=PackedStringArray("pressStart", "clickButton")]
 script = ExtResource("1_43iaj")
 pressStart = NodePath("PressStart")
+clickButton = NodePath("Button")
 
 [node name="background" type="TextureRect" parent="."]
 offset_right = 256.0
@@ -41,3 +42,8 @@ position = Vector2(128, 180)
 sprite_frames = SubResource("SpriteFrames_s1iin")
 animation = &"flashing"
 frame_progress = 0.990328
+
+[node name="Button" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_right = 256.0
+offset_bottom = 192.0

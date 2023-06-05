@@ -1,6 +1,5 @@
-class_name MainMenu extends Node2D
+class_name MainMenu extends GenericScreen
 
-var _state_manager: StateManager = null
 var buttons = []
 
 # This is the class that controls the main menu screen
@@ -10,13 +9,21 @@ var buttons = []
 # additionally, we will have a quit button which closes the game
 
 func _init() -> void:
-  return
+  super(true) # needs subviewport
 
-func _ready() -> void:
-  return
+#func _ready() -> void:
+#  return
 
+class GenericPanel extends VBoxContainer:
 
+  var panelTheme: Theme = preload("res://sprites/mainTheme.tres")
+  var _state_manager: StateManager = null
 
+  func SetStyle():
+    self.theme = panelTheme
+    self.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+    self.custom_minimum_size = Vector2(0, 19)
+    return
 
 class GenericButton extends Button:
 
