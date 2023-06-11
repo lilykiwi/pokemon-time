@@ -18,8 +18,9 @@ class_name StateManager extends Node
 
 # locale
 enum Locales {
-  NONE = -1,
-  SNOWDRIFT_TOWN
+  NONE = -1, # fallback, error
+  SNOWDRIFT_TOWN = 000,
+  SNOWDRIFT_INTERIORS = 800,
 }
 
 var locale: Locales = Locales.NONE
@@ -28,7 +29,7 @@ var player: Player  = null
 var messageBox: MessageBox = null
 var debugOverlay: DebugOverlay = null
 
-var loadStack: ReferenceRect = null
+var loadStack: Node = null
 
 enum GameStates {
   BASE,
