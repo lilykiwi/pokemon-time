@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ce8x7cip5va28"
-path="res://.godot/imported/hail.png-f86f57ba2d211bc51444fc5cb21f51b0.ctex"
+path="res://.godot/imported/hail.png-64036bbde5ef39f852d44458b7d1f7e2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Screens/BattleGui/statuses/hail.png"
-dest_files=["res://.godot/imported/hail.png-f86f57ba2d211bc51444fc5cb21f51b0.ctex"]
+source_file="res://Sprites/Screens/BattleGui/statuses/hail.png"
+dest_files=["res://.godot/imported/hail.png-64036bbde5ef39f852d44458b7d1f7e2.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cagunmo1rxxob"
-path="res://.godot/imported/back_shiny.png-0e811c4b440efa9caf53f8657e146063.ctex"
+path="res://.godot/imported/back_shiny.png-873f37e2bd2dd7a04b53ba75f8ff1974.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/pokemon/001-bulbasaur/back_shiny.png"
-dest_files=["res://.godot/imported/back_shiny.png-0e811c4b440efa9caf53f8657e146063.ctex"]
+source_file="res://Sprites/pokemon/001-bulbasaur/back_shiny.png"
+dest_files=["res://.godot/imported/back_shiny.png-873f37e2bd2dd7a04b53ba75f8ff1974.ctex"]
 
 [params]
 

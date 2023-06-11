@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c4s310u4fxsdy"
-path="res://.godot/imported/battler_shadow_2.PNG-5010b702afc4fa959e6eec5b71d4cc0a.ctex"
+path="res://.godot/imported/battler_shadow_2.PNG-d932e8bb78e2103d6b3b88de4cc065cd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Screens/BattleGui/battler_shadow_2.PNG"
-dest_files=["res://.godot/imported/battler_shadow_2.PNG-5010b702afc4fa959e6eec5b71d4cc0a.ctex"]
+source_file="res://Sprites/Screens/BattleGui/battler_shadow_2.PNG"
+dest_files=["res://.godot/imported/battler_shadow_2.PNG-d932e8bb78e2103d6b3b88de4cc065cd.ctex"]
 
 [params]
 

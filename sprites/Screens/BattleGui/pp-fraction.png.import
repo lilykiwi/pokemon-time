@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://chs0kyf7xfmuo"
-path="res://.godot/imported/pp-fraction.png-f00f8b4b48859f5dfc91525166ddb312.ctex"
+path="res://.godot/imported/pp-fraction.png-d37a8d2b778d733f9447558e5d5fcbf9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Screens/BattleGui/pp-fraction.png"
-dest_files=["res://.godot/imported/pp-fraction.png-f00f8b4b48859f5dfc91525166ddb312.ctex"]
+source_file="res://Sprites/Screens/BattleGui/pp-fraction.png"
+dest_files=["res://.godot/imported/pp-fraction.png-d37a8d2b778d733f9447558e5d5fcbf9.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://p00mnwxj0tdr"
-path="res://.godot/imported/nextArrow.png-47117ab3266c9f196292d1b229d0305d.ctex"
+path="res://.godot/imported/nextArrow.png-931a5ebb20ecc490afdfd1381a2fbe63.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Screens/TextFrames/nextArrow.png"
-dest_files=["res://.godot/imported/nextArrow.png-47117ab3266c9f196292d1b229d0305d.ctex"]
+source_file="res://Sprites/Screens/TextFrames/nextArrow.png"
+dest_files=["res://.godot/imported/nextArrow.png-931a5ebb20ecc490afdfd1381a2fbe63.ctex"]
 
 [params]
 

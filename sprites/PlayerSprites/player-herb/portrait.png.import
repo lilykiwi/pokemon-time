@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bren6o87a1od5"
-path="res://.godot/imported/portrait.png-b18609ed0311e2ec80ac5b5854fe3de8.ctex"
+path="res://.godot/imported/portrait.png-f93341f9ba0a0839971882017e3f54c9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/PlayerSprites/player-herb/portrait.png"
-dest_files=["res://.godot/imported/portrait.png-b18609ed0311e2ec80ac5b5854fe3de8.ctex"]
+source_file="res://Sprites/PlayerSprites/player-herb/portrait.png"
+dest_files=["res://.godot/imported/portrait.png-f93341f9ba0a0839971882017e3f54c9.ctex"]
 
 [params]
 

@@ -16,7 +16,7 @@ func _init() -> void:
 
 class GenericPanel extends VBoxContainer:
 
-  var panelTheme: Theme = preload("res://sprites/mainTheme.tres")
+  var panelTheme: Theme = preload("res://Sprites/mainTheme.tres")
   var _state_manager: StateManager = null
 
   func SetStyle():
@@ -27,7 +27,7 @@ class GenericPanel extends VBoxContainer:
 
 class GenericButton extends Button:
 
-  var buttonTheme: Theme = preload("res://sprites/mainTheme.tres")
+  var buttonTheme: Theme = preload("res://Sprites/mainTheme.tres")
   @warning_ignore("unused_variable")
   var _state_manager: StateManager = null
 

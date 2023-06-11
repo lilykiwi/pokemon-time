@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ijbod0fvafw2"
-path="res://.godot/imported/battle.png-114309af58b91e3450fd3c12ee0e0769.ctex"
+path="res://.godot/imported/battle.png-2452832ee9b3818f75eed1258d28c7ae.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/PlayerSprites/player-herb/battle.png"
-dest_files=["res://.godot/imported/battle.png-114309af58b91e3450fd3c12ee0e0769.ctex"]
+source_file="res://Sprites/PlayerSprites/player-herb/battle.png"
+dest_files=["res://.godot/imported/battle.png-2452832ee9b3818f75eed1258d28c7ae.ctex"]
 
 [params]
 

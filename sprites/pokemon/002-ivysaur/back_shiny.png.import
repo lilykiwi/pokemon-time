@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dd3irftjoyu82"
-path="res://.godot/imported/back_shiny.png-0930b6e60f07796d9263fbb6cbc7a941.ctex"
+path="res://.godot/imported/back_shiny.png-cd72989f92aec08d531c9b31e586fd2c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/pokemon/002-ivysaur/back_shiny.png"
-dest_files=["res://.godot/imported/back_shiny.png-0930b6e60f07796d9263fbb6cbc7a941.ctex"]
+source_file="res://Sprites/pokemon/002-ivysaur/back_shiny.png"
+dest_files=["res://.godot/imported/back_shiny.png-cd72989f92aec08d531c9b31e586fd2c.ctex"]
 
 [params]
 

@@ -7,7 +7,7 @@ path="res://.godot/imported/bg.aseprite-9d1c7cbc5165405301c23d6bec16bf5c.scn"
 
 [deps]
 
-source_file="res://sprites/party/bg.aseprite"
+source_file="res://Sprites/party/bg.aseprite"
 dest_files=["res://.godot/imported/bg.aseprite-9d1c7cbc5165405301c23d6bec16bf5c.scn"]
 
 [params]

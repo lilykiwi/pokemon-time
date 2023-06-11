@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cdt0klh06i8kl"
-path="res://.godot/imported/ability_bar.png-45fa73766ad9faf13ee312195d75a109.ctex"
+path="res://.godot/imported/ability_bar.png-657e01e354472628b2af9c2397f6a868.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Screens/BattleGui/ability_bar.png"
-dest_files=["res://.godot/imported/ability_bar.png-45fa73766ad9faf13ee312195d75a109.ctex"]
+source_file="res://Sprites/Screens/BattleGui/ability_bar.png"
+dest_files=["res://.godot/imported/ability_bar.png-657e01e354472628b2af9c2397f6a868.ctex"]
 
 [params]
 

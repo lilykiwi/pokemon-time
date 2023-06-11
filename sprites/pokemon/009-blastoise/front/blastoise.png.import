@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://co0ijvsrfob8n"
-path="res://.godot/imported/blastoise.png-b768f23e5f16aee79509f2f1e7aea62a.ctex"
+path="res://.godot/imported/blastoise.png-93f4f28c465d7d2b0f6ae810c19f33a7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/pokemon/009-blastoise/front/blastoise.png"
-dest_files=["res://.godot/imported/blastoise.png-b768f23e5f16aee79509f2f1e7aea62a.ctex"]
+source_file="res://Sprites/pokemon/009-blastoise/front/blastoise.png"
+dest_files=["res://.godot/imported/blastoise.png-93f4f28c465d7d2b0f6ae810c19f33a7.ctex"]
 
 [params]
 

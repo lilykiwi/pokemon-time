@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cnoyq3jhjw8mw"
-path="res://.godot/imported/charmander.png-943d39d9fe78273162bc0f97a8a7dc33.ctex"
+path="res://.godot/imported/charmander.png-eb68e7989610eb937f472f5bc9d45599.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/pokemon/004-charmander/back/charmander.png"
-dest_files=["res://.godot/imported/charmander.png-943d39d9fe78273162bc0f97a8a7dc33.ctex"]
+source_file="res://Sprites/pokemon/004-charmander/back/charmander.png"
+dest_files=["res://.godot/imported/charmander.png-eb68e7989610eb937f472f5bc9d45599.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dxgikmh3gku1"
-path="res://.godot/imported/000_cracks.png-635afee667ff0bc32d70973e0d0cef72.ctex"
+path="res://.godot/imported/000_cracks.png-ca1a3f288a7a6ff45fa40d47d69cd650.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/pokemon/000_cracks.png"
-dest_files=["res://.godot/imported/000_cracks.png-635afee667ff0bc32d70973e0d0cef72.ctex"]
+source_file="res://Sprites/pokemon/000_cracks.png"
+dest_files=["res://.godot/imported/000_cracks.png-ca1a3f288a7a6ff45fa40d47d69cd650.ctex"]
 
 [params]
 

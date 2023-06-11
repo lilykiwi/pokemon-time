@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bucw31dswlfo3"
-path="res://.godot/imported/tilemap.png-2bd33ec03c7e79f4f57f3b467e05ccd0.ctex"
+path="res://.godot/imported/tilemap.png-6cbe96b961b44cf22e979ecef2b2dacd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Overworld/tilemap.png"
-dest_files=["res://.godot/imported/tilemap.png-2bd33ec03c7e79f4f57f3b467e05ccd0.ctex"]
+source_file="res://Sprites/Overworld/tilemap.png"
+dest_files=["res://.godot/imported/tilemap.png-6cbe96b961b44cf22e979ecef2b2dacd.ctex"]
 
 [params]
 

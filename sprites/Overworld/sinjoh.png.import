@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ige7g2ox0o41"
-path="res://.godot/imported/sinjoh.png-e646fa6bc9ccadb62d6008e8cc15d5ce.ctex"
+path="res://.godot/imported/sinjoh.png-e9d9c45e2db6a489003114a245346a76.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Overworld/sinjoh.png"
-dest_files=["res://.godot/imported/sinjoh.png-e646fa6bc9ccadb62d6008e8cc15d5ce.ctex"]
+source_file="res://Sprites/Overworld/sinjoh.png"
+dest_files=["res://.godot/imported/sinjoh.png-e9d9c45e2db6a489003114a245346a76.ctex"]
 
 [params]
 

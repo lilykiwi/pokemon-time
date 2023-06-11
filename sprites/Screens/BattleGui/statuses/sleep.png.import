@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bl186k0vxj5wx"
-path="res://.godot/imported/sleep.png-020ff84777f713874587224074b08edd.ctex"
+path="res://.godot/imported/sleep.png-7832dd2f4f17bd9ea0399a452324b7e9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Screens/BattleGui/statuses/sleep.png"
-dest_files=["res://.godot/imported/sleep.png-020ff84777f713874587224074b08edd.ctex"]
+source_file="res://Sprites/Screens/BattleGui/statuses/sleep.png"
+dest_files=["res://.godot/imported/sleep.png-7832dd2f4f17bd9ea0399a452324b7e9.ctex"]
 
 [params]
 

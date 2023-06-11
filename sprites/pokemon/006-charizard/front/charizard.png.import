@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ccu0fbyx3pdep"
-path="res://.godot/imported/charizard.png-b51e7dbd746d699860ea90200b2ac59f.ctex"
+path="res://.godot/imported/charizard.png-fa54c45ef7de0a71c3709a65a0d98796.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/pokemon/006-charizard/front/charizard.png"
-dest_files=["res://.godot/imported/charizard.png-b51e7dbd746d699860ea90200b2ac59f.ctex"]
+source_file="res://Sprites/pokemon/006-charizard/front/charizard.png"
+dest_files=["res://.godot/imported/charizard.png-fa54c45ef7de0a71c3709a65a0d98796.ctex"]
 
 [params]
 

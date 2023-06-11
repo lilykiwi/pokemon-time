@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://kanr8a6moniq"
-path="res://.godot/imported/venusaur.png-00d248edcd87a726e30064cb53d6c7d5.ctex"
+path="res://.godot/imported/venusaur.png-f82ec88396c54bfb00a4f4a42593b493.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/pokemon/003-venusaur/back/venusaur.png"
-dest_files=["res://.godot/imported/venusaur.png-00d248edcd87a726e30064cb53d6c7d5.ctex"]
+source_file="res://Sprites/pokemon/003-venusaur/back/venusaur.png"
+dest_files=["res://.godot/imported/venusaur.png-f82ec88396c54bfb00a4f4a42593b493.ctex"]
 
 [params]
 

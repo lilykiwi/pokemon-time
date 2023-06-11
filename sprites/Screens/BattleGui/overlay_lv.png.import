@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cbv86afi6st08"
-path="res://.godot/imported/overlay_lv.png-23ed447c5601b457dedb157adfca8b1b.ctex"
+path="res://.godot/imported/overlay_lv.png-b1db737d38073b09da8b2e49fc2d8a1f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Screens/BattleGui/overlay_lv.png"
-dest_files=["res://.godot/imported/overlay_lv.png-23ed447c5601b457dedb157adfca8b1b.ctex"]
+source_file="res://Sprites/Screens/BattleGui/overlay_lv.png"
+dest_files=["res://.godot/imported/overlay_lv.png-b1db737d38073b09da8b2e49fc2d8a1f.ctex"]
 
 [params]
 

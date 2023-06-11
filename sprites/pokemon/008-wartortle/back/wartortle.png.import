@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bp6ofye2vaxon"
-path="res://.godot/imported/wartortle.png-dbbc5723c71f0cecd2ecca49481369c8.ctex"
+path="res://.godot/imported/wartortle.png-5a3de9809b5c951de9cb2a9e362fff38.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/pokemon/008-wartortle/back/wartortle.png"
-dest_files=["res://.godot/imported/wartortle.png-dbbc5723c71f0cecd2ecca49481369c8.ctex"]
+source_file="res://Sprites/pokemon/008-wartortle/back/wartortle.png"
+dest_files=["res://.godot/imported/wartortle.png-5a3de9809b5c951de9cb2a9e362fff38.ctex"]
 
 [params]
 

@@ -47,11 +47,11 @@ var gridSpeedWalk: float = 0.25
 var gridSpeedRun: float = 0.15
 var gridSpeedBike: float = 0.1
 # we want to buffer the next input so that we can move the player after moving a single unit
-# input in DPP seems to go on a FIFO rule? we should store an array of inputs and then
+# input in DPP seems to go on a FILO rule? we should store an array of inputs and then
 # process the most recent pushed (back()?) input. admittedly DPP has some weirdness,
 # so we'll see how this goes.
 
-var inputFIFO: Array = []
+var inputFILO: Array = []
 var inputBuffer: String = ""
 
 var pModel: int = Player.pModel.NONE
@@ -99,16 +99,16 @@ func _process(_delta):
   if _state_manager.get_top_state() != StateManager.GameStates.OVERWORLD:
     return
 
-  if inputFIFO.size() > 0 && facingHoldTimeCurrent == 0.0:
+  if inputFILO.size() > 0 && facingHoldTimeCurrent == 0.0:
     var dir = inputBuffer
     movingDirection = dir
 
-  if inputFIFO.size() > 0 && facingHoldTimeCurrent < facingHoldTime:
+  if inputFILO.size() > 0 && facingHoldTimeCurrent < facingHoldTime:
     facingHoldTimeCurrent += _delta
 
     # no animation needed here as we're holding until the facingHoldTime is reached
   
-  if inputFIFO.size() > 0 and facingHoldTimeCurrent >= facingHoldTime and not isMoving:
+  if inputFILO.size() > 0 and facingHoldTimeCurrent >= facingHoldTime and not isMoving:
     # collision check here
     var dir = inputBuffer
     movingDirection = dir
@@ -139,7 +139,7 @@ func _process(_delta):
       snapToGrid()
       isMoving = false
       isMovingTime = 0.0
-      if inputFIFO.size() > 0: inputBuffer = inputFIFO.back()
+      if inputFILO.size() > 0: inputBuffer = inputFILO.back()
       else:                    inputBuffer = ""
     else:
       var delta = end - start
@@ -220,12 +220,12 @@ func getCollisionNeighbours(pos: Vector2i):
   return _collisions
 
 func registerInput(inputCode: String):
-  if not inputFIFO.has(inputCode): inputFIFO.append(inputCode)
+  if not inputFILO.has(inputCode): inputFILO.append(inputCode)
   if inputBuffer == "":            inputBuffer = inputCode
 
 func deregisterInput(inputCode: String):
-  if inputFIFO.has(inputCode): inputFIFO.erase(inputCode)
-  if inputFIFO.size() > 0:     inputBuffer = inputFIFO.back()
+  if inputFILO.has(inputCode): inputFILO.erase(inputCode)
+  if inputFILO.size() > 0:     inputBuffer = inputFILO.back()
   else:                        inputBuffer = ""
 
 func clearBuffer():

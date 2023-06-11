@@ -164,13 +164,13 @@ func _ready():
     # TODO: relocate this to be less messy
     if type == Type.list.NONE:
       # we shouldn't get here, but just in case
-      button.texture_normal = load("res://sprites/Screens/BattleGui/cursor-fight/moveTypes/unknown.tres")
-      button.texture_hover = load("res://sprites/Screens/BattleGui/cursor-fight/moveTypes/unknown-focus.tres")
-      button.texture_pressed = load("res://sprites/Screens/BattleGui/cursor-fight/moveTypes/unknown-pressed.tres")
+      button.texture_normal = load("res://Sprites/Screens/BattleGui/cursor-fight/moveTypes/unknown.tres")
+      button.texture_hover = load("res://Sprites/Screens/BattleGui/cursor-fight/moveTypes/unknown-focus.tres")
+      button.texture_pressed = load("res://Sprites/Screens/BattleGui/cursor-fight/moveTypes/unknown-pressed.tres")
     else:
-      button.texture_normal = load("res://sprites/Screens/BattleGui/cursor-fight/moveTypes/" + Type.typeToString(type) + ".tres")
-      button.texture_hover = load("res://sprites/Screens/BattleGui/cursor-fight/moveTypes/" + Type.typeToString(type) + "-focus.tres")
-      button.texture_pressed = load("res://sprites/Screens/BattleGui/cursor-fight/moveTypes/" + Type.typeToString(type) + "-pressed.tres")
+      button.texture_normal = load("res://Sprites/Screens/BattleGui/cursor-fight/moveTypes/" + Type.typeToString(type) + ".tres")
+      button.texture_hover = load("res://Sprites/Screens/BattleGui/cursor-fight/moveTypes/" + Type.typeToString(type) + "-focus.tres")
+      button.texture_pressed = load("res://Sprites/Screens/BattleGui/cursor-fight/moveTypes/" + Type.typeToString(type) + "-pressed.tres")
 
     # connect the button's draw_mode_changed signal to the battle system's draw_mode_changed signal
     button.connect("draw_mode_changed", _on_draw_mode_changed)
@@ -305,7 +305,7 @@ func _on_draw_mode_changed(buttonInstance, drawMode):
     # get the move type
     var move = player[player_pokemon].currentMoves[index]
     # set the attack box type
-    attackBoxType.texture = load("res://sprites/Screens/BattleGui/types/" + Type.typeToString(move.moveType) + ".tres")
+    attackBoxType.texture = load("res://Sprites/Screens/BattleGui/types/" + Type.typeToString(move.moveType) + ".tres")
     # set the attack box pp current and pp max
     attackBoxPPCurrent.set_text(str(move.ppCurrent))
     attackBoxPPMax.set_text(str(move.pp))

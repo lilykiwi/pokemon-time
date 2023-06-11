@@ -9,8 +9,8 @@ class DisplayScalingButton extends MainMenu.GenericButton:
   var pips = []
   var value = 1
 
-  var inactive: AtlasTexture = preload("res://sprites/Screens/OptionsMenu/ThemeElements/pip0.tres")
-  var active:   AtlasTexture = preload("res://sprites/Screens/OptionsMenu/ThemeElements/pip4.tres")
+  var inactive: AtlasTexture = preload("res://Sprites/Screens/OptionsMenu/ThemeElements/pip0.tres")
+  var active:   AtlasTexture = preload("res://Sprites/Screens/OptionsMenu/ThemeElements/pip4.tres")
 
   var hbox: HBoxContainer
   # TODO: replace this with a function in StateManager
@@ -98,8 +98,8 @@ class AudioButton extends MainMenu.GenericButton:
 
   var volumeType: int = -1
 
-  var inactive: AtlasTexture = preload("res://sprites/Screens/OptionsMenu/ThemeElements/pip0.tres")
-  var active:   AtlasTexture = preload("res://sprites/Screens/OptionsMenu/ThemeElements/pip4.tres")
+  var inactive: AtlasTexture = preload("res://Sprites/Screens/OptionsMenu/ThemeElements/pip0.tres")
+  var active:   AtlasTexture = preload("res://Sprites/Screens/OptionsMenu/ThemeElements/pip4.tres")
 
   var hbox: HBoxContainer
   var root: Node

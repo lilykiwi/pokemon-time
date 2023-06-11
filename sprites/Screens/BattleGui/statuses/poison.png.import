@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cbjka5mjw7xhs"
-path="res://.godot/imported/poison.png-d6d4a84749b9232a0fee01f68da05a00.ctex"
+path="res://.godot/imported/poison.png-df7558d650fd47644f986bc00a6f1f43.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Screens/BattleGui/statuses/poison.png"
-dest_files=["res://.godot/imported/poison.png-d6d4a84749b9232a0fee01f68da05a00.ctex"]
+source_file="res://Sprites/Screens/BattleGui/statuses/poison.png"
+dest_files=["res://.godot/imported/poison.png-df7558d650fd47644f986bc00a6f1f43.ctex"]
 
 [params]
 

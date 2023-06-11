@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cktbmgkebrqnj"
-path="res://.godot/imported/freeze.png-2e359cbdc81c1e4366bce67837c33bee.ctex"
+path="res://.godot/imported/freeze.png-bac9fbe93edf4bdd9ed24592ee489a9e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Screens/BattleGui/statuses/freeze.png"
-dest_files=["res://.godot/imported/freeze.png-2e359cbdc81c1e4366bce67837c33bee.ctex"]
+source_file="res://Sprites/Screens/BattleGui/statuses/freeze.png"
+dest_files=["res://.godot/imported/freeze.png-bac9fbe93edf4bdd9ed24592ee489a9e.ctex"]
 
 [params]
 

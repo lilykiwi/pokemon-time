@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://w0288hxqoylg"
-path="res://.godot/imported/databox_normal.png-443e71b9b1f6877c09adcafe0b559fe3.ctex"
+path="res://.godot/imported/databox_normal.png-253a4cf709f05bf3205414388ca4282a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Screens/BattleGui/databox_normal.png"
-dest_files=["res://.godot/imported/databox_normal.png-443e71b9b1f6877c09adcafe0b559fe3.ctex"]
+source_file="res://Sprites/Screens/BattleGui/databox_normal.png"
+dest_files=["res://.godot/imported/databox_normal.png-253a4cf709f05bf3205414388ca4282a.ctex"]
 
 [params]
 

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://ncej7g62jqr8"]
+
+[ext_resource type="Texture2D" uid="uid://bgpbqprpqk23w" path="res://Sprites/Overworld/animated/doors/1.tres" id="1_p5uhv"]
+[ext_resource type="Script" path="res://Scripts/overworld/w_door.gd" id="2_dimgp"]
+
+[node name="000 PK Center Entrance" type="Sprite2D"]
+visibility_layer = 524288
+position = Vector2(1176, 200)
+texture = ExtResource("1_p5uhv")
+hframes = 6
+script = ExtResource("2_dimgp")

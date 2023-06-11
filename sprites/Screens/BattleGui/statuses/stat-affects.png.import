@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dt3abomxokuyi"
-path="res://.godot/imported/stat-affects.png-0c5e85375e6404ed5f71f90fdbe51d4c.ctex"
+path="res://.godot/imported/stat-affects.png-426531fd4203ffa983d4090fd7ffe472.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Screens/BattleGui/statuses/stat-affects.png"
-dest_files=["res://.godot/imported/stat-affects.png-0c5e85375e6404ed5f71f90fdbe51d4c.ctex"]
+source_file="res://Sprites/Screens/BattleGui/statuses/stat-affects.png"
+dest_files=["res://.godot/imported/stat-affects.png-426531fd4203ffa983d4090fd7ffe472.ctex"]
 
 [params]
 

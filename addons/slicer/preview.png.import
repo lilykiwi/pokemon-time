@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dsstgyilk7cs1"
-path="res://.godot/imported/preview.png-c55a6c0e171b8e65a9ddefe983feb27a.ctex"
+path="res://.godot/imported/preview.png-335491751e6f93e8afea7a8b05c97263.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/slicer/preview.png"
-dest_files=["res://.godot/imported/preview.png-c55a6c0e171b8e65a9ddefe983feb27a.ctex"]
+source_file="res://Addons/slicer/preview.png"
+dest_files=["res://.godot/imported/preview.png-335491751e6f93e8afea7a8b05c97263.ctex"]
 
 [params]
 

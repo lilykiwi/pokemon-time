@@ -3,12 +3,12 @@
 importer="font_data_image"
 type="FontFile"
 uid="uid://cl215mmk671xn"
-path="res://.godot/imported/icon_numbers.png-11afe0324641a1638881a6282369dfd2.fontdata"
+path="res://.godot/imported/icon_numbers.png-91aea27ed6ec4bd6f8797e67ca1dfa6c.fontdata"
 
 [deps]
 
-source_file="res://sprites/Screens/BattleGui/icon_numbers.png"
-dest_files=["res://.godot/imported/icon_numbers.png-11afe0324641a1638881a6282369dfd2.fontdata"]
+source_file="res://Sprites/Screens/BattleGui/icon_numbers.png"
+dest_files=["res://.godot/imported/icon_numbers.png-91aea27ed6ec4bd6f8797e67ca1dfa6c.fontdata"]
 
 [params]
 

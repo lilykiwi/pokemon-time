@@ -10,7 +10,7 @@ metadata={
 
 [deps]
 
-source_file="res://sprites/Battle/statuses/heavysun.png"
+source_file="res://Sprites/Battle/statuses/heavysun.png"
 dest_files=["res://.godot/imported/heavysun.png-13bea4f797781dcc71962d02d68b218b.ctex"]
 
 [params]

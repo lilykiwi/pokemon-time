@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Texture2D" path="res://sprites/Overworld/debug/doorPoint.tres" id="1_nycw5"]
+[ext_resource type="Script" path="res://Scripts/overworld/w_spawnpoint.gd" id="2_iyui0"]
+
+[node name="spawnpoint0" type="Sprite2D"]
+visibility_layer = 524288
+position = Vector2(1176, 184)
+texture = ExtResource("1_nycw5")
+script = ExtResource("2_iyui0")

@@ -1,10 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://by38q18uef2nm"]
+[gd_scene load_steps=7 format=3]
 
-[ext_resource type="Script" path="res://scripts/screens/TitleScreen.gd" id="1_43iaj"]
-[ext_resource type="Texture2D" path="res://sprites/Screens/TitleScreen/press-start-white.tres" id="2_7jckp"]
-[ext_resource type="Texture2D" uid="uid://bx5wisel8e1fa" path="res://sprites/Screens/TitleScreen/bg.png" id="2_m3qv4"]
-[ext_resource type="Texture2D" path="res://sprites/Screens/TitleScreen/press-start-grey.tres" id="3_4nvfw"]
-[ext_resource type="Texture2D" uid="uid://b4w5ivn8w07kn" path="res://sprites/Screens/TitleScreen/logo.png" id="3_fidcm"]
+[ext_resource type="Script" path="res://Scripts/screens/title_screen.gd" id="1_43iaj"]
+[ext_resource type="Texture2D" path="res://Sprites/Screens/TitleScreen/press-start-white.tres" id="2_7jckp"]
+[ext_resource type="Texture2D" uid="uid://bx5wisel8e1fa" path="res://Sprites/Screens/TitleScreen/bg.png" id="2_m3qv4"]
+[ext_resource type="Texture2D" path="res://Sprites/Screens/TitleScreen/press-start-grey.tres" id="3_4nvfw"]
+[ext_resource type="Texture2D" uid="uid://b4w5ivn8w07kn" path="res://Sprites/Screens/TitleScreen/logo.png" id="3_fidcm"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_s1iin"]
 animations = [{

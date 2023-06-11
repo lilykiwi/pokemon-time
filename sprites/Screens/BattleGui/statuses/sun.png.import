@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c12wifb5gep7h"
-path="res://.godot/imported/sun.png-b31da40f4cc12e57f8db8654f15dc7e9.ctex"
+path="res://.godot/imported/sun.png-9901981246841c7fa100ce08300473f7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Screens/BattleGui/statuses/sun.png"
-dest_files=["res://.godot/imported/sun.png-b31da40f4cc12e57f8db8654f15dc7e9.ctex"]
+source_file="res://Sprites/Screens/BattleGui/statuses/sun.png"
+dest_files=["res://.godot/imported/sun.png-9901981246841c7fa100ce08300473f7.ctex"]
 
 [params]
 

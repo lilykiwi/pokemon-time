@@ -24,14 +24,14 @@ func _init(startingLevel: int, startingMoves: Array):
 
   yieldEVSpAtk = 1
 
-  frontSprite = preload("res://sprites/pokemon/001-bulbasaur/front.png")
-  backSprite = preload("res://sprites/pokemon/001-bulbasaur/back.png")
-  frontShinySprite = preload("res://sprites/pokemon/001-bulbasaur/front_shiny.png")
-  backShinySprite = preload("res://sprites/pokemon/001-bulbasaur/back_shiny.png")
+  frontSprite = preload("res://Sprites/pokemon/001-bulbasaur/front.png")
+  backSprite = preload("res://Sprites/pokemon/001-bulbasaur/back.png")
+  frontShinySprite = preload("res://Sprites/pokemon/001-bulbasaur/front_shiny.png")
+  backShinySprite = preload("res://Sprites/pokemon/001-bulbasaur/back_shiny.png")
 
   #todo: icon sprites
-  #iconZero = preload("res://sprites/pokemon/001-bulbasaur/icon_0.png")
-  #iconOne = preload("res://sprites/pokemon/001-bulbasaur/icon_1.png")
+  #iconZero = preload("res://Sprites/pokemon/001-bulbasaur/icon_0.png")
+  #iconOne = preload("res://Sprites/pokemon/001-bulbasaur/icon_1.png")
 
   # abilities
   abilities = [Ability_Overgrow.new()]

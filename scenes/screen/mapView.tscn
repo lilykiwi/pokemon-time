@@ -1,151 +1,151 @@
-[gd_scene load_steps=13 format=3 uid="uid://ciasw21e0wwny"]
+[gd_scene load_steps=13 format=3 uid="uid://c1omnthpxcdu6"]
 
-[ext_resource type="Texture2D" uid="uid://3fn0tne2m48x" path="res://sprites/Screens/MapView/map_bg.png" id="1_6i8ef"]
-[ext_resource type="Texture2D" uid="uid://vpv2l7unw2rp" path="res://sprites/Screens/MapView/map_roads.png" id="2_ia4nd"]
-[ext_resource type="Texture2D" uid="uid://vrub0jgs2125" path="res://sprites/Screens/MapView/map_locations.png" id="3_55ufa"]
-[ext_resource type="Texture2D" path="res://sprites/Screens/MapView/red-1x1.tres" id="4_ij4nd"]
-[ext_resource type="Script" path="res://scripts/map/CityIcon.gd" id="5_2fmjb"]
-[ext_resource type="Texture2D" path="res://sprites/Screens/MapView/grey-1x1.tres" id="6_qxo14"]
-[ext_resource type="Texture2D" path="res://sprites/Screens/MapView/grey-2x2.tres" id="7_j0k3l"]
-[ext_resource type="Texture2D" path="res://sprites/Screens/MapView/red-2x2.tres" id="8_iu7bm"]
-[ext_resource type="Texture2D" path="res://sprites/Screens/MapView/grey-1x2.tres" id="9_h73se"]
-[ext_resource type="Texture2D" path="res://sprites/Screens/MapView/red-1x2.tres" id="10_wmkqj"]
-[ext_resource type="Texture2D" path="res://sprites/Screens/MapView/grey-2x1.tres" id="11_bj7u5"]
-[ext_resource type="Texture2D" path="res://sprites/Screens/MapView/red-2x1.tres" id="12_by1o5"]
+[ext_resource type="Texture2D" uid="uid://3fn0tne2m48x" path="res://Sprites/Screens/MapView/map_bg.png" id="1_fvg2g"]
+[ext_resource type="Texture2D" uid="uid://vpv2l7unw2rp" path="res://Sprites/Screens/MapView/map_roads.png" id="2_wm0xl"]
+[ext_resource type="Texture2D" uid="uid://vrub0jgs2125" path="res://Sprites/Screens/MapView/map_locations.png" id="3_u53h2"]
+[ext_resource type="Texture2D" path="res://Sprites/Screens/MapView/red-1x1.tres" id="4_lgv80"]
+[ext_resource type="Script" path="res://Scripts/map/city_icon.gd" id="5_qgqpm"]
+[ext_resource type="Texture2D" path="res://Sprites/Screens/MapView/grey-1x1.tres" id="6_d4qm2"]
+[ext_resource type="Texture2D" path="res://Sprites/Screens/MapView/grey-2x2.tres" id="7_bkg0e"]
+[ext_resource type="Texture2D" path="res://Sprites/Screens/MapView/red-2x2.tres" id="8_rexea"]
+[ext_resource type="Texture2D" path="res://Sprites/Screens/MapView/grey-1x2.tres" id="9_7k85o"]
+[ext_resource type="Texture2D" path="res://Sprites/Screens/MapView/red-1x2.tres" id="10_r3e3e"]
+[ext_resource type="Texture2D" path="res://Sprites/Screens/MapView/grey-2x1.tres" id="11_j2ay1"]
+[ext_resource type="Texture2D" path="res://Sprites/Screens/MapView/red-2x1.tres" id="12_sbmhi"]
 
 [node name="MapView" type="Node2D"]
 
 [node name="MapBg" type="Sprite2D" parent="."]
 position = Vector2(160, 120)
-texture = ExtResource("1_6i8ef")
+texture = ExtResource("1_fvg2g")
 
 [node name="MapRoads" type="Sprite2D" parent="."]
 position = Vector2(160, 120)
-texture = ExtResource("2_ia4nd")
+texture = ExtResource("2_wm0xl")
 
 [node name="MapLocations" type="Sprite2D" parent="."]
 position = Vector2(160, 120)
-texture = ExtResource("3_55ufa")
+texture = ExtResource("3_u53h2")
 
 [node name="0" type="Sprite2D" parent="MapLocations"]
 position = Vector2(12, -52)
-texture = ExtResource("4_ij4nd")
-script = ExtResource("5_2fmjb")
-visitedSprite = ExtResource("4_ij4nd")
-unvisitedSprite = ExtResource("6_qxo14")
+texture = ExtResource("4_lgv80")
+script = ExtResource("5_qgqpm")
+visitedSprite = ExtResource("4_lgv80")
+unvisitedSprite = ExtResource("6_d4qm2")
 destinationName = "Snowdrift Town"
 alwaysVisited = true
 
 [node name="1" type="Sprite2D" parent="MapLocations"]
 position = Vector2(52, -28)
-texture = ExtResource("6_qxo14")
-script = ExtResource("5_2fmjb")
-visitedSprite = ExtResource("4_ij4nd")
-unvisitedSprite = ExtResource("6_qxo14")
+texture = ExtResource("6_d4qm2")
+script = ExtResource("5_qgqpm")
+visitedSprite = ExtResource("4_lgv80")
+unvisitedSprite = ExtResource("6_d4qm2")
 
 [node name="2" type="Sprite2D" parent="MapLocations"]
 position = Vector2(4, 44)
-texture = ExtResource("6_qxo14")
-script = ExtResource("5_2fmjb")
-visitedSprite = ExtResource("4_ij4nd")
-unvisitedSprite = ExtResource("6_qxo14")
+texture = ExtResource("6_d4qm2")
+script = ExtResource("5_qgqpm")
+visitedSprite = ExtResource("4_lgv80")
+unvisitedSprite = ExtResource("6_d4qm2")
 cityNumber = 2
 
 [node name="3" type="Sprite2D" parent="MapLocations"]
 position = Vector2(52, 52)
-texture = ExtResource("6_qxo14")
-script = ExtResource("5_2fmjb")
-visitedSprite = ExtResource("4_ij4nd")
-unvisitedSprite = ExtResource("6_qxo14")
+texture = ExtResource("6_d4qm2")
+script = ExtResource("5_qgqpm")
+visitedSprite = ExtResource("4_lgv80")
+unvisitedSprite = ExtResource("6_d4qm2")
 cityNumber = 3
 
 [node name="4" type="Sprite2D" parent="MapLocations"]
 position = Vector2(84, 68)
-texture = ExtResource("6_qxo14")
-script = ExtResource("5_2fmjb")
-visitedSprite = ExtResource("4_ij4nd")
-unvisitedSprite = ExtResource("6_qxo14")
+texture = ExtResource("6_d4qm2")
+script = ExtResource("5_qgqpm")
+visitedSprite = ExtResource("4_lgv80")
+unvisitedSprite = ExtResource("6_d4qm2")
 cityNumber = 4
 
 [node name="5" type="Sprite2D" parent="MapLocations"]
 position = Vector2(44, 76)
-texture = ExtResource("6_qxo14")
-script = ExtResource("5_2fmjb")
-visitedSprite = ExtResource("4_ij4nd")
-unvisitedSprite = ExtResource("6_qxo14")
+texture = ExtResource("6_d4qm2")
+script = ExtResource("5_qgqpm")
+visitedSprite = ExtResource("4_lgv80")
+unvisitedSprite = ExtResource("6_d4qm2")
 cityNumber = 5
 
 [node name="6" type="Sprite2D" parent="MapLocations"]
 position = Vector2(-52, 84)
-texture = ExtResource("6_qxo14")
-script = ExtResource("5_2fmjb")
-visitedSprite = ExtResource("4_ij4nd")
-unvisitedSprite = ExtResource("6_qxo14")
+texture = ExtResource("6_d4qm2")
+script = ExtResource("5_qgqpm")
+visitedSprite = ExtResource("4_lgv80")
+unvisitedSprite = ExtResource("6_d4qm2")
 cityNumber = 6
 
 [node name="7" type="Sprite2D" parent="MapLocations"]
 position = Vector2(-68, -92)
-texture = ExtResource("6_qxo14")
-script = ExtResource("5_2fmjb")
-visitedSprite = ExtResource("4_ij4nd")
-unvisitedSprite = ExtResource("6_qxo14")
+texture = ExtResource("6_d4qm2")
+script = ExtResource("5_qgqpm")
+visitedSprite = ExtResource("4_lgv80")
+unvisitedSprite = ExtResource("6_d4qm2")
 cityNumber = 7
 
 [node name="8" type="Sprite2D" parent="MapLocations"]
 position = Vector2(12, -100)
-texture = ExtResource("6_qxo14")
-script = ExtResource("5_2fmjb")
-visitedSprite = ExtResource("4_ij4nd")
-unvisitedSprite = ExtResource("6_qxo14")
+texture = ExtResource("6_d4qm2")
+script = ExtResource("5_qgqpm")
+visitedSprite = ExtResource("4_lgv80")
+unvisitedSprite = ExtResource("6_d4qm2")
 destinationName = "Glacialspring Town"
 cityNumber = 8
 
 [node name="9" type="Sprite2D" parent="MapLocations"]
 position = Vector2(80, 0)
-texture = ExtResource("7_j0k3l")
-script = ExtResource("5_2fmjb")
-visitedSprite = ExtResource("8_iu7bm")
-unvisitedSprite = ExtResource("7_j0k3l")
+texture = ExtResource("7_bkg0e")
+script = ExtResource("5_qgqpm")
+visitedSprite = ExtResource("8_rexea")
+unvisitedSprite = ExtResource("7_bkg0e")
 cityNumber = 9
 
 [node name="10" type="Sprite2D" parent="MapLocations"]
 position = Vector2(0, 8)
-texture = ExtResource("7_j0k3l")
-script = ExtResource("5_2fmjb")
-visitedSprite = ExtResource("8_iu7bm")
-unvisitedSprite = ExtResource("7_j0k3l")
+texture = ExtResource("7_bkg0e")
+script = ExtResource("5_qgqpm")
+visitedSprite = ExtResource("8_rexea")
+unvisitedSprite = ExtResource("7_bkg0e")
 cityNumber = 10
 
 [node name="11" type="Sprite2D" parent="MapLocations"]
 position = Vector2(-40, -40)
-texture = ExtResource("7_j0k3l")
-script = ExtResource("5_2fmjb")
-visitedSprite = ExtResource("8_iu7bm")
-unvisitedSprite = ExtResource("7_j0k3l")
+texture = ExtResource("7_bkg0e")
+script = ExtResource("5_qgqpm")
+visitedSprite = ExtResource("8_rexea")
+unvisitedSprite = ExtResource("7_bkg0e")
 cityNumber = 11
 
 [node name="12" type="Sprite2D" parent="MapLocations"]
 position = Vector2(-96, 64)
-texture = ExtResource("7_j0k3l")
-script = ExtResource("5_2fmjb")
-visitedSprite = ExtResource("8_iu7bm")
-unvisitedSprite = ExtResource("7_j0k3l")
+texture = ExtResource("7_bkg0e")
+script = ExtResource("5_qgqpm")
+visitedSprite = ExtResource("8_rexea")
+unvisitedSprite = ExtResource("7_bkg0e")
 cityNumber = 12
 
 [node name="13" type="Sprite2D" parent="MapLocations"]
 position = Vector2(-52, 16)
-texture = ExtResource("9_h73se")
-script = ExtResource("5_2fmjb")
-visitedSprite = ExtResource("10_wmkqj")
-unvisitedSprite = ExtResource("9_h73se")
+texture = ExtResource("9_7k85o")
+script = ExtResource("5_qgqpm")
+visitedSprite = ExtResource("10_r3e3e")
+unvisitedSprite = ExtResource("9_7k85o")
 cityNumber = 13
 
 [node name="14" type="Sprite2D" parent="MapLocations"]
 position = Vector2(-112, 12)
-texture = ExtResource("11_bj7u5")
-script = ExtResource("5_2fmjb")
-visitedSprite = ExtResource("12_by1o5")
-unvisitedSprite = ExtResource("11_bj7u5")
+texture = ExtResource("11_j2ay1")
+script = ExtResource("5_qgqpm")
+visitedSprite = ExtResource("12_sbmhi")
+unvisitedSprite = ExtResource("11_j2ay1")
 cityNumber = 14
 
 [node name="Cursor" type="Sprite2D" parent="."]

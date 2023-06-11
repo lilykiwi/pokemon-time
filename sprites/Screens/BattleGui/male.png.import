@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ci8ov5y7kwxdv"
-path="res://.godot/imported/male.png-9bac614010ceeca6a113acdb9af90633.ctex"
+path="res://.godot/imported/male.png-65d31e68e400339778c54a480fcf131c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Screens/BattleGui/male.png"
-dest_files=["res://.godot/imported/male.png-9bac614010ceeca6a113acdb9af90633.ctex"]
+source_file="res://Sprites/Screens/BattleGui/male.png"
+dest_files=["res://.godot/imported/male.png-65d31e68e400339778c54a480fcf131c.ctex"]
 
 [params]
 

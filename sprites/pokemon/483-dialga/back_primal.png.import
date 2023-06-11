@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cofxu8abdqgca"
-path="res://.godot/imported/back_primal.png-4615dc4885c72e4ac31666ae2829b796.ctex"
+path="res://.godot/imported/back_primal.png-5111ea0bdae8e42daffa6a54a18ed7f8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/pokemon/483-dialga/back_primal.png"
-dest_files=["res://.godot/imported/back_primal.png-4615dc4885c72e4ac31666ae2829b796.ctex"]
+source_file="res://Sprites/pokemon/483-dialga/back_primal.png"
+dest_files=["res://.godot/imported/back_primal.png-5111ea0bdae8e42daffa6a54a18ed7f8.ctex"]
 
 [params]
 

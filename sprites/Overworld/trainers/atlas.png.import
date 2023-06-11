@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cu103shqh3fmo"
-path="res://.godot/imported/atlas.png-8928456e3feda1fbddd4dd248c119c10.ctex"
+path="res://.godot/imported/atlas.png-879fe7e3c968abc68d3f22d91513ec53.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Overworld/trainers/atlas.png"
-dest_files=["res://.godot/imported/atlas.png-8928456e3feda1fbddd4dd248c119c10.ctex"]
+source_file="res://Sprites/Overworld/trainers/atlas.png"
+dest_files=["res://.godot/imported/atlas.png-879fe7e3c968abc68d3f22d91513ec53.ctex"]
 
 [params]
 

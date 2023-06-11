@@ -17,17 +17,22 @@ class_name StateManager extends Node
 @export var debug: bool = false
 
 # locale
-enum Locales {
+enum Locations {
   NONE = -1, # fallback, error
   SNOWDRIFT_TOWN = 000,
   SNOWDRIFT_INTERIORS = 800,
 }
 
-var locale: Locales = Locales.NONE
+@export var startingLocation: Locations = Locations.SNOWDRIFT_INTERIORS
+@export var startingWorldSpawn: int = 003
+
+var locale: Locations = Locations.NONE
+var spawnPoint: int = 0
 var player: Player  = null
 
 var messageBox: MessageBox = null
 var debugOverlay: DebugOverlay = null
+var locale_manager: LocaleManager = null
 
 var loadStack: Node = null
 
@@ -186,19 +191,16 @@ func _on_game_state_changed(state: StateManager.GameStates):
       # check if we need to load the title screen. It'll be in loadStack if not
       if get_index_if_loaded(GameStates.TITLE_SCREEN) == -1:
         # load the title screen
-        self.loadScene("res://scenes/screen/TitleScreen.tscn", loadStack)
+        self.loadScene("res://Scenes/screen/TitleScreen.tscn")
     GameStates.MAIN_MENU:
       printerr("todo")
       return
     GameStates.OVERWORLD:
       if get_index_if_loaded(GameStates.OVERWORLD) == -1:
-        # load the map
-        # TODO: other locales lol
-        self.loadScene("res://scenes/locales/ow_000-Snowdrift-Town.tscn", loadStack)
+        self.changeLocation(startingLocation, startingWorldSpawn)
     GameStates.BATTLE:
       if get_index_if_loaded(GameStates.BATTLE) == -1:
-        # load the title screen
-        self.loadScene("res://scenes/screen/Battle.tscn", loadStack)
+        self.loadScene("res://Scenes/screen/Battle.tscn")
     GameStates.MAP:
       printerr("todo")
       return
@@ -292,6 +294,7 @@ var resource: Resource = null
 # 3 - ResourceLoader.THREAD_LOAD_LOADED
 # 4 - not loading
 
+
 func _on_load_complete(_resource):
   if _resource is PackedScene:
     var _scene = _resource.instantiate()
@@ -317,11 +320,12 @@ func _on_load_complete(_resource):
     else:
       printerr("Attempted to load a sprite into a non-sprite target")
 
-func loadScene(scene_path: String, target: Node = %loadStack):
+
+func loadScene(scene_path: String, target: Node = %LoadStack):
   # initilise the loader
   # check if we're already loading
   if self.loadStatus == 1:
-    printerr("Attempted to load " + scene_path + " while already loading " + self.loadPath)
+    printerr("StateManager.loadScene(): Attempted to load " + scene_path + " while already loading " + self.loadPath)
     return
   else:
     print("Loading " + scene_path)
@@ -329,6 +333,7 @@ func loadScene(scene_path: String, target: Node = %loadStack):
   self.loadPath = scene_path
   self.loadTarget = target
   set_process(true)
+
 
 func loadSprite(sprite_path: String, target: Sprite2D = null):
   if target == null:
@@ -339,6 +344,17 @@ func loadSprite(sprite_path: String, target: Sprite2D = null):
   self.loadPath = sprite_path
   self.loadTargetSprite2D = target
   set_process(true)
+
+
+func loadWorld(id: Locations):
+  var idString = "%03d" % id
+  var dir = DirAccess.open("res://Scenes/worlds/")
+
+  for file in dir.get_files():
+    if file.begins_with("ow_" + idString):
+      # load the scene
+      loadScene("res://Scenes/worlds/" + file, loadStack)
+
 
 func _process(_delta):
   # skip loading at init, for some reason _process is called before _init
@@ -360,6 +376,26 @@ func _process(_delta):
       # emit the load complete signal
       emit_signal("load_complete", self.resource)
   set_process(false)
+
+
+# Location --------------------------------------------------------------------
+
+
+func changeLocation(id: Locations, spawnpointID: int):
+  if locale == id:
+    # we're already in the scene, so just change the spawnpoint
+    spawnPoint = spawnpointID
+    locale_manager.move_player(spawnPoint)
+  else:
+    for child in loadStack.get_children():
+      if child.name.begins_with("ow_" + "%03d" % locale):
+        child.queue_free()
+
+    # and then load the new scene
+    loadWorld(id)
+    locale = id
+    spawnPoint = spawnpointID
+
 
 # Save/Load -------------------------------------------------------------------
 #

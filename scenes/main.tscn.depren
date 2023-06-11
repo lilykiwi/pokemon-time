@@ -1,0 +1,96 @@
+[gd_scene load_steps=11 format=3]
+
+[ext_resource type="Script" path="res://Scripts/StateManager.gd" id="1_om822"]
+[ext_resource type="Texture2D" uid="uid://bx5wisel8e1fa" path="res://Sprites/Screens/TitleScreen/bg.png" id="2_sywr5"]
+[ext_resource type="Texture2D" path="res://Sprites/Screens/TextFrames/wide/dark1.tres" id="3_ufk20"]
+[ext_resource type="Script" path="res://Scripts/MessageBox.gd" id="4_cax08"]
+[ext_resource type="StyleBox" uid="uid://damtgpak1dkax" path="res://Sprites/Screens/OptionsMenu/ThemeElements/buttonNormal.tres" id="5_4jnk0"]
+[ext_resource type="StyleBox" uid="uid://me8lqjf613i2" path="res://Sprites/Screens/OptionsMenu/ThemeElements/buttonHighlight.tres" id="6_2xut8"]
+[ext_resource type="FontFile" uid="uid://b6pot5irfnq1y" path="res://Fonts/power green small.ttf" id="7_a8cif"]
+[ext_resource type="FontFile" uid="uid://6koku71fwx35" path="res://Fonts/m5x7.ttf" id="8_2t0tw"]
+[ext_resource type="Script" path="res://Scripts/screens/debug_overlay.gd" id="9_ncvuy"]
+
+[sub_resource type="Theme" id="Theme_mu0n5"]
+default_font = ExtResource("7_a8cif")
+default_font_size = 11
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/h_separation = 2
+Button/constants/outline_size = 0
+Button/styles/disabled = ExtResource("5_4jnk0")
+Button/styles/focus = ExtResource("6_2xut8")
+Button/styles/hover = ExtResource("6_2xut8")
+Button/styles/normal = ExtResource("5_4jnk0")
+Button/styles/pressed = ExtResource("6_2xut8")
+
+[node name="root" type="Node2D"]
+script = ExtResource("1_om822")
+debug = true
+
+[node name="FallbackBG" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(128, 96)
+texture = ExtResource("2_sywr5")
+
+[node name="LoadStack" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="MessageBox" type="TextureRect" parent="."]
+unique_name_in_owner = true
+visible = false
+z_index = 3076
+offset_top = 144.0
+offset_right = 256.0
+offset_bottom = 192.0
+texture = ExtResource("3_ufk20")
+script = ExtResource("4_cax08")
+
+[node name="MessageText" type="RichTextLabel" parent="MessageBox"]
+layout_direction = 2
+layout_mode = 0
+offset_left = 14.0
+offset_top = 12.0
+offset_right = 242.0
+offset_bottom = 38.0
+auto_translate = false
+localize_numeral_system = false
+theme = SubResource("Theme_mu0n5")
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.282353, 0.282353, 0.282353, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/normal_font = ExtResource("8_2t0tw")
+theme_override_font_sizes/normal_font_size = 15
+text = "Amoongus shat on the floor and called you a slur! It was super effective!"
+scroll_active = false
+shortcut_keys_enabled = false
+visible_characters_behavior = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="DoneArrow" type="TextureRect" parent="MessageBox"]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 34.0
+offset_right = 248.0
+offset_bottom = 42.0
+
+[node name="DebugOverlay" type="ReferenceRect" parent="."]
+unique_name_in_owner = true
+visible = false
+z_index = 4096
+offset_right = 256.0
+offset_bottom = 192.0
+border_width = 0.0
+script = ExtResource("9_ncvuy")

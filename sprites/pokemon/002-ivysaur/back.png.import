@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bds3bn12w3h54"
-path="res://.godot/imported/back.png-6b8fe274aa13008dc2b920d63865b537.ctex"
+path="res://.godot/imported/back.png-ee3c2677d2d7152952a297b48aa457a0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/pokemon/002-ivysaur/back.png"
-dest_files=["res://.godot/imported/back.png-6b8fe274aa13008dc2b920d63865b537.ctex"]
+source_file="res://Sprites/pokemon/002-ivysaur/back.png"
+dest_files=["res://.godot/imported/back.png-ee3c2677d2d7152952a297b48aa457a0.ctex"]
 
 [params]
 

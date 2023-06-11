@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cbynlwbx8ru8c"
-path="res://.godot/imported/burn.png-e9a69c4563fbeb5678fda6651a716ffa.ctex"
+path="res://.godot/imported/burn.png-ecbc8854f4b354fca90e316dbc7c384e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Screens/BattleGui/statuses/burn.png"
-dest_files=["res://.godot/imported/burn.png-e9a69c4563fbeb5678fda6651a716ffa.ctex"]
+source_file="res://Sprites/Screens/BattleGui/statuses/burn.png"
+dest_files=["res://.godot/imported/burn.png-ecbc8854f4b354fca90e316dbc7c384e.ctex"]
 
 [params]
 

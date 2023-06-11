@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d34q7j3cdl6qc"
-path="res://.godot/imported/charmeleon.png-9298ddfeffeec3328c24d7b22f2f4ab9.ctex"
+path="res://.godot/imported/charmeleon.png-c45d19fb3900218f81977889bd68d28d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/pokemon/005-charmeleon/front_shiny/charmeleon.png"
-dest_files=["res://.godot/imported/charmeleon.png-9298ddfeffeec3328c24d7b22f2f4ab9.ctex"]
+source_file="res://Sprites/pokemon/005-charmeleon/front_shiny/charmeleon.png"
+dest_files=["res://.godot/imported/charmeleon.png-c45d19fb3900218f81977889bd68d28d.ctex"]
 
 [params]
 

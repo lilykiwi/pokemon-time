@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://boaxsoe5gie8e"
-path="res://.godot/imported/female.png-a25e773d763903703be4e32a149bfe17.ctex"
+path="res://.godot/imported/female.png-0c63ee402f3d17bce0c02d82ac7bac9b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Screens/BattleGui/female.png"
-dest_files=["res://.godot/imported/female.png-a25e773d763903703be4e32a149bfe17.ctex"]
+source_file="res://Sprites/Screens/BattleGui/female.png"
+dest_files=["res://.godot/imported/female.png-0c63ee402f3d17bce0c02d82ac7bac9b.ctex"]
 
 [params]
 

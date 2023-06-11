@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bsqycqjokjbri"
-path="res://.godot/imported/paralyze.png-27f2a748f6bf4f00e3bfa71b37675e41.ctex"
+path="res://.godot/imported/paralyze.png-48b69ace32d69d2d0a3f7177728719d6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Screens/BattleGui/statuses/paralyze.png"
-dest_files=["res://.godot/imported/paralyze.png-27f2a748f6bf4f00e3bfa71b37675e41.ctex"]
+source_file="res://Sprites/Screens/BattleGui/statuses/paralyze.png"
+dest_files=["res://.godot/imported/paralyze.png-48b69ace32d69d2d0a3f7177728719d6.ctex"]
 
 [params]
 

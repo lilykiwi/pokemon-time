@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c8v28gv8kq00"
-path="res://.godot/imported/databox_normal_foe.png-d20ff451dbd85ff50c566f3acd360f4f.ctex"
+path="res://.godot/imported/databox_normal_foe.png-f3ad3819b549c769eb4f92efc29d9273.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Screens/BattleGui/databox_normal_foe.png"
-dest_files=["res://.godot/imported/databox_normal_foe.png-d20ff451dbd85ff50c566f3acd360f4f.ctex"]
+source_file="res://Sprites/Screens/BattleGui/databox_normal_foe.png"
+dest_files=["res://.godot/imported/databox_normal_foe.png-f3ad3819b549c769eb4f92efc29d9273.ctex"]
 
 [params]
 

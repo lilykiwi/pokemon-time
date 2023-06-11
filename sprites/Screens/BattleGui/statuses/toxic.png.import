@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cjr37aacfb3q6"
-path="res://.godot/imported/toxic.png-f6d6a8c3a3fc485cb3bff793140fc60d.ctex"
+path="res://.godot/imported/toxic.png-883910f6fe02109f993041f1877fe579.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Screens/BattleGui/statuses/toxic.png"
-dest_files=["res://.godot/imported/toxic.png-f6d6a8c3a3fc485cb3bff793140fc60d.ctex"]
+source_file="res://Sprites/Screens/BattleGui/statuses/toxic.png"
+dest_files=["res://.godot/imported/toxic.png-883910f6fe02109f993041f1877fe579.ctex"]
 
 [params]
 

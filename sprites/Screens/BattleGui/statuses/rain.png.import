@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ctetdvc4alwit"
-path="res://.godot/imported/rain.png-bc7213094c16a57958c354562ac42749.ctex"
+path="res://.godot/imported/rain.png-1ff7c5a9b6b3889a162bee0ef91e3760.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Screens/BattleGui/statuses/rain.png"
-dest_files=["res://.godot/imported/rain.png-bc7213094c16a57958c354562ac42749.ctex"]
+source_file="res://Sprites/Screens/BattleGui/statuses/rain.png"
+dest_files=["res://.godot/imported/rain.png-1ff7c5a9b6b3889a162bee0ef91e3760.ctex"]
 
 [params]
 

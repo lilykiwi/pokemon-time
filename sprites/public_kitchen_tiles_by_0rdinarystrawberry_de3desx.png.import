@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cy1cqljopklhj"
-path="res://.godot/imported/public_kitchen_tiles_by_0rdinarystrawberry_de3desx.png-4bb8bb6807351b93affc8730c901e554.ctex"
+path="res://.godot/imported/public_kitchen_tiles_by_0rdinarystrawberry_de3desx.png-8545651a3485a82107580ef4fb60cae0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/public_kitchen_tiles_by_0rdinarystrawberry_de3desx.png"
-dest_files=["res://.godot/imported/public_kitchen_tiles_by_0rdinarystrawberry_de3desx.png-4bb8bb6807351b93affc8730c901e554.ctex"]
+source_file="res://Sprites/public_kitchen_tiles_by_0rdinarystrawberry_de3desx.png"
+dest_files=["res://.godot/imported/public_kitchen_tiles_by_0rdinarystrawberry_de3desx.png-8545651a3485a82107580ef4fb60cae0.ctex"]
 
 [params]
 

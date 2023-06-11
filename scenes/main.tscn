@@ -1,17 +1,17 @@
-[gd_scene load_steps=11 format=3 uid="uid://dw3135sa8mpdn"]
+[gd_scene load_steps=11 format=3 uid="uid://bxwldb0sdc8bx"]
 
-[ext_resource type="Script" path="res://scripts/StateManager.gd" id="1_3upgc"]
-[ext_resource type="Texture2D" uid="uid://bx5wisel8e1fa" path="res://sprites/Screens/TitleScreen/bg.png" id="2_s3q4b"]
-[ext_resource type="Texture2D" path="res://sprites/Screens/TextFrames/wide/dark1.tres" id="3_74qka"]
-[ext_resource type="Script" path="res://scripts/MessageBox.gd" id="3_c2hlh"]
-[ext_resource type="StyleBox" uid="uid://bl2aenv10oanu" path="res://sprites/Screens/OptionsMenu/ThemeElements/buttonNormal.tres" id="3_gai11"]
-[ext_resource type="StyleBox" uid="uid://cuihejwyjdsfd" path="res://sprites/Screens/OptionsMenu/ThemeElements/buttonHighlight.tres" id="4_3qae4"]
-[ext_resource type="FontFile" uid="uid://b6pot5irfnq1y" path="res://Fonts/power green small.ttf" id="6_a2r0j"]
-[ext_resource type="FontFile" uid="uid://6koku71fwx35" path="res://Fonts/m5x7.ttf" id="7_5ohdw"]
-[ext_resource type="Script" path="res://scripts/screens/DebugOverlay.gd" id="8_tgn1h"]
+[ext_resource type="Script" path="res://Scripts/state_manager.gd" id="1_1eyv6"]
+[ext_resource type="Texture2D" uid="uid://bx5wisel8e1fa" path="res://Sprites/Screens/TitleScreen/bg.png" id="2_sywr5"]
+[ext_resource type="Texture2D" path="res://Sprites/Screens/TextFrames/wide/dark1.tres" id="3_ufk20"]
+[ext_resource type="Script" path="res://Scripts/message_box.gd" id="4_pmrrx"]
+[ext_resource type="StyleBox" uid="uid://damtgpak1dkax" path="res://Sprites/Screens/OptionsMenu/ThemeElements/buttonNormal.tres" id="5_4jnk0"]
+[ext_resource type="StyleBox" uid="uid://me8lqjf613i2" path="res://Sprites/Screens/OptionsMenu/ThemeElements/buttonHighlight.tres" id="6_2xut8"]
+[ext_resource type="FontFile" uid="uid://b6pot5irfnq1y" path="res://Fonts/power green small.ttf" id="7_a8cif"]
+[ext_resource type="FontFile" uid="uid://6koku71fwx35" path="res://Fonts/m5x7.ttf" id="8_2t0tw"]
+[ext_resource type="Script" path="res://Scripts/screens/debug_overlay.gd" id="8_83deo"]
 
 [sub_resource type="Theme" id="Theme_mu0n5"]
-default_font = ExtResource("6_a2r0j")
+default_font = ExtResource("7_a8cif")
 default_font_size = 11
 Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
 Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
@@ -28,20 +28,20 @@ Button/colors/icon_normal_color = Color(1, 1, 1, 1)
 Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
 Button/constants/h_separation = 2
 Button/constants/outline_size = 0
-Button/styles/disabled = ExtResource("3_gai11")
-Button/styles/focus = ExtResource("4_3qae4")
-Button/styles/hover = ExtResource("4_3qae4")
-Button/styles/normal = ExtResource("3_gai11")
-Button/styles/pressed = ExtResource("4_3qae4")
+Button/styles/disabled = ExtResource("5_4jnk0")
+Button/styles/focus = ExtResource("6_2xut8")
+Button/styles/hover = ExtResource("6_2xut8")
+Button/styles/normal = ExtResource("5_4jnk0")
+Button/styles/pressed = ExtResource("6_2xut8")
 
 [node name="root" type="Node2D"]
-script = ExtResource("1_3upgc")
+script = ExtResource("1_1eyv6")
 debug = true
 
 [node name="FallbackBG" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(128, 96)
-texture = ExtResource("2_s3q4b")
+texture = ExtResource("2_sywr5")
 
 [node name="LoadStack" type="Node" parent="."]
 unique_name_in_owner = true
@@ -53,8 +53,8 @@ z_index = 3076
 offset_top = 144.0
 offset_right = 256.0
 offset_bottom = 192.0
-texture = ExtResource("3_74qka")
-script = ExtResource("3_c2hlh")
+texture = ExtResource("3_ufk20")
+script = ExtResource("4_pmrrx")
 
 [node name="MessageText" type="RichTextLabel" parent="MessageBox"]
 layout_direction = 2
@@ -71,7 +71,7 @@ theme_override_colors/font_shadow_color = Color(0.282353, 0.282353, 0.282353, 1)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
 theme_override_constants/shadow_outline_size = 0
-theme_override_fonts/normal_font = ExtResource("7_5ohdw")
+theme_override_fonts/normal_font = ExtResource("8_2t0tw")
 theme_override_font_sizes/normal_font_size = 15
 text = "Amoongus shat on the floor and called you a slur! It was super effective!"
 scroll_active = false
@@ -93,4 +93,4 @@ z_index = 4096
 offset_right = 256.0
 offset_bottom = 192.0
 border_width = 0.0
-script = ExtResource("8_tgn1h")
+script = ExtResource("8_83deo")

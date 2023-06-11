@@ -42,7 +42,7 @@ var debugButtons: Array = [
   self.stateVisualiser.new(),
 ]
 
-var debugOverlayTheme: Theme = preload("res://sprites/mainTheme.tres")
+var debugOverlayTheme: Theme = preload("res://Sprites/mainTheme.tres")
 
 var scrollContainer: ScrollContainer
 var vBoxContainer: VBoxContainer

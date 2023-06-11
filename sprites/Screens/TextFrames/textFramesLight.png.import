@@ -10,7 +10,7 @@ metadata={
 
 [deps]
 
-source_file="res://sprites/TextFrames/textFramesLight.png"
+source_file="res://Sprites/TextFrames/textFramesLight.png"
 dest_files=["res://.godot/imported/textFramesLight.png-675fb3b9a61e931c28e87698803e2a8a.ctex"]
 
 [params]

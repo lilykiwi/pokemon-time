@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://chxi4sfaublwd"
-path="res://.godot/imported/squirtle.png-1164c132a1843be4e9717f0c5b4b4d24.ctex"
+path="res://.godot/imported/squirtle.png-8dc0173598e4e81cc986d3c4e503c0d7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/pokemon/007-squirtle/back/squirtle.png"
-dest_files=["res://.godot/imported/squirtle.png-1164c132a1843be4e9717f0c5b4b4d24.ctex"]
+source_file="res://Sprites/pokemon/007-squirtle/back/squirtle.png"
+dest_files=["res://.godot/imported/squirtle.png-8dc0173598e4e81cc986d3c4e503c0d7.ctex"]
 
 [params]
 

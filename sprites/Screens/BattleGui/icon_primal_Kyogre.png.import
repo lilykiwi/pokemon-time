@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ck33askgx7tlr"
-path="res://.godot/imported/icon_primal_Kyogre.png-1b3556cce55ee9ef9ee175e70aad198e.ctex"
+path="res://.godot/imported/icon_primal_Kyogre.png-c06fadfea511f879ce935c48c9b98cec.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Screens/BattleGui/icon_primal_Kyogre.png"
-dest_files=["res://.godot/imported/icon_primal_Kyogre.png-1b3556cce55ee9ef9ee175e70aad198e.ctex"]
+source_file="res://Sprites/Screens/BattleGui/icon_primal_Kyogre.png"
+dest_files=["res://.godot/imported/icon_primal_Kyogre.png-c06fadfea511f879ce935c48c9b98cec.ctex"]
 
 [params]
 

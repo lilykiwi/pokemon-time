@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b73w8hwh5mvnc"
-path="res://.godot/imported/overworld.png-feac4a8b24333caa97b54b5334955d21.ctex"
+path="res://.godot/imported/overworld.png-03c51ab1610d29968c5119e282dde337.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/PlayerSprites/player-herb/overworld.png"
-dest_files=["res://.godot/imported/overworld.png-feac4a8b24333caa97b54b5334955d21.ctex"]
+source_file="res://Sprites/PlayerSprites/player-herb/overworld.png"
+dest_files=["res://.godot/imported/overworld.png-03c51ab1610d29968c5119e282dde337.ctex"]
 
 [params]
 
