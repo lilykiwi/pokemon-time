@@ -341,13 +341,13 @@ func generate(startingLevel: int):
   level = startingLevel
   xp = levelToExp(level)
   # check this
-  expPercent = floori((xp - levelToExp(level - 1)) / (levelToExp(level) - levelToExp(level - 1)))
+  expPercent = floori((xp - levelToExp(level - 1)) / (levelToExp(level) - levelToExp(level - 1) * 1.0))
   
 
 # function to calculate the pokemon's stats
 func calculateStats():
   # calculate the pokemon's current stats
-  # TODO going to need to double check this math
+  # TODO: going to need to double check this math
   maxHp = floori((2 * baseHp + ivHp + floori(evHp / 4.0)) * level / 100.0) + level + 10
   maxAtk = floori((2 * baseAtk + ivAtk + floori(evAtk / 4.0)) * level / 100.0) + 5
   maxDef = floori((2 * baseDef + ivDef + floori(evDef / 4.0)) * level / 100.0) + 5
@@ -364,7 +364,7 @@ func calculateStats():
   currentSpd = maxSpd
 
 # function to add EVs
-# TODO check if the pokemon has max EVs (252 each, 510 total)
+# TODO: check if the pokemon has max EVs (252 each, 510 total)
 func addEVs(stat: String, amount: int):
   # find total
   var total = evHp + evAtk + evDef + evSpAtk + evSpDef + evSpd
@@ -409,18 +409,18 @@ func addEVs(stat: String, amount: int):
       print("EV not added. " + stat + " is not a valid stat.")
 
 # function to add a status
-# TODO check if the pokemon already has this status
+# TODO: check if the pokemon already has this status
 func addStatus(status: String):
   statuses.append(status)
 
 # function to remove a status
-# TODO check if the pokemon has this status
+# TODO: check if the pokemon has this status
 func removeStatus(status: String):
   statuses.erase(statuses.find(status))
 
 func doDamage(damage: int):
   currentHp -= damage
-  hpPercent = currentHp / maxHp
+  hpPercent = floori(currentHp / (maxHp * 1.0))
   if currentHp < 0:
     currentHp = 0
     #emit_signal("pokemon_fainted", self)

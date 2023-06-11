@@ -2,23 +2,23 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cutovim7wtsda"
-path="res://.godot/imported/150fc0fab392c4931cc1202ddfb57cfa.png-61bd28161622eb07a08d009f0ac8252a.ctex"
+uid="uid://dfi1yn5w0rb0o"
+path="res://.godot/imported/tilemap-new-external.png-eccc7ece52aeb8086fabacff030e83fd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Overworld/tilesets/150fc0fab392c4931cc1202ddfb57cfa.png"
-dest_files=["res://.godot/imported/150fc0fab392c4931cc1202ddfb57cfa.png-61bd28161622eb07a08d009f0ac8252a.ctex"]
+source_file="res://sprites/Overworld/tilemap-new-external.png"
+dest_files=["res://.godot/imported/tilemap-new-external.png-eccc7ece52aeb8086fabacff030e83fd.ctex"]
 
 [params]
 
 compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
-compress/hdr_compression=2
+compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=false

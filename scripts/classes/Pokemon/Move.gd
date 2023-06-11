@@ -175,7 +175,7 @@ func calculateDamage(user: Pokemon, target: Pokemon, crit: bool) -> int:
   if (moveTargetStat == Move.defenderStat.PHYSICAL):
     effectiveDef = target.currentDef
 
-  damage = ((2*user.level)/5.0 * power * (effectiveAtk / effectiveDef)) / 50.0 + 2
+  damage = floori(((2*user.level)/5.0 * power * (effectiveAtk / effectiveDef)) / 50.0 + 2)
   
   # 0.75x if more than one target, otherwise 1.0x
 
@@ -201,11 +201,11 @@ func calculateDamage(user: Pokemon, target: Pokemon, crit: bool) -> int:
   # +3 and above is 1/1 chance
   # we don't currently have a crit stage, so we'll use +0 for now
   if crit:
-    damage *= 1.5
+    damage = floori(damage * 1.5)
 
   # random damage range 0.85 - 1.00
   var randomMod = randi() % 16 + 85
-  damage *= (randomMod / 100.0)
+  damage = floori(damage * randomMod / 100.0)
 
   # TODO: apply stab
 
@@ -213,7 +213,7 @@ func calculateDamage(user: Pokemon, target: Pokemon, crit: bool) -> int:
   # we can get the types of the pokemon from the target pokemon's type list
   # see Type.gd for more info on how this works
   var typeMod = Type.computeEffectiveness(moveType, target.types[0], target.types[1])
-  damage *= typeMod
+  damage = floori(damage * typeMod)
 
   # TODO: burn check
   # 0.5x if user is burned, move is physical, and ability isn't guts.

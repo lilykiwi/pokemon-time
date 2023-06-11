@@ -99,10 +99,11 @@ func _process(_delta):
   if _state_manager.get_top_state() != StateManager.GameStates.OVERWORLD:
     return
 
-  if inputFIFO.size() > 0 and not isFacingInputDir:
-    isFacingInputDir = true
+  if inputFIFO.size() > 0 && facingHoldTimeCurrent == 0.0:
+    var dir = inputBuffer
+    movingDirection = dir
 
-  if isFacingInputDir && facingHoldTimeCurrent < facingHoldTime:
+  if inputFIFO.size() > 0 && facingHoldTimeCurrent < facingHoldTime:
     facingHoldTimeCurrent += _delta
 
     # no animation needed here as we're holding until the facingHoldTime is reached
@@ -110,6 +111,7 @@ func _process(_delta):
   if inputFIFO.size() > 0 and facingHoldTimeCurrent >= facingHoldTime and not isMoving:
     # collision check here
     var dir = inputBuffer
+    movingDirection = dir
     clearBuffer()
     match dir:
       "main_up":
@@ -125,7 +127,7 @@ func _process(_delta):
       isMoving = false
     else:
       isMoving = true
-      movingDirection = dir
+
 
   if isMoving:
     # get the delta between our current position and our next position

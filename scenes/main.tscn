@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://dw3135sa8mpdn"]
+[gd_scene load_steps=11 format=3 uid="uid://dw3135sa8mpdn"]
 
 [ext_resource type="Script" path="res://scripts/StateManager.gd" id="1_3upgc"]
+[ext_resource type="Texture2D" uid="uid://bx5wisel8e1fa" path="res://sprites/Screens/TitleScreen/bg.png" id="2_s3q4b"]
 [ext_resource type="Texture2D" path="res://sprites/Screens/TextFrames/wide/dark1.tres" id="3_74qka"]
 [ext_resource type="Script" path="res://scripts/MessageBox.gd" id="3_c2hlh"]
 [ext_resource type="StyleBox" uid="uid://bl2aenv10oanu" path="res://sprites/Screens/OptionsMenu/ThemeElements/buttonNormal.tres" id="3_gai11"]
@@ -37,17 +38,13 @@ Button/styles/pressed = ExtResource("4_3qae4")
 script = ExtResource("1_3upgc")
 debug = true
 
-[node name="Fallbackbg" type="TextureRect" parent="."]
+[node name="FallbackBG" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-z_index = -4096
-offset_right = 256.0
-offset_bottom = 192.0
+position = Vector2(128, 96)
+texture = ExtResource("2_s3q4b")
 
-[node name="LoadStack" type="ReferenceRect" parent="."]
+[node name="LoadStack" type="Node" parent="."]
 unique_name_in_owner = true
-offset_right = 256.0
-offset_bottom = 192.0
-border_color = Color(1, 1, 1, 1)
 
 [node name="MessageBox" type="TextureRect" parent="."]
 unique_name_in_owner = true
