@@ -5,7 +5,6 @@
 
 [node name="000 PK Center Entrance" type="Sprite2D"]
 visibility_layer = 524288
-position = Vector2(1176, 200)
 texture = ExtResource("1_p5uhv")
 hframes = 6
 script = ExtResource("2_dimgp")

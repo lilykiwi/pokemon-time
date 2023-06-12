@@ -81,6 +81,7 @@ func move_player(localeSpawnpoint: int) -> bool:
   player.position = targetDest
   player.snapToGrid()
   player.gridPosition = tileMap.local_to_map(targetDest)
+  player.clearMovement()
   return true
 
 

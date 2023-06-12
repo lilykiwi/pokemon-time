@@ -40,6 +40,7 @@ debug = true
 
 [node name="FallbackBG" type="Sprite2D" parent="."]
 unique_name_in_owner = true
+visible = false
 position = Vector2(128, 96)
 texture = ExtResource("2_sywr5")
 
